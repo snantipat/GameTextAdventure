@@ -123,7 +123,7 @@ public class HunterAdventureGame {
             boolean completeState=false;
             boolean won=false;
             
-            //startslot
+            //startstate
             while(confirmState){
                 //waveing
                 //neeeddddd it  nowwwwwwwww
