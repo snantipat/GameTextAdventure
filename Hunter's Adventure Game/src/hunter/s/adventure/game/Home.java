@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hunter.s.adventure.game;
-
-/**
- *
- * @author Domekenji
- */
 public class Home extends Map{
     NPC n_1,n_2,n_3;
     Player p_1;

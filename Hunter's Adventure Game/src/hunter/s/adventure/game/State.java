@@ -1,9 +1,4 @@
 package hunter.s.adventure.game;
-
-/**
- *
- * @author Domekenji
- */
 public class State extends Map{
     int G;
     int Xp;
@@ -11,7 +6,10 @@ public class State extends Map{
     State(int stateAt){
     
     }
-    State(){}
+    State(){
+    
+    
+    }
     int chooseState(){
         int i=0;
         return i;
