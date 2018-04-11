@@ -18,44 +18,81 @@ public class Home extends Map{
     void upStatus() {
         System.out.println("            -up status-");
         System.out.println("  Status			  use\n" +
-                           "	VIT	          	 10xp\n" +
-                           "	ATK		         10xp\n" +
+                           "(1)	VIT	          	 10xp\n" +
+                           "(2)	ATK		         10xp\n" +
                            "notice:\n" +
                            "max hp+10 per vit\n" +
                            "max power 2 per atk");
+        System.out.println("               back(0)");
+        Scanner u = new Scanner(System.in);
+        System.out.print("Choose: ");
+        int up = u.nextInt();
+        switch(up){
+            case 0 : ;break;
+            case 1 : ;break;
+            case 2 : ;break;
     }
-
+    }
     void utilityShop() {
-        System.out.println("            -Food&Potion");
-        System.out.println("Small  potion   Hp+25%       50 G\n" +
-                           "middle potion   Hp+50%       50 G\n" +
-                           "big    potion   Hp+75%       50 G\n" +
-                           "   BUY(b)	          SELL(S)\n" +
-                           "BUYBACK(0)\n" +
-                           "Your Wallet : 100 G");
+        System.out.println("         -Food&Potion-");
+        System.out.println("   BUY(1)	          SELL(2)");
+        System.out.println("           back(3)");
         Scanner r = new Scanner(System.in);
         System.out.print("Choose: ");
         int bs = r.nextInt();
-        
+        switch(bs){
+            case 1 :buyitem() ;break;
+            case 2 : ;break;
+            case 3 : ;break;
+    }
+    }
+    void buyitem(){
+        System.out.println("(1) Small  potion   Hp+25%       50 G\n" +
+                           "(2) middle potion   Hp+50%       50 G\n" +
+                           "(3) big    potion   Hp+75%       50 G\n" );
+        System.out.println("     Buy Back(0)    Back(4)");
+        Scanner r = new Scanner(System.in);
+        System.out.print("Choose: ");
+        int bs = r.nextInt();  
+        switch(bs){
+            case 0 : ;break;
+            case 1 : ;break;
+            case 2 : ;break;
+            case 3 : ;break;
+            case 4 :utilityShop() ;break;
+        }
     }
 
     void weaponShop() {
-        
         System.out.println("            <WEAPON SHOP>");
-        System.out.println("Greatswords   1Hit/turn           50 G\n" +
-                           "Sword         2Hit/turn           50 G\n" +
-                           "Daggers       3Hit/turn           50 G");
-        System.out.println("      Buy(b)              Sell(s)\n"+
-                           "            Buy Back(0)");
+        System.out.println("      Buy(1)              Sell(2) ");
+        System.out.println("               back(3)");
         Scanner ur = new Scanner(System.in);
         System.out.print("Choose: ");
         int buy = ur.nextInt();
-        System.out.println("Your Wallet : 100G");
-        System.out.println("BACKPACK : ");
-        System.out.println("MENU(1)			 MAP(2)");
-        Scanner sr = new Scanner(System.in);
-        System.out.print("Choose: ");
-        int mm = ur.nextInt();
+        switch(buy){
+            case 1 :buyweapon() ;break;
+            case 2 : ;break;
+            case 3 : ;break;
     }
+    }
+    void buyweapon(){
+        System.out.println("(1)Greatswords   1Hit/turn           50 G\n" +
+                           "(2)Sword         2Hit/turn           50 G\n" +
+                           "(3)Daggers       3Hit/turn           50 G");
+        System.out.println("Your Wallet : 100G");
+        System.out.println("     Buy Back(0)    Back(4)");
+        Scanner r = new Scanner(System.in);
+        System.out.print("Choose: ");
+        int bs = r.nextInt();  
+        switch(bs){
+            case 0 : ;break;
+            case 1 : ;break;
+            case 2 : ;break;
+            case 3 : ;break;
+            case 4 :weaponShop() ;break;
+    }
+    
+}
     
 }
