@@ -32,7 +32,7 @@ public class Home extends Map{
                            "big    potion   Hp+75%       50 G\n" +
                            "   BUY(b)	          SELL(S)\n" +
                            "BUYBACK(0)\n" +
-//                           "Your Wallet : "+g+" G");
+                           "Your Wallet : 100 G");
         Scanner r = new Scanner(System.in);
         System.out.print("Choose: ");
         int bs = r.nextInt();
@@ -50,7 +50,7 @@ public class Home extends Map{
         Scanner ur = new Scanner(System.in);
         System.out.print("Choose: ");
         int buy = ur.nextInt();
-//        System.out.println("Your Wallet : "+g+" G");
+        System.out.println("Your Wallet : 100G");
         System.out.println("BACKPACK : ");
         System.out.println("MENU(1)			 MAP(2)");
         Scanner sr = new Scanner(System.in);
