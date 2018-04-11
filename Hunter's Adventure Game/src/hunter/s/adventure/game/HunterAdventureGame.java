@@ -2,7 +2,7 @@ package hunter.s.adventure.game;
 import java.util.ArrayList;
 public class HunterAdventureGame {
     public static void main(String args[]){
-      Tools_pack UI = new Tools_pack();
+        Tools_pack UI = new Tools_pack();
         ArrayList<Player> slots = new ArrayList(); 
         Player player = new Player();
         State state = new State();
@@ -72,7 +72,8 @@ public class HunterAdventureGame {
             //@Seting home && selectMap
             while(selectedSlot&&stateIsNull){
                 //home
-                homeTown=new Home(Jonathan,Yharnum,Gabriel);
+                
+                homeTown=new Home(Jonathan,Yharnum,Gabriel,player);
                 input=UI.homeTown();
                 switch(input){
                     case"1"://@weapon
