@@ -43,21 +43,39 @@ public class HunterAdventureGame {
                         player=new Player(input);
                         slots.add(player);
                     case"2":
-                        //have to add delete slot method
+                        //have to add delete slot method 
+                        //added deletion slot
                         if(slots.size()>0){
                             input=UI.selectSlot(slots);
-                            if(UI.StringToNum(input)){
+                            if(input.equals("r")){
+                                input=UI.removeSlot(slots);
+                                if(UI.StringToNum(input)){
+                                    int removeAt=UI.getNum()-1;
+                                    boolean confirmDeleteSlot=false;
+                                    System.out.print("For Confirm Deletion Slot\nPlease Enter Name of this Slot:");
+                                    input=UI.enter.nextLine();
+                                    if(input.equals(slots.get(removeAt).getName())){
+                                        confirmDeleteSlot=true;
+                                    }else
+                                        System.out.println("Delete Fail!");
+                                    if(confirmDeleteSlot){
+                                        System.out.println("deleting Slot at "+(removeAt+1)
+                                                +" Name:"+slots.get(removeAt).getName());
+                                        slots.remove(removeAt);
+                                        System.out.println("Slot deleted.");
+                                    }
+                                }
+                                System.out.println("Returning to Main Menu");
+                            }else if(UI.StringToNum(input)){
                                 player=slots.get(UI.getNum()-1);
                                 SlotIsNull=false;
                                 selectedSlot=true;
                                 System.out.println(player.getName());
                             }
-                            else
-                                SlotIsNull=true;
                                 
                         }else{
                             System.out.println("Please press 1 for New game.");
-                            break;
+                    break;
                     }
                     break;
                     case"0":playing=false;

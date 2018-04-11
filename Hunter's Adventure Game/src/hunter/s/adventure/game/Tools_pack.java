@@ -50,24 +50,55 @@ public class Tools_pack implements Tools{
                             + "\n\tState clear "+slots.get(i).getStateClear()
                             + "/"+10);
         }
-        System.out.println("Back(b)");
+        System.out.println("Back(b)\t\tDelete(r)");
                 boolean slotIsNull=true;
                 String input=null;
                 while(slotIsNull){
                     System.out.print("Choose slot:");
                     input=enter.nextLine();
-                    if(StringToNum(input)){
-                        for(int i = 0;i<slots.size()&&(this.num-1)<slots.size();i++){
+                    if(input.equalsIgnoreCase("b")||input.equalsIgnoreCase("r"))
+                        slotIsNull=false;
+                    else if(StringToNum(input)){
+                        for(int i = 0;i<slots.size()&&(this.num-1)<slots.size()&&this.num>0;i++){
                             if((this.num-1)==i)
                                 slotIsNull=false;
                         }
+                        if(this.num-1>slots.size()&&this.num<=0)
+                            System.out.println("Slot at "+this.num+" doesn't exist.");
                     }
-                    else if(input.equalsIgnoreCase("b"))
-                        slotIsNull=false;
                 }
                 
         return input;
+    }public String removeSlot(ArrayList<Player> slots){
+        String removeAt=null;
+        System.out.println("==================Remove Slot======================");
+            for(int i=0;i<slots.size();i++){
+            System.out.println("Slot "+(i+1)+" :Name>"+slots.get(i).getName()
+                            + "\n\tLast Auto save dd/mm/yyyy hh:mm "
+                            + "\n\tState clear "+slots.get(i).getStateClear()
+                            + "/"+10);
+            }
+            System.out.println("\nBack(b)");
+            boolean slotIsNull=true;
+                while(slotIsNull){
+                    System.out.print("Choose slot:");
+                    removeAt=enter.nextLine();
+                    if(removeAt.equalsIgnoreCase("b"))
+                        slotIsNull=false;
+                    else if(StringToNum(removeAt)){
+                        for(int i = 0;i<slots.size()&&(this.num-1)<slots.size()&&(this.num-1)>=0;i++){
+                            if((this.num-1)==i)
+                                slotIsNull=false;
+                        }
+                        if(this.num>slots.size()||this.num<=0)
+                            System.out.println("Slot at "+this.num+" dosen't exist.");
+                    }else
+                        System.out.println("Slot at "+removeAt+" dosen't exist.");
+                }
+            
+        return removeAt;
     }
+    
     public String homeTown(){
         String input=null;
             //1 2 3 4 b
