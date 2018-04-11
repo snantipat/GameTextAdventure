@@ -9,7 +9,7 @@ public class HunterAdventureGame {
         NPC Jonathan = new NPC(1);
         NPC Yharnum  = new NPC(2);
         NPC Gabriel  = new NPC(3);
-        Home homeE;
+        Home homeTown;
         boolean playing = true;
         boolean SlotIsNull=true;
         boolean selectedSlot=false;
@@ -18,9 +18,9 @@ public class HunterAdventureGame {
         UI.startGame();
         input=UI.enter.nextLine();
         temp=input;    
-        //playing 
+        //@playing 
         while(playing){
-            //choose slot 
+            //@choose slot 
             //pass
             while(SlotIsNull&&playing){
                 selectedSlot=false;
@@ -68,22 +68,29 @@ public class HunterAdventureGame {
             boolean stateIsNull=true;
             int stateAt=0;
             
-            //Seting home && selectMap
+            //@Seting home && selectMap
             while(selectedSlot&&stateIsNull){
                 //home
-                homeE=new Home(Jonathan,Yharnum,Gabriel);
+                homeTown=new Home(Jonathan,Yharnum,Gabriel);
                 input=UI.homeTown();
                 switch(input){
-                    case"1"://weapon
-                        homeE.weaponShop();
+                    case"1"://@weapon
+//                        homeTown.weaponShop(player);
+//                        player.setGold(homeTown.getGold());
+//                        player.setInventory(homeTown.getInventory);
                         break;
-                    case"2"://Potions and grenade
-                        homeE.utilityShop();
+                    case"2"://@Potions and grenade
+//                        homeTown.utilityShop(player);
+//                        player.setGold(homeTown.getGold());
+//                        player.setInventory(homeTown.getInventory());
                         break;
-                    case"3"://upstat
-                        homeE.upStatus();
+                    case"3"://@upstat
+//                        homeTown.upStatus(player);
+//                        player.setExp(homeTown.getxp());
+//                        player.setAtk(homeTown.setAtk());
+//                        player.setHP(homeTown.setHp());
                         break;
-                    case"4"://select state
+                    case"4"://@select state
                         //clear
                         input=UI.chooseState(player.getStates());
                         if(UI.StringToNum(input)){
@@ -92,7 +99,7 @@ public class HunterAdventureGame {
                             stateIsNull=false;
                         }
                         break;
-                    case"b"://main menu
+                    case"b"://@main menu
                         //clear
                         SlotIsNull=true;
                         selectedSlot=false;
@@ -102,12 +109,12 @@ public class HunterAdventureGame {
             
             boolean confirmState=false;
             
-            //confirmslot
+            //@confirmslot
             while(stateSelected){
                 input = UI.sureState(stateAt);
                 switch(input){
                     case"1":
-                        //state
+                        //@state
                         //not clearly
                         state = new State(stateAt);
                         confirmState=true;
@@ -115,27 +122,47 @@ public class HunterAdventureGame {
                         break;
                     case"b":
                         SlotIsNull=true;
-                        //home
+                        //@home
                         
                 }
             }
             
-            boolean completeState=false;
+            boolean completeState=true;
             boolean won=false;
             
-            //startstate
+            //@startstate
             while(confirmState){
-                //waveing
+                //@waveing
                 //neeeddddd it  nowwwwwwwww
+                boolean WaveNotDone=true;
+                boolean Alive=true;
+//                int hp=player.getHp();
+                int waveAt=0;
+                while(WaveNotDone&&Alive){
+//                    if(state.wave(waveAt,hp,player.getAtk(),player.getInventory())){
+//                        hp=state.getHp();
+//                        player.setInventory(state.getInventory());
+//                        if(waveAt<state.getWaveAmount())
+//                            waveAt++;
+//                        else{
+//                            WaveNotDone=false;
+//                            won=true;
+//                        }
+//                    }else
+//                        Alive=false;
+//                    
+                }
             }
             
-            if(completeState){
-                state.result(won);
-                player.setGold(state.getG());
-                player.setExp(state.getXp());
-            }
+//            if(completeState&&state.getBettle()){
+//                state.result(won);
+//                player.setGold(state.getG());
+//                player.setExp(state.getXp());
+//                if(won)
+//                    player.setState(stateAt+1);
+//            }
             state.resetState();
-            //set new Coin and exp of player
+            //@reset Coin and exp of player
         }
         UI.exit(slots);
     }

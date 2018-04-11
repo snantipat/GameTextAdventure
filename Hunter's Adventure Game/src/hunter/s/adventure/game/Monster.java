@@ -1,7 +1,6 @@
 package hunter.s.adventure.game;
-public abstract class Monster extends Character{
+public class Monster extends Character{
     Monster(int i){
         super(i);
     }
-    abstract void setName();
 }
