@@ -31,10 +31,9 @@ public class HunterAdventureGame {
                     case"1":
                         System.out.println("------Create New Game------");
                         boolean check;
+                        System.out.println("Create your name first");
                         do{
-                           
-                            System.out.print("Create your name first\nName :");
-                            input=UI.enter.nextLine();
+                            input=UI.resistNaming();
                             check=UI.checkName(input,slots);
                             if(check){
                                 System.out.println("Name \""+input+"\" already exist");

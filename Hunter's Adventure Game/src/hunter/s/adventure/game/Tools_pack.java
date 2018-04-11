@@ -25,7 +25,7 @@ public class Tools_pack implements Tools{
     }
     public void mainMenu(int size){
         int choose=2;
-        System.out.print("\tHUNTER’s ADVENTURE\n" +
+        System.out.print("+++++++++++++++++++++++++HUNTER’s ADVENTURE+++++++++++++++++++++++++\n" +
                          "\tnew game(1)\n");
         if(size>0)
             System.out.println("\tcontinue(2)");
@@ -33,6 +33,20 @@ public class Tools_pack implements Tools{
         System.out.print("\texit(0)\n" +
                          "enter:");
         
+    }
+    public String resistNaming(){
+        String name=null;
+        boolean NotPass=true;
+        while(NotPass){
+            System.out.print("Name :");name=enter.nextLine();
+            for(int i = 0;i<name.length();i++){
+                if(!(name==""||name.charAt(i)==' '))
+                   NotPass=false;
+            }
+            if(NotPass)
+               System.out.println("Naming can not be this \""+name+"\" word.");
+        }
+        return name;
     }
     public boolean checkName(String name,ArrayList<Player> slots){
         boolean repetitive=false;
@@ -63,9 +77,11 @@ public class Tools_pack implements Tools{
                             if((this.num-1)==i)
                                 slotIsNull=false;
                         }
-                        if(this.num-1>slots.size()&&this.num<=0)
+                        if(this.num>=slots.size()||this.num<=0)
                             System.out.println("Slot at "+this.num+" doesn't exist.");
                     }
+                    else
+                        System.out.println("Slot at "+input+" doesn't exist.");
                 }
                 
         return input;
@@ -90,7 +106,7 @@ public class Tools_pack implements Tools{
                             if((this.num-1)==i)
                                 slotIsNull=false;
                         }
-                        if(this.num>slots.size()||this.num<=0)
+                        if(this.num>=slots.size()||this.num<=0)
                             System.out.println("Slot at "+this.num+" dosen't exist.");
                     }else
                         System.out.println("Slot at "+removeAt+" dosen't exist.");
