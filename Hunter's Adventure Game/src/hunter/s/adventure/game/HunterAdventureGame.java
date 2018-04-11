@@ -43,6 +43,7 @@ public class HunterAdventureGame {
                         player=new Player(input);
                         slots.add(player);
                     case"2":
+                        //have to add delete slot method
                         if(slots.size()>0){
                             input=UI.selectSlot(slots);
                             if(UI.StringToNum(input)){
