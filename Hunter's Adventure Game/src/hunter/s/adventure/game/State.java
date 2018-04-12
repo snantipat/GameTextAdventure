@@ -1,10 +1,15 @@
 package hunter.s.adventure.game;
-public class State extends Map implements MonstersInfo{
+import java.util.ArrayList;
+public class State extends Map implements StatesInfo{
     int G;
     int Xp;
     int StateAt;
+    int amountWave;
+    int amountMon;
+    boolean waveFine;
+    ArrayList<Monster[]> waves= new ArrayList();
     State(int stateAt){
-        
+        decodeState(States[stateAt]);
     }
     State(){
         super();
@@ -30,10 +35,11 @@ public class State extends Map implements MonstersInfo{
         int stateAt=0;
         return stateAt;
     }
-    void deCode(String raw){
-        Tools_pack tool=new Tools_pack();
-        for(int i=0;i<raw.length();i++){
-            
-        }
+    
+    public void decodeState(String raw){
+        String wave_temp="";
+        String amount_temp="";
+        int amount;
+        Monster mons[];
     }
 }
