@@ -2,8 +2,7 @@ package hunter.s.adventure.game;
 import java.util.ArrayList;
 public class HunterAdventureGame {
     public static void main(String args[]){
-        Tools_pack UI = new Tools_pack();
-        
+        Tools_pack UI = new Tools_pack();                
         ArrayList<Player> slots = new ArrayList();
         Player player = new Player();
         
@@ -23,15 +22,17 @@ public class HunterAdventureGame {
         temp=input;    
         //@playing
         while(playing){
+            
             //@choose slot 
-            //pass
             while(SlotIsNull&&playing){
                 selectedSlot=false;
                 UI.mainMenu(slots.size());
                 input=UI.enter.nextLine();
                 switch(input){
                     case"1":
-                        System.out.println("------Create New Game------");
+                        //@create new 
+                        //setname
+                        System.out.println("------Create New Slot------");
                         boolean check;
                         String name=null;
                         System.out.println("Create your name first");
@@ -44,6 +45,8 @@ public class HunterAdventureGame {
                                 name=input;
                             }
                         }while(check);
+                        
+                        //setweapon type
                         boolean TypeWeaponUnable=true;
                         int weaponType=0;
                         UI.chooseWeapon();
@@ -58,10 +61,10 @@ public class HunterAdventureGame {
                         player=new Player(name,weaponType);
                         slots.add(player);
                     case"2":
-                        //have to add delete slot method 
-                        //added deletion slot
+                        //select slot
                         if(slots.size()>0){
                             input=UI.selectSlot(slots);
+                            //remove slot
                             if(input.equals("r")){
                                 input=UI.removeSlot(slots);
                                 if(UI.StringToNum(input)){
@@ -82,6 +85,7 @@ public class HunterAdventureGame {
                                 }
                                 System.out.println("Returning to Main Menu");
                             }else if(UI.StringToNum(input)){
+                                //choose slot
                                 player=slots.get(UI.getNum()-1);
                                 SlotIsNull=false;
                                 selectedSlot=true;
