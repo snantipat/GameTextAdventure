@@ -204,4 +204,11 @@ public class Tools_pack implements Tools{
         this.num=0;
        return n_1;
     }
+
+    void chooseWeapon() {
+        System.out.println("========================================Choose Weapons==========================================="
+                + "\n\n\t(1)Heavy Sword\t60 damages\n\t  - one hit in one turn"
+                + "\n\t(2)Short Hand Sword\t30 damages\n\t  - two hit in one turn"
+                + "\n\t(3)Huntsman Knife\t10 damages\n\t  - three hit in one turn");
+    }
 }

@@ -6,16 +6,21 @@ public class Player extends Character{
     private int Gold;
     private int Exp;
     private int StateClear;
+    private int WeaponType=0;
     Player(){
         super();
         this.name=null;
     }
-    Player(String n){
+    Player(String n,int weapon){
         this.name= n;
         this.states[0]=true;
+        this.WeaponType=weapon;
     }
     public String getName(){
         return name;
+    }
+    public void setWeaponType(int type){
+        
     }
     void setState(boolean state,int i){
         this.states[i]=state;   

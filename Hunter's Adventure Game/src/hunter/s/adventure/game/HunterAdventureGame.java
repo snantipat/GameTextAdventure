@@ -33,15 +33,29 @@ public class HunterAdventureGame {
                     case"1":
                         System.out.println("------Create New Game------");
                         boolean check;
+                        String name=null;
                         System.out.println("Create your name first");
                         do{
                             input=UI.resistNaming();
                             check=UI.checkName(input,slots);
                             if(check){
                                 System.out.println("Name \""+input+"\" already exist");
+                            }else{
+                                name=input;
                             }
                         }while(check);
-                        player=new Player(input);
+                        boolean TypeWeaponUnable=true;
+                        int weaponType=0;
+                        UI.chooseWeapon();
+                        do{
+                            System.out.print("Choose:");
+                            input=UI.enter.nextLine();
+                            if(UI.StringToNum(input)){
+                                weaponType=UI.getNum();
+                                TypeWeaponUnable=false;
+                            }
+                        }while(TypeWeaponUnable);
+                        player=new Player(name,weaponType);
                         slots.add(player);
                     case"2":
                         //have to add delete slot method 
