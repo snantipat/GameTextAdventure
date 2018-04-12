@@ -7,9 +7,6 @@ public abstract class Character {
     Character(String name){
         
     }
-    Character(String name,int type){
-        
-    }
     Character(){
         
     }

@@ -3,12 +3,15 @@ import java.util.ArrayList;
 public class HunterAdventureGame {
     public static void main(String args[]){
         Tools_pack UI = new Tools_pack();
-        ArrayList<Player> slots = new ArrayList(); 
+        
+        ArrayList<Player> slots = new ArrayList();
         Player player = new Player();
+        
+        
         State state = new State();
-        NPC Jonathan = new NPC(1);
-        NPC Yharnum  = new NPC(2);
-        NPC Gabriel  = new NPC(3);
+        NPC Jonathan = new NPC(1,"Jonathan");
+        NPC Yharnum  = new NPC(2,"Yharnum");
+        NPC Gabriel  = new NPC(3,"Gabriel");
         Home homeTown;
         boolean playing = true;
         boolean SlotIsNull=true;
@@ -18,7 +21,7 @@ public class HunterAdventureGame {
         UI.startGame();
         input=UI.enter.nextLine();
         temp=input;    
-        //@playing 
+        //@playing
         while(playing){
             //@choose slot 
             //pass
@@ -26,7 +29,6 @@ public class HunterAdventureGame {
                 selectedSlot=false;
                 UI.mainMenu(slots.size());
                 input=UI.enter.nextLine();
-            
                 switch(input){
                     case"1":
                         System.out.println("------Create New Game------");
@@ -70,8 +72,7 @@ public class HunterAdventureGame {
                                 SlotIsNull=false;
                                 selectedSlot=true;
                                 System.out.println(player.getName());
-                            }
-                                
+                            }  
                         }else{
                             System.out.println("Please press 1 for New game.");
                     break;
@@ -94,20 +95,20 @@ public class HunterAdventureGame {
                 input=UI.homeTown();
                 switch(input){
                     case"1"://@weapon
-//                        homeTown.weaponShop(player);
-//                        player.setGold(homeTown.getGold());
-//                        player.setInventory(homeTown.getInventory);
+                        //homeTown.weaponShop(player);
+                        //player.setGold(homeTown.getGold());
+                        //player.setInventory(homeTown.getInventory);
                         break;
                     case"2"://@Potions and grenade
-//                        homeTown.utilityShop(player);
-//                        player.setGold(homeTown.getGold());
-//                        player.setInventory(homeTown.getInventory());
+                        //homeTown.utilityShop(player);
+                        //player.setGold(homeTown.getGold());
+                        //player.setInventory(homeTown.getInventory());
                         break;
                     case"3"://@upstat
-//                        homeTown.upStatus(player);
-//                        player.setExp(homeTown.getxp());
-//                        player.setAtk(homeTown.setAtk());
-//                        player.setHP(homeTown.setHp());
+                        //homeTown.upStatus(player);
+                        //player.setExp(homeTown.getxp());
+                        //player.setAtk(homeTown.setAtk());
+                        //player.setHP(homeTown.setHp());
                         break;
                     case"4"://@select state
                         //clear
@@ -140,7 +141,8 @@ public class HunterAdventureGame {
                         stateSelected=false;
                         break;
                     case"b":
-                        SlotIsNull=true;
+                        stateSelected=false;
+                        System.out.println("Returning to Home");
                         //@home
                         
                 }
@@ -155,32 +157,34 @@ public class HunterAdventureGame {
                 //neeeddddd it  nowwwwwwwww
                 boolean WaveNotDone=true;
                 boolean Alive=true;
-//                int hp=player.getHp();
+                //int hp=player.getHp();
                 int waveAt=0;
                 while(WaveNotDone&&Alive){
-//                    if(state.wave(waveAt,hp,player.getAtk(),player.getInventory())){
-//                        hp=state.getHp();
-//                        player.setInventory(state.getInventory());
-//                        if(waveAt<state.getWaveAmount())
-//                            waveAt++;
-//                        else{
-//                            WaveNotDone=false;
-//                            won=true;
-//                        }
-//                    }else
-//                        Alive=false;
-//                    
+                    
+                    //if(state.wave(waveAt,hp,player.getAtk(),player.getInventory())){
+                        //hp=state.getHp();
+                        //player.setInventory(state.getInventory());
+                        //if(waveAt<state.getWaveAmount())
+                            //waveAt++;
+                        //else{
+                            //WaveNotDone=false;
+                            //won=true;
+                        //}
+                    //}else
+                        //Alive=false;
+                                        
+                    
                 }
             }
             
-//            if(completeState&&state.getBettle()){
-//                state.result(won);
-//                player.setGold(state.getG());
-//                player.setExp(state.getXp());
-//                if(won)
-//                    player.setState(stateAt+1);
-//            }
-            state.resetState();
+            //if(completeState&&state.getBettle()){
+                //state.result(won);
+                //player.setGold(state.getG());
+                //player.setExp(state.getXp());
+                //if(won)
+                    //player.setState(won,(stateAt+1));
+            //}
+            //state.resetState();
             //@reset Coin and exp of player
         }
         UI.exit(slots);

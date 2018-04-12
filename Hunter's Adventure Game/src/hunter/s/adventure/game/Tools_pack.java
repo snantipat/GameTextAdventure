@@ -40,7 +40,7 @@ public class Tools_pack implements Tools{
         while(NotPass){
             System.out.print("Name :");name=enter.nextLine();
             for(int i = 0;i<name.length();i++){
-                if(!(name==""||name.charAt(i)==' '))
+                if(!(name.equals("")||name.charAt(i)==' '))
                    NotPass=false;
             }
             if(NotPass)
@@ -106,7 +106,7 @@ public class Tools_pack implements Tools{
                             if((this.num-1)==i)
                                 slotIsNull=false;
                         }
-                        if(this.num>=slots.size()||this.num<=0)
+                        if(this.num>slots.size()||this.num<=0)
                             System.out.println("Slot at "+this.num+" dosen't exist.");
                     }else
                         System.out.println("Slot at "+removeAt+" dosen't exist.");

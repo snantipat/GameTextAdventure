@@ -21,7 +21,7 @@ public class Player extends Character{
     void setState(boolean state,int i){
         this.states[i]=state;   
     }
-    boolean getState(int i){
+    public boolean getState(int i){
         return this.states[i];
     }
     boolean[] getStates(){

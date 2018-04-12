@@ -10,12 +10,11 @@ public class Home extends Map{
         this.p_1=p1;
     }
     void homeTown(){
-
     }
         
     
 
-    void upStatus() {
+    void upStatus(){
         System.out.println("            -up status-");
         System.out.println("  Status			  use\n" +
                            "(1)	VIT	          	 10xp\n" +
@@ -31,7 +30,7 @@ public class Home extends Map{
             case 0 : ;break;
             case 1 : ;break;
             case 2 : ;break;
-    }
+        }
     }
     void utilityShop() {
         System.out.println("         -Food&Potion-");
@@ -74,7 +73,7 @@ public class Home extends Map{
             case 1 :buyweapon() ;break;
             case 2 : ;break;
             case 3 : ;break;
-    }
+        }
     }
     void buyweapon(){
         System.out.println("(1)Greatswords   1Hit/turn           50 G\n" +
