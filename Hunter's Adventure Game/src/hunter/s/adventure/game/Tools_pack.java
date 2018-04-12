@@ -120,9 +120,9 @@ public class Tools_pack implements Tools{
             //1 2 3 4 b
         boolean chooseIsNull=true;
             System.out.println("=============Home Town============="
-                    + "\n\t(1)Weapon Shop"
-                    + "\n\t(2)Utility Shop"
-                    + "\n\t(3)Up Stat"
+                    + "\n\n\t(1)Refill"
+                    + "\n\t(2)Upgrade"
+                    + "\n\t(3)Change Weapon"
                     + "\nSelect State(4)\t\t\tMain Menu(b)");
         while(chooseIsNull){
             System.out.print("Choose : ");input=enter.nextLine();
