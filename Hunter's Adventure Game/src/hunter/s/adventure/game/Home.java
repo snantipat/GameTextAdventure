@@ -76,9 +76,9 @@ public class Home extends Map{
         }
     }
     void buyweapon(){
-        System.out.println("(1)Greatswords   1Hit/turn           50 G\n" +
-                           "(2)Sword         2Hit/turn           50 G\n" +
-                           "(3)Daggers       3Hit/turn           50 G");
+        System.out.println("(1)Greatswords   1Hit/turn           50 G.\n" +
+                           "(2)Sword         2Hit/turn           50 G.\n" +
+                           "(3)Daggers       3Hit/turn           50 G.");
         System.out.println("Your Wallet : 100G");
         System.out.println("     Buy Back(0)    Back(4)");
         Scanner r = new Scanner(System.in);
