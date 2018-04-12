@@ -1,5 +1,5 @@
 package hunter.s.adventure.game;
-public class State extends Map{
+public class State extends Map implements MonstersInfo{
     int G;
     int Xp;
     int StateAt;
@@ -8,7 +8,6 @@ public class State extends Map{
     }
     State(){
         super();
-    
     }
     int chooseState(){
         int i=0;
@@ -30,5 +29,11 @@ public class State extends Map{
     int setState(boolean[] states_p){
         int stateAt=0;
         return stateAt;
+    }
+    void deCode(String raw){
+        Tools_pack tool=new Tools_pack();
+        for(int i=0;i<raw.length();i++){
+            
+        }
     }
 }

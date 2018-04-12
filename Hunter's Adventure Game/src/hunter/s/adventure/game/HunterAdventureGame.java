@@ -111,6 +111,7 @@ public class HunterAdventureGame {
                 
                 homeTown=new Home(Jonathan,Yharnum,Gabriel,player);
                 input=UI.homeTown();
+                
                 switch(input){
                     case"1"://@weapon
                         //homeTown.weaponShop(player);

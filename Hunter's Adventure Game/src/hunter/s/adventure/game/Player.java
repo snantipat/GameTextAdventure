@@ -24,6 +24,9 @@ public class Player extends Character{
     public void setWeaponType(int type){
         
     }
+    public int getWeaponType(){
+        return this.WeaponType;
+    }
     void setState(boolean state,int i){
         this.states[i]=state;   
     }

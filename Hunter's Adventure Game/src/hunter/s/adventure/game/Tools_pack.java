@@ -205,7 +205,7 @@ public class Tools_pack implements Tools{
        return n_1;
     }
 
-    void chooseWeapon() {
+    void chooseWeapon(){
         System.out.println("========================================Choose Weapons==========================================="
                 + "\n\n\t(1)Heavy Sword\t60 damages\n\t  - one hit in one turn"
                 + "\n\t(2)Short Hand Sword\t30 damages\n\t  - two hit in one turn"

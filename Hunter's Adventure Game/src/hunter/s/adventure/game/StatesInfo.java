@@ -1,5 +1,5 @@
 package hunter.s.adventure.game;
-public interface StateInfo {
+public interface StatesInfo {
   //simple code for get monster at State
     String STATE1="w1m0_2w2m0_3w3m0_3w4m1_1";
     String STATE2="w1m0_1m1_1w2m0_4w3m0_2m1_1w4m1_2m2_1";
