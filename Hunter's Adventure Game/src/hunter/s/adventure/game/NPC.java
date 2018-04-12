@@ -8,6 +8,5 @@ interface NPC_Info{
 public class NPC extends Character{
     
     NPC(int i,String name){
-        super(name);
     }
 }

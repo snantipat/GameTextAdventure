@@ -13,5 +13,5 @@ public interface StateInfo {
     String STATE10="";
     String States[]={STATE1,STATE2,STATE3,STATE4,STATE5
                     ,STATE6,STATE7,STATE8,STATE9,STATE10};
-    
+    void decodeState();
 }

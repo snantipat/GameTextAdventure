@@ -11,7 +11,6 @@ public class Player extends Character{
         this.name=null;
     }
     Player(String n){
-        super(n);
         this.name= n;
         this.states[0]=true;
     }
