@@ -7,6 +7,8 @@ public class Player extends Character{
     private int Exp;
     private int StateClear;
     private int WeaponType=0;
+    private int potion;
+    private int minibomb;
     Player(){
         super();
         this.name=null;
