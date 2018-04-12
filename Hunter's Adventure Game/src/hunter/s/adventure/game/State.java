@@ -1,10 +1,10 @@
 package hunter.s.adventure.game;
-public class State extends Monster{
+public class State extends Map{
     int G;
     int Xp;
     int StateAt;
     State(int stateAt){
-        super(stateAt);
+        
     }
     State(){
         super();
