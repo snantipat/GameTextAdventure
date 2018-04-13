@@ -10,5 +10,7 @@ package hunter.s.adventure.game;
  * @author Domekenji
  */
 public class Defender extends Monster{
-    public Defender(int index){}
+    public Defender(int index){
+        super(index);
+    }
 }

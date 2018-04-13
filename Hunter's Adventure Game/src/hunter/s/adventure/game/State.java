@@ -16,8 +16,10 @@ public class State extends Map implements StatesInfo{
     State(int stateAt){
         decodeState(States[stateAt]);
         if(waveFine){
+            for(int i=0;i<waves.length;i++)
+                System.out.println(waves[i]);
             this.amountWave=this.waves.length;
-            System.out.println("================State "+stateAt+"======================");
+            System.out.println("================State "+(stateAt+1)+"======================");
         }else
             System.out.printf("--------<Load Waves fail!>---------",stateAt);
     }
@@ -62,14 +64,14 @@ public class State extends Map implements StatesInfo{
                     wave+=raw.charAt(i);
                 break;
                 case'w':
-                    length=StringToNum(key);
+                    length=StringToNum(key,0);
                     waves=new String[length];
                     index=length-1;
                     key="";
                     wave="";
                 break;
                 case'm':
-                    int index_m=StringToNum(key);
+                    int index_m=StringToNum(key,0);
                     if(index_m<0||index_m>MonstersInfo.NAME.length)
                         notFail=false;
                     key="";
@@ -108,24 +110,37 @@ public class State extends Map implements StatesInfo{
     }
     public boolean wave(int waveAt,int hp,Player player){
         
+        //m0_3nm1_1
         boolean pass=false;
+        boolean inwave = true;
         this.player=player;
+        addMonsWaveAt(waveAt);
+        System.out.println("----------------Wave "+waveAt+"-------------------");
+        while(inwave){
+            System.out.println("Your turn : ");
+            for(int i=0;i<Mons.size();i++){
+                System.out.printf("\t(%d) %s hp<%d> atk<%d>\n",i+1,Mons.get(i).getName(),
+                        Mons.get(i).getHp(),Mons.get(i).getAtk());
+            }
+            System.out.println();
+        }
         return pass;
     }
     private void addMonsWaveAt(int i){
         String codeWave=waves[i];
         boolean codeFine=true;
+        //1_1m3_0m   
         String key="";
         int amount=0;
         Monster mon;
-        for(int runChar=0;i<codeWave.length()&&codeFine;runChar++){
+        for(int runChar=0;runChar<codeWave.length()&&codeFine;runChar++){
             switch(codeWave.charAt(runChar)){
                 case'0':case'1':case'2':case'3':case'4':
                 case'5':case'6':case'7':case'8':case'9':
                     key+=codeWave.charAt(runChar);
                 break;
                 case'm':
-                    int indexMon=StringToNum(key);
+                    int indexMon=StringToNum(key,2);
                     if(indexMon==15){
                         mon=new Defender(indexMon);
                     }else{
@@ -138,25 +153,34 @@ public class State extends Map implements StatesInfo{
                     key="";
                 break;
                 case'_':
-                    amount=StringToNum(key);
+                    amount=StringToNum(key,2);
                     key="";
                 break;
+                default:codeFine=false;
             }
         }
     }
-    public int StringToNum(String num){
+    public int StringToNum(String num,int type){
         int number=0;
         int digit=1;
-        
-        for(int i=num.length()-1;i>=0;i--){
-            boolean numIsNull=true;
-            for(int j=0;j<con_num.length&&numIsNull;j++){
-                if(num.charAt(i)==con_num[j]){
-                    number+=j*digit;digit*=10;numIsNull=false;
-                }
+        String key_temp="";
+        if(type==2){
+            for(int i=num.length()-1;i>=0;i--){
+                key_temp+=num.charAt(i);
             }
-            
+            num=key_temp;
         }
+        
+            for(int i=num.length()-1;i>=0;i--){
+                boolean numIsNull=true;
+                for(int j=0;j<con_num.length&&numIsNull;j++){
+                    if(num.charAt(i)==con_num[j]){
+                        number+=j*digit;digit*=10;numIsNull=false;
+                    }
+                }
+            
+            }
+        
         return number;
     }
     public int getAmountWave(){
