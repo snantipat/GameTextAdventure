@@ -155,7 +155,9 @@ public class HunterAdventureGame {
                     case"1":
                         //@state
                         //not clearly
-                        state = new State(stateAt);
+                        System.out.println(stateAt);
+                        state = new State(stateAt-1);
+                        
                         confirmState=true;
                         stateSelected=false;
                         break;
