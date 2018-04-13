@@ -7,14 +7,19 @@ public class State extends Map implements StatesInfo{
     int amountWave;
     int amountMon;
     boolean waveFine;
+    boolean battle=true;
     String waves[];
+    Player player;
+    
     char con_num[]={'0','1','2','3','4','5','6','7','8','9'};
-    ArrayList<Monster[]> Waves= new ArrayList();
+    ArrayList<Monster> Mons= new ArrayList();
     State(int stateAt){
         decodeState(States[stateAt]);
-        if(waveFine)
-            for(int i=0;i<waves.length;i++)
-                System.out.println("Wave "+(i+1)+" :"+waves[i]);
+        if(waveFine){
+            this.amountWave=this.waves.length;
+            System.out.println("================State "+stateAt+"======================");
+        }else
+            System.out.printf("--------<Load Waves fail!>---------",stateAt);
     }
     State(){
         super();
@@ -65,11 +70,17 @@ public class State extends Map implements StatesInfo{
                 break;
                 case'm':
                     int index_m=StringToNum(key);
+                    if(index_m<0||index_m>MonstersInfo.NAME.length)
+                        notFail=false;
                     key="";
                     wave+=raw.charAt(i);
                 break;
                 case'n':
-                    waves[index]=wave;
+                    if(index>=0)
+                        waves[index]=wave;
+                    else
+                        notFail=false;
+                    
                     wave="";
                     index-=1;
                     
@@ -79,7 +90,11 @@ public class State extends Map implements StatesInfo{
                     key="";
                     break;
                 case'e':
-                    waves[index]=wave;
+                    if(index==0)
+                        waves[index]=wave;
+                        
+                    else
+                        notFail=false;
                     key="";
                 break;
                 default:notFail=false;
@@ -90,6 +105,44 @@ public class State extends Map implements StatesInfo{
         }else
             notFail=false;
         this.waveFine=notFail;
+    }
+    public boolean wave(int waveAt,int hp,Player player){
+        
+        boolean pass=false;
+        this.player=player;
+        return pass;
+    }
+    private void addMonsWaveAt(int i){
+        String codeWave=waves[i];
+        boolean codeFine=true;
+        String key="";
+        int amount=0;
+        Monster mon;
+        for(int runChar=0;i<codeWave.length()&&codeFine;runChar++){
+            switch(codeWave.charAt(runChar)){
+                case'0':case'1':case'2':case'3':case'4':
+                case'5':case'6':case'7':case'8':case'9':
+                    key+=codeWave.charAt(runChar);
+                break;
+                case'm':
+                    int indexMon=StringToNum(key);
+                    if(indexMon==15){
+                        mon=new Defender(indexMon);
+                    }else{
+                        mon=new Attacker(indexMon);
+                    }
+                    while(amount>0){
+                        this.Mons.add(mon);
+                        amount-=1;
+                    }
+                    key="";
+                break;
+                case'_':
+                    amount=StringToNum(key);
+                    key="";
+                break;
+            }
+        }
     }
     public int StringToNum(String num){
         int number=0;
@@ -105,5 +158,14 @@ public class State extends Map implements StatesInfo{
             
         }
         return number;
+    }
+    public int getAmountWave(){
+        return this.amountWave;
+    }
+    public int getHp(){
+        return player.getHp();
+    }
+    public boolean getBattle(){
+        return this.battle;
     }
 }

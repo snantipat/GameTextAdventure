@@ -154,10 +154,8 @@ public class HunterAdventureGame {
                 switch(input){
                     case"1":
                         //@state
-                        //not clearly
                         System.out.println(stateAt);
                         state = new State(stateAt-1);
-                        
                         confirmState=true;
                         stateSelected=false;
                         break;
@@ -178,33 +176,33 @@ public class HunterAdventureGame {
                 //neeeddddd it  nowwwwwwwww
                 boolean WaveNotDone=true;
                 boolean Alive=true;
-                //int hp=player.getHp();
+                int hp=player.getHp();
                 int waveAt=0;
                 while(WaveNotDone&&Alive){
                     
-                    //if(state.wave(waveAt,hp,player.getAtk(),player.getInventory())){
-                        //hp=state.getHp();
-                        //player.setInventory(state.getInventory());
-                        //if(waveAt<state.getWaveAmount())
-                            //waveAt++;
-                        //else{
-                            //WaveNotDone=false;
-                            //won=true;
-                        //}
-                    //}else
-                        //Alive=false;
+                    if(state.wave(waveAt,hp,player)){
+                        hp=state.getHp();
+                        //update info of player
+                        if(waveAt<state.getAmountWave())
+                            waveAt++;
+                        else{
+                            WaveNotDone=false;
+                            won=true;
+                        }
+                    }else
+                        Alive=false;
                                         
                     
                 }
             }
             
-            //if(completeState&&state.getBettle()){
-                //state.result(won);
-                //player.setGold(state.getG());
-                //player.setExp(state.getXp());
-                //if(won)
-                    //player.setState(won,(stateAt+1));
-            //}
+            if(completeState&&state.getBattle()){
+                state.result(won);
+                player.setGold(state.getG());
+                player.setExp(state.getXp());
+                if(won)
+                    player.setState(won,(stateAt+1));
+            }
             //state.resetState();
             //@reset Coin and exp of player
         }

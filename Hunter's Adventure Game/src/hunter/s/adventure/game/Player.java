@@ -9,6 +9,8 @@ public class Player extends Character{
     private int WeaponType=0;
     private int potion;
     private int minibomb;
+    private int Hp;
+    private int Atk;
     Player(){
         super();
         this.name=null;
@@ -54,10 +56,22 @@ public class Player extends Character{
     public void setExp(int xp){
         this.Exp+=xp;
     }
+    public void setHp(int hp){
+        this.Hp+=hp;
+    }
+    public void setAtk(int atk){
+        this.Atk+=atk;
+    }
     public int getGold(){
         return this.Gold;
     }
     public int getExp(){
         return this.Exp;
+    }
+    public int getHp(){
+        return this.Hp;
+    }
+    public int getAtk(){
+        return this.Atk;
     }
 }

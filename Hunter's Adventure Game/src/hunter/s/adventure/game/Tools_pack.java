@@ -139,7 +139,7 @@ public class Tools_pack implements Tools{
                 + "\n\t\tStart(1)"
                 + "\nHome(b)",stateAt);
         while(inputIsNull){
-            System.out.print("Choose:");input=enter.nextLine();
+            System.out.print("\nChoose:");input=enter.nextLine();
             switch(input){
                 case"1":case"b":inputIsNull=false;
             }
