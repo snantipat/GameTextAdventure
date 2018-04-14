@@ -5,8 +5,6 @@ public class HunterAdventureGame {
         Tools_pack UI = new Tools_pack();                
         ArrayList<Player> slots = new ArrayList();
         Player player = new Player();
-        
-        
         State state = new State();
         NPC Jonathan = new NPC(1,"Jonathan");
         NPC Yharnum  = new NPC(2,"Yharnum");
@@ -16,26 +14,23 @@ public class HunterAdventureGame {
         boolean SlotIsNull=true;
         boolean selectedSlot=false;
         String input,temp;
- 
+        
         UI.startGame();
+        
         input=UI.enter.nextLine();
         temp=input;    
-        //@playing
         while(playing){
-            
-            //@choose slot 
             while(SlotIsNull&&playing){
                 selectedSlot=false;
                 UI.mainMenu(slots.size());
                 input=UI.enter.nextLine();
                 switch(input){
                     case"1":
-                        //@create new 
-                        //setname
-                        System.out.println("------Create New Slot------");
+                        
+                        System.out.println(">Create New Slot");
                         boolean check;
                         String name=null;
-                        System.out.println("Create your name first");
+                        System.out.println("\tcreate your name");
                         do{
                             input=UI.resistNaming();
                             check=UI.checkName(input,slots);
@@ -45,54 +40,53 @@ public class HunterAdventureGame {
                                 name=input;
                             }
                         }while(check);
-                        
-                        //setweapon type
                         boolean TypeWeaponUnable=true;
                         int weaponType=0;
                         UI.chooseWeapon();
                         do{
-                            System.out.print("Choose:");
+                            System.out.print("choose:");
                             input=UI.enter.nextLine();
-                            if(UI.StringToNum(input)){
-                                weaponType=UI.getNum();
-                                TypeWeaponUnable=false;
+                            switch(input){
+                                case"1":case"2":case"3":
+                                    if(UI.StringToNum(input)){
+                                        weaponType=UI.getNum();
+                                        TypeWeaponUnable=false;
+                                    }
                             }
+                            
                         }while(TypeWeaponUnable);
                         player=new Player(name,weaponType);
                         slots.add(player);
                     case"2":
-                        //select slot
                         if(slots.size()>0){
                             input=UI.selectSlot(slots);
-                            //remove slot
                             if(input.equals("r")){
                                 input=UI.removeSlot(slots);
                                 if(UI.StringToNum(input)){
                                     int removeAt=UI.getNum()-1;
                                     boolean confirmDeleteSlot=false;
-                                    System.out.print("For Confirm Deletion Slot\nPlease Enter Name of this Slot:");
+                                    System.out.print("enter name for confirm :");
                                     input=UI.enter.nextLine();
                                     if(input.equals(slots.get(removeAt).getName())){
                                         confirmDeleteSlot=true;
                                     }else
-                                        System.out.println("Delete Fail!");
+                                        System.out.println(">Delete Fail!");
                                     if(confirmDeleteSlot){
-                                        System.out.println("deleting Slot at "+(removeAt+1)
-                                                +" Name:"+slots.get(removeAt).getName());
+                                        System.out.println(">Deleting slot at "+(removeAt+1)
+                                                +" name:"+slots.get(removeAt).getName());
                                         slots.remove(removeAt);
-                                        System.out.println("Slot deleted.");
+                                        System.out.println("slot deleted.");
                                     }
                                 }
-                                System.out.println("Returning to Main Menu");
+                                System.out.println("returning to Main Menu");
                             }else if(UI.StringToNum(input)){
-                                //choose slot
                                 player=slots.get(UI.getNum()-1);
                                 SlotIsNull=false;
                                 selectedSlot=true;
                                 System.out.println(player.getName());
                             }  
                         }else{
-                            System.out.println("Please press 1 for New game.");
+                            System.out.println("please press 1 for New game.");
                     break;
                     }
                     break;
@@ -105,13 +99,9 @@ public class HunterAdventureGame {
             boolean stateIsNull=true;
             int stateAt=0;
             
-            //@Seting home && selectMap
             while(selectedSlot&&stateIsNull){
-                //home
-                
                 homeTown=new Home(Jonathan,Yharnum,Gabriel,player);
                 input=UI.homeTown();
-                
                 switch(input){
                     case"1"://@weapon
                         //homeTown.weaponShop(player);
@@ -147,15 +137,11 @@ public class HunterAdventureGame {
                         break;
                 }
             }
-            
             boolean confirmState=false;
-            
-            //@confirmslot
             while(stateSelected){
                 input = UI.sureState(stateAt);
                 switch(input){
                     case"1":
-                        //@state
                         System.out.println(stateAt);
                         state = new State(stateAt-1);
                         confirmState=true;
@@ -164,8 +150,6 @@ public class HunterAdventureGame {
                     case"b":
                         stateSelected=false;
                         System.out.println("Returning to Home");
-                        //@home
-                        
                 }
             }
             boolean alive=true;
@@ -183,7 +167,6 @@ public class HunterAdventureGame {
                 if(alive)
                     player.setState(alive, stateAt);
                 confirmState=false;
-                    
             }
         }
         UI.exit(slots);
