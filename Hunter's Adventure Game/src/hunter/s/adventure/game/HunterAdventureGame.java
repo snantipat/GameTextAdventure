@@ -168,41 +168,23 @@ public class HunterAdventureGame {
                         
                 }
             }
-            
-            boolean completeState=false;    
             boolean alive=true;
-            //@startstate
+            int hp=player.getHp();
             while(confirmState){
-                //@waveing
-                //neeeddddd it  nowwwwwwwww
-                int hp=player.getHp();
-                int waveAt=0;
-                while(alive&&waveAt<state.waves.length){
-                    if(state.wave(waveAt,hp,player)){
-                        hp=state.getHp();
-                        waveAt++;
-                        completeState=true;
-                        confirmState=false;
-                    }else{
-                        alive=false;
-                        confirmState=false;
-                    }
-                    player.setPotion(state.getUsedPotion());
+                for(int waveAt=0;waveAt<state.getAmountWave()&&alive&&state.getBattle();waveAt++){
+                    alive=state.wave(waveAt,hp,player);
+                    hp=state.getHp();
                     player.setMiniBomb(state.getUsedMiniBomb());
-                        
+                    player.setPotion(state.getUsedPotion());
                 }
-            }
-            
-            if(completeState&&state.getBattle()){
                 state.Result(alive);
-                player.setGold(state.getG());
                 player.setExp(state.getXp());
-                if(stateAt<10){
+                player.setGold(state.getG());
+                if(alive)
                     player.setState(alive, stateAt);
-                }
+                confirmState=false;
+                    
             }
-            //state.resetState();
-            //@reset Coin and exp of player
         }
         UI.exit(slots);
     }

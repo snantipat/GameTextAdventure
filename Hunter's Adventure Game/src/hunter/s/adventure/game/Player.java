@@ -28,7 +28,14 @@ public class Player extends Character{
         this.Hp=100;
         this.Atk=7;
         this.limit_potion=this.potion=3;
+        this.heal=50;
+        this.explotion=10;
         this.limit_minibomb=this.minibomb=1;
+        switch(weapon){
+            case 1:this.Weapondamage=60;break;
+            case 2:this.Weapondamage=30;break;
+            case 3:this.Weapondamage=10;break;
+        }
     }
     public String getName(){
         return name;
