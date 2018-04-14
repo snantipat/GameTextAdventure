@@ -9,20 +9,37 @@ public class Player extends Character{
     private int WeaponType=0;
     private int potion;
     private int minibomb;
+    private int Weapondamage;
     Player(){
         super();
         this.name=null;
     }
     Player(String n,int weapon){
+        this.potion= 4;
         this.name= n;
         this.states[0]=true;
         this.WeaponType=weapon;
+    }
+    public void setpotion(int potion){
+    
+    }
+    public int getpotion(){
+        return this.potion;
     }
     public String getName(){
         return name;
     }
     public void setWeaponType(int type){
         
+    }
+    public int getWeaponType(){
+        return this.WeaponType;
+    }
+    public void setWeaponDamage(int damage){
+    
+    }
+    public int getWeaponDamage(){
+        return this.Weapondamage;
     }
     void setState(boolean state,int i){
         this.states[i]=state;   

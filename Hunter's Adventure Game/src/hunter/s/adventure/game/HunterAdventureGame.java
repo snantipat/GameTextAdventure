@@ -116,6 +116,8 @@ public class HunterAdventureGame {
                         //homeTown.weaponShop(player);
                         //player.setGold(homeTown.getGold());
                         //player.setInventory(homeTown.getInventory);
+                        player.setWeaponType(homeTown.p_1.getWeaponType());
+                        player.setWeaponDamage(homeTown.p_1.getWeaponDamage());
                         break;
                     case"2"://@Potions and grenade
                         //homeTown.utilityShop(player);

@@ -3,6 +3,12 @@ import java.util.Scanner;
 public class Home extends Map{
     NPC n_1,n_2,n_3;
     Player p_1;
+        //ATK Weapon
+        int d1=60,d2=30,d3=20 ;
+        //Upgrade Weapon
+        int ld1=1,ld2=1,ld3=1 ;
+        //Gold
+        int g1=1000*ld1,g2=1000*ld1,g3=1000*ld1;
     Home(NPC npc1,NPC npc2,NPC npc3,Player p1){
         this.n_1=npc1;
         this.n_2=npc2;
@@ -14,84 +20,80 @@ public class Home extends Map{
         
     
 
-    void upStatus(){
-        System.out.println("            -up status-");
-        System.out.println("  Status			  use\n" +
-                           "(1)	VIT	          	 10xp\n" +
-                           "(2)	ATK		         10xp\n" +
-                           "notice:\n" +
-                           "max hp+10 per vit\n" +
-                           "max power 2 per atk");
-        System.out.println("               back(0)");
-        Scanner u = new Scanner(System.in);
-        System.out.print("Choose: ");
-        int up = u.nextInt();
-        switch(up){
-            case 0 : ;break;
-            case 1 : ;break;
-            case 2 : ;break;
-        }
-    }
-    void utilityShop() {
-        System.out.println("         -Food&Potion-");
-        System.out.println("   BUY(1)	          SELL(2)");
-        System.out.println("           back(3)");
-        Scanner r = new Scanner(System.in);
-        System.out.print("Choose: ");
-        int bs = r.nextInt();
-        switch(bs){
-            case 1 :buyitem() ;break;
-            case 2 : ;break;
-            case 3 : ;break;
-    }
-    }
-    void buyitem(){
-        System.out.println("(1) Small  potion   Hp+25%       50 G\n" +
-                           "(2) middle potion   Hp+50%       50 G\n" +
-                           "(3) big    potion   Hp+75%       50 G\n" );
-        System.out.println("     Buy Back(0)    Back(4)");
-        Scanner r = new Scanner(System.in);
-        System.out.print("Choose: ");
-        int bs = r.nextInt();  
-        switch(bs){
-            case 0 : ;break;
-            case 1 : ;break;
-            case 2 : ;break;
-            case 3 : ;break;
-            case 4 :utilityShop() ;break;
-        }
-    }
-
-    void weaponShop() {
-        System.out.println("            <WEAPON SHOP>");
-        System.out.println("      Buy(1)              Sell(2) ");
-        System.out.println("               back(3)");
+    void Refill() {
+        boolean refill = true ;
+        while(refill){
+        System.out.println("========================================Refill===========================================");
+        System.out.println("you have your potion : ");
         Scanner ur = new Scanner(System.in);
-        System.out.print("Choose: ");
-        int buy = ur.nextInt();
-        switch(buy){
-            case 1 :buyweapon() ;break;
-            case 2 : ;break;
-            case 3 : ;break;
+        System.out.println("are you sure about that(use 500 G)"
+                         + "(y)yes             (n)no");
+        System.out.println("Choose: ");
+        String re = ur.nextLine();
+        switch(re){
+            case "y":p_1.setpotion(4);break;
+            case "n":refill = false  ;break;
+            default :refill = true   ;break;
+        }    
         }
     }
-    void buyweapon(){
-        System.out.println("(1)Greatswords   1Hit/turn           50 G.\n" +
-                           "(2)Sword         2Hit/turn           50 G.\n" +
-                           "(3)Daggers       3Hit/turn           50 G.");
-        System.out.println("Your Wallet : 100G");
-        System.out.println("     Buy Back(0)    Back(4)");
-        Scanner r = new Scanner(System.in);
-        System.out.print("Choose: ");
-        int bs = r.nextInt();  
-        switch(bs){
-            case 0 : ;break;
-            case 1 : ;break;
-            case 2 : ;break;
-            case 3 : ;break;
-            case 4 :weaponShop() ;break;
+    void Upgrade() {
+        boolean upgrade = true ;
+        while(upgrade){
+        System.out.print("========================================Upgrade==========================================="
+                       + "(1)Heavy Sword      level: "+ld1+" "+g1+"Gold"
+                       + "(2)Short Hand Sword level: "+ld2+" "+g2+"Gold"
+                       + "(3)Huntsman Knife   level: "+ld3+" "+g3+"Gold"
+                       + "(b)Back");
+        Scanner sr = new Scanner(System.in);
+        System.out.println("Choose: ");
+        String Upgrade = sr.nextLine();
+        switch(Upgrade){
+            case "1" :p_1.setWeaponDamage(d1+60) ;
+                      p_1.setGold(-g1);
+                      ld1++;
+                      upgrade = true;
+                      break;
+            case "2" :p_1.setWeaponDamage(d2+30) ;
+                      p_1.setGold(-g2);
+                      ld2++;
+                      upgrade = true;
+                      break;
+            case "3" :p_1.setWeaponDamage(d3+20) ;
+                      p_1.setGold(-g3);
+                      ld3++;
+                      upgrade = true;
+                      break;
+            case "b" :upgrade = false ;break;
+            default : upgrade = true ;break;
+        }
+        }
     }
     
-}
-    
+    void ChangeWeapon(){
+        boolean cw = true ;
+        while(cw){
+        System.out.print("========================================Change Weapons==========================================="
+                       + "(1)Heavy Sword      level:"+ld1
+                       + "(2)Short Hand Sword level:"+ld2
+                       + "(3)Huntsman Knife   level:"+ld3
+                       + "(b)Back");
+        Scanner sr = new Scanner(System.in);
+        System.out.println("Choose: ");
+        String changeweapons = sr.nextLine();
+        switch(changeweapons){
+            case "1" :p_1.setWeaponType(1);
+                      p_1.setWeaponDamage(d1);
+                      System.out.println("you have Heavy Sword");break;
+            case "2" :p_1.setWeaponType(2) ;
+                      p_1.setWeaponDamage(d2);
+                      System.out.println("you have Short Hand Sword");break;
+            case "3" :p_1.setWeaponType(3) ;
+                      p_1.setWeaponDamage(d3);
+                      System.out.println("you have Huntsman Knife");break;
+            case "b" :cw = false;break;
+            default : cw = true ;break;
+        }
+        }
+}    
 }
