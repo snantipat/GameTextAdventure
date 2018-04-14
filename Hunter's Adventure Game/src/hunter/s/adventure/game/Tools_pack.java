@@ -12,24 +12,23 @@ public class Tools_pack implements Tools{
                         +  "\n\tpress enter to start game");
     }
     public void exit(ArrayList<Player> slots){
-        System.out.println("Clearing memorys");
+        System.out.println(">Clearing memorys");
         for(int i = slots.size()-1;i>=0;i--){
             Player player;
                     player=slots.get(i);
-            System.out.println("\tRemoving Slot "+player.getName());
+            System.out.println("\tRemoving slot [player]"+player.getName());
             slots.remove(i);
             
         }
     }
     public void mainMenu(int size){
         int choose=2;
-        System.out.print(">HUNTER’s ADVENTURE\n" +
+        System.out.print(">HUNTER’S ADVENTURE\n" +
                          "\tnew game(1)\n");
         if(size>0)
             System.out.println("\tcontinue(2)");
    
-        System.out.print("\texit(0)\n" +
-                         "enter:");
+        System.out.print("\texit(0)\nenter:");
         
     }
     public String resistNaming(){
