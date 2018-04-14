@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hunter.s.adventure.game;
+package state;
 
 /**
  *
  * @author Domekenji
  */
-public interface ItemInfo {
-    
+public class NewClass1 {
+    String name="ame";
 }

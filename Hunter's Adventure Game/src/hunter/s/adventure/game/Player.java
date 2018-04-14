@@ -6,10 +6,16 @@ public class Player extends Character{
     private int Gold;
     private int Exp;
     private int StateClear;
-    private int WeaponType=0;
+    private int WeaponType;
     private int potion;
     private int minibomb;
     private int Weapondamage;
+    private int limit_potion;
+    private int limit_minibomb;
+    private int Hp;
+    private int Atk;
+    private int heal;
+    private int explotion;
     Player(){
         super();
         this.name=null;
@@ -19,12 +25,10 @@ public class Player extends Character{
         this.name= n;
         this.states[0]=true;
         this.WeaponType=weapon;
-    }
-    public void setpotion(int potion){
-    
-    }
-    public int getpotion(){
-        return this.potion;
+        this.Hp=100;
+        this.Atk=7;
+        this.limit_potion=this.potion=3;
+        this.limit_minibomb=this.minibomb=1;
     }
     public String getName(){
         return name;
@@ -68,10 +72,60 @@ public class Player extends Character{
     public void setExp(int xp){
         this.Exp+=xp;
     }
+    public void setHp(int hp){
+        this.Hp+=hp;
+    }
+    public void setAtk(int atk){
+        this.Atk+=atk;
+    }
+    
+    public void setPotion(int amount){
+        this.potion+=amount;
+    }
+    public int getPotion(){
+        return this.potion;
+    }
+    public void setMiniBomb(int amount){
+        this.minibomb+=amount;
+    }
+    public int getMiniBomb(){
+        return this.minibomb;
+    }
+    public void setLimitMiniBomb(int amount){
+        this.minibomb+=amount;
+    }
+    public int getLimitMiniBomb(){
+        return this.limit_minibomb;
+       
+    }
+    public int getLimitPotion(){
+        return this.limit_potion;
+    }
+    public void setLimitPotion(int amount){
+        this.limit_potion+=amount;
+    }
     public int getGold(){
         return this.Gold;
     }
     public int getExp(){
         return this.Exp;
+    }
+    public int getHp(){
+        return this.Hp;
+    }
+    public int getAtk(){
+        return this.Atk;
+    }
+    void setHeal(int plus){
+        this.heal+=plus;
+    }
+    void setExplotion(int plus){
+        this.explotion+=plus;
+    }
+    int getHeal() {
+        return this.heal;
+    }
+    int getExplotion(){
+        return this.explotion;
     }
 }

@@ -1,5 +1,5 @@
 package hunter.s.adventure.game;
-public interface MonsterInfo {
+public interface MonstersInfo {
     String NAME[]={"Green Slime","Red Slime","King's Slimes","Wolf","Big Wolf",
         "Skeleton","Skeleton Warrior","Little Witch","Witch","Griffon",
         "Big Griffon","Hollow","Knight Hollow","Undead","Knight Undead",

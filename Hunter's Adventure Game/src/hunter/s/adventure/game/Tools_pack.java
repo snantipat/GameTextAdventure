@@ -142,7 +142,7 @@ public class Tools_pack implements Tools{
                 + "\n\t\tStart(1)"
                 + "\nHome(b)",stateAt);
         while(inputIsNull){
-            System.out.print("Choose:");input=enter.nextLine();
+            System.out.print("\nChoose:");input=enter.nextLine();
             switch(input){
                 case"1":case"b":inputIsNull=false;
             }
@@ -200,15 +200,15 @@ public class Tools_pack implements Tools{
         }
         if(check)
             this.num=n;
+        else
+            this.num=0;
         return check;
     }
     public int getNum(){
-        int n_1=this.num;
-        this.num=0;
-       return n_1;
+       return this.num;
     }
 
-    void chooseWeapon() {
+    void chooseWeapon(){
         System.out.println("========================================Choose Weapons==========================================="
                 + "\n\n\t(1)Heavy Sword\t60 damages\n\t  - one hit in one turn"
                 + "\n\t(2)Short Hand Sword\t30 damages\n\t  - two hit in one turn"

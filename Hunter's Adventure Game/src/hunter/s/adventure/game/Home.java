@@ -31,7 +31,7 @@ public class Home extends Map{
         System.out.println("Choose: ");
         String re = ur.nextLine();
         switch(re){
-            case "y":p_1.setpotion(4);break;
+            case "y":p_1.setPotion(4);break;
             case "n":refill = false  ;break;
             default :refill = true   ;break;
         }    

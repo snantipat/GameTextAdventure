@@ -111,6 +111,7 @@ public class HunterAdventureGame {
                 
                 homeTown=new Home(Jonathan,Yharnum,Gabriel,player);
                 input=UI.homeTown();
+                
                 switch(input){
                     case"1"://@weapon
                         //homeTown.weaponShop(player);
@@ -155,8 +156,8 @@ public class HunterAdventureGame {
                 switch(input){
                     case"1":
                         //@state
-                        //not clearly
-                        state = new State(stateAt);
+                        System.out.println(stateAt);
+                        state = new State(stateAt-1);
                         confirmState=true;
                         stateSelected=false;
                         break;
@@ -168,42 +169,38 @@ public class HunterAdventureGame {
                 }
             }
             
-            boolean completeState=true;
-            boolean won=false;
-            
+            boolean completeState=false;    
+            boolean alive=true;
             //@startstate
             while(confirmState){
                 //@waveing
                 //neeeddddd it  nowwwwwwwww
-                boolean WaveNotDone=true;
-                boolean Alive=true;
-                //int hp=player.getHp();
+                int hp=player.getHp();
                 int waveAt=0;
-                while(WaveNotDone&&Alive){
-                    
-                    //if(state.wave(waveAt,hp,player.getAtk(),player.getInventory())){
-                        //hp=state.getHp();
-                        //player.setInventory(state.getInventory());
-                        //if(waveAt<state.getWaveAmount())
-                            //waveAt++;
-                        //else{
-                            //WaveNotDone=false;
-                            //won=true;
-                        //}
-                    //}else
-                        //Alive=false;
-                                        
-                    
+                while(alive&&waveAt<state.waves.length){
+                    if(state.wave(waveAt,hp,player)){
+                        hp=state.getHp();
+                        waveAt++;
+                        completeState=true;
+                        confirmState=false;
+                    }else{
+                        alive=false;
+                        confirmState=false;
+                    }
+                    player.setPotion(state.getUsedPotion());
+                    player.setMiniBomb(state.getUsedMiniBomb());
+                        
                 }
             }
             
-            //if(completeState&&state.getBettle()){
-                //state.result(won);
-                //player.setGold(state.getG());
-                //player.setExp(state.getXp());
-                //if(won)
-                    //player.setState(won,(stateAt+1));
-            //}
+            if(completeState&&state.getBattle()){
+                state.Result(alive);
+                player.setGold(state.getG());
+                player.setExp(state.getXp());
+                if(stateAt<10){
+                    player.setState(alive, stateAt);
+                }
+            }
             //state.resetState();
             //@reset Coin and exp of player
         }
