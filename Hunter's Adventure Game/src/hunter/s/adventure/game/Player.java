@@ -6,9 +6,11 @@ public class Player extends Character{
     private int Gold;
     private int Exp;
     private int StateClear;
-    private int WeaponType=0;
+    private int WeaponType;
     private int potion;
     private int minibomb;
+    private int limit_potion;
+    private int limit_minibomb;
     private int Hp;
     private int Atk;
     Player(){
@@ -19,6 +21,10 @@ public class Player extends Character{
         this.name= n;
         this.states[0]=true;
         this.WeaponType=weapon;
+        this.Hp=100;
+        this.Atk=7;
+        this.limit_potion=this.potion=3;
+        this.limit_minibomb=this.minibomb=1;
     }
     public String getName(){
         return name;

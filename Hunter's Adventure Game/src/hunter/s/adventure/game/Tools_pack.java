@@ -197,12 +197,12 @@ public class Tools_pack implements Tools{
         }
         if(check)
             this.num=n;
+        else
+            this.num=0;
         return check;
     }
     public int getNum(){
-        int n_1=this.num;
-        this.num=0;
-       return n_1;
+       return this.num;
     }
 
     void chooseWeapon(){

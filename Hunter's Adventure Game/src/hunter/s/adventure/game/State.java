@@ -10,7 +10,7 @@ public class State extends Map implements StatesInfo{
     boolean battle=true;
     String waves[];
     Player player;
-    
+    int hp;
     char con_num[]={'0','1','2','3','4','5','6','7','8','9'};
     ArrayList<Monster> Mons= new ArrayList();
     State(int stateAt){
@@ -109,27 +109,126 @@ public class State extends Map implements StatesInfo{
         this.waveFine=notFail;
     }
     public boolean wave(int waveAt,int hp,Player player){
-        
-        //m0_3nm1_1
         boolean pass=false;
         boolean inwave = true;
+        Tools_pack tool=new Tools_pack();
+        String input;
         this.player=player;
         addMonsWaveAt(waveAt);
-        System.out.println("----------------Wave "+waveAt+"-------------------");
+        Monster mon;
+        System.out.println("----------------Wave "+(waveAt+1)+"-------------------");
         while(inwave){
+            boolean endturn=false;
             System.out.println("Your turn : ");
             for(int i=0;i<Mons.size();i++){
                 System.out.printf("\t(%d) %s hp<%d> atk<%d>\n",i+1,Mons.get(i).getName(),
-                        Mons.get(i).getHp(),Mons.get(i).getAtk());
+                        Mons.get(i).gethp(),Mons.get(i).getAtk());
             }
-            System.out.println();
+            System.out.println("\t\tPlayer [ "+player.getName()+" ]"
+                            + "\n\t     hp<"+hp+"/"+player.getHp()+">"
+                            + "  atk <"+player.getAtk()+">");
+            System.out.println("attack(a)\tuseitem(i)\t\tExit State(b)");
+            boolean choosenull=true;
+            boolean attack=false;
+            boolean useitem=false;
+            while(choosenull){
+                System.out.print("choose :");input=tool.enter.nextLine();
+                switch(input){
+                    case"a":attack=true;choosenull=false;break;
+                    case"i":useitem=true;choosenull=false;break;
+                    case"b":
+                        System.out.println("================Quit State================"
+                        + "\n  returning to Home Town");
+                        this.battle=false;
+                        inwave=false;
+                        choosenull=false;
+                        pass=false;
+                        break;
+                }
+            }
+            
+            int counting=player.getWeaponType();
+            while(attack){
+                
+                while(counting>0){
+                    System.out.println("======================Attack=======================");
+                    for(int i=0;i<Mons.size();i++){
+                        mon=Mons.get(i);
+                        System.out.printf("\t(%d) %s hp<%d> atk<%d>\n",i+1,mon.getName(),
+                                mon.gethp(),mon.getAtk());
+                    }
+                    System.out.print("attack:");input=tool.enter.nextLine();
+                    if(tool.StringToNum(input)&&tool.getNum()>0&&tool.getNum()<=Mons.size()){
+                        int monAt=tool.getNum()-1;
+                        mon=Mons.get(monAt);
+                        mon.takeDamages(-player.getAtk());
+                        System.out.println("\t"+player.getName()+"attacked to ("+monAt+")"
+                                +mon.getName()
+                                +"\t"+player.getAtk()+" damages");
+                        if(mon.gethp()<0){
+                            System.out.println("Monster ("+")"+mon.getName()
+                                    + " was eliminated by "+player.getName());
+                            Mons.remove(monAt);
+                        }
+                        counting-=1;
+                        if(counting>0)
+                            System.out.println("weapon effected!");
+                    }else
+                        System.out.println("Monster at ("+input+") dose not exist.");
+                }
+                endturn=true;
+                attack=false;
+                
+            }while(useitem){
+                useitem=false;
+                endturn=true;
+            }
+            if(endturn&&Mons.size()>0){    
+                System.out.println("< Monsters's Turn >");
+                
+                for(int i=0;i<Mons.size()&&endturn;i++){
+                    mon=Mons.get(i);
+                    System.out.println("\t("+(i+1)+")"+mon.getName()+" "+mon.gethp());
+                    if(mon.getAtk()==0){
+                        if(Mons.size()>1){
+                            
+                            for(int indexHeal=0;indexHeal<Mons.size();indexHeal++){
+                                mon=Mons.get(indexHeal);
+                                mon.takeDamages(hp/4);
+                                if(indexHeal!=i)
+                                    System.out.println("\t"+mon.getName()
+                                            +" heal +"+(hp/4)
+                                            +" hp to "+mon.getName());
+                                else
+                                    System.out.println("\t"+mon.getName()
+                                            +" heal +"+(hp/4)
+                                            +" hp to it self");
+                            }
+                        }else{
+                            mon.takeDamages(hp/4);
+                            System.out.println("\t"+mon.getName()
+                                            +" heal +"+(hp/4)
+                                            +" hp to it self");
+                        }
+                    }else{
+                        int damage=-mon.getAtk();
+                        hp+=damage;
+                        System.out.println("\t("+(i+1)+")"+mon.getName()
+                                + " attack to "+player.getName()
+                                + " "+mon.getAtk()+" damages");
+                    }
+                }
+                if(hp<0)
+                    pass=false;
+            }
+            
         }
+        this.hp=hp;
         return pass;
     }
     private void addMonsWaveAt(int i){
         String codeWave=waves[i];
         boolean codeFine=true;
-        //1_1m3_0m   
         String key="";
         int amount=0;
         Monster mon;
@@ -142,14 +241,25 @@ public class State extends Map implements StatesInfo{
                 case'm':
                     int indexMon=StringToNum(key,2);
                     if(indexMon==15){
-                        mon=new Defender(indexMon);
-                    }else{
-                        mon=new Attacker(indexMon);
-                    }
-                    while(amount>0){
+                        
+                        while(amount>0){
+                            
+                            mon =new Defender(indexMon);
                         this.Mons.add(mon);
                         amount-=1;
+                        }
+                        
+                        
+                    }else{
+                        
+                        while(amount>0){
+                            mon =new Attacker(indexMon);
+                        this.Mons.add(mon);
+                        amount-=1;
+                        }
+                        
                     }
+                    
                     key="";
                 break;
                 case'_':
@@ -187,7 +297,7 @@ public class State extends Map implements StatesInfo{
         return this.amountWave;
     }
     public int getHp(){
-        return player.getHp();
+        return this.hp;
     }
     public boolean getBattle(){
         return this.battle;

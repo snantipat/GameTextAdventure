@@ -173,20 +173,20 @@ public class HunterAdventureGame {
             while(confirmState){
                 //@waveing
                 //neeeddddd it  nowwwwwwwww
-                boolean WaveNotDone=true;
                 int hp=player.getHp();
                 int waveAt=0;
-                while(WaveNotDone&&alive&&waveAt<state.waves.length){
+                while(alive&&waveAt<state.waves.length){
                     if(state.wave(waveAt,hp,player)){
                         hp=state.getHp();
                         //update info of player
                         waveAt++;
                         completeState=true;
-                    }else
+                        confirmState=false;
+                    }else{
                         alive=false;
-                    
-                                        
-                    
+                        confirmState=false;
+                    }
+                        
                 }
             }
             

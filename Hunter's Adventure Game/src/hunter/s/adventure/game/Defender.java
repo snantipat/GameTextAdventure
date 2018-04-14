@@ -10,7 +10,16 @@ package hunter.s.adventure.game;
  * @author Domekenji
  */
 public class Defender extends Monster{
+    int hp;
     public Defender(int index){
         super(index);
+        this.hp=super.HP[index];
+    }
+    @Override
+    public void takeDamages(int damage){
+        this.hp+=damage;
+    }
+    public int gethp(){
+        return this.hp;
     }
 }
