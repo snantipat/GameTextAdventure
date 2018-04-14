@@ -12,6 +12,7 @@ public abstract class Monster extends Character implements MonstersInfo{
         this.Atk=ATK[i];
         this.Exp=XP[i];
         this.Gold=GOLD[i];
+        this.Hp=HP[i];
     }
     Monster(){
         

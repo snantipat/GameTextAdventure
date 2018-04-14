@@ -146,9 +146,10 @@ public class State extends Map implements StatesInfo{
             }
             
             int counting=player.getWeaponType();
+            //your turn
             while(attack){
-                
-                while(counting>0){
+                //attack
+                while(counting>0&&Mons.size()>0){
                     System.out.println("======================Attack=======================");
                     for(int i=0;i<Mons.size();i++){
                         mon=Mons.get(i);
@@ -183,6 +184,7 @@ public class State extends Map implements StatesInfo{
                 useitem=false;
                 endturn=true;
             }
+            //monster's turn
             if(endturn&&Mons.size()>0){    
                 System.out.println("< Monsters's Turn >");
                 
