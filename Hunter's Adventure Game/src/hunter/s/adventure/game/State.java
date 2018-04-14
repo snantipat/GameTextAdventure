@@ -119,8 +119,10 @@ public class State extends Map implements StatesInfo{
             boolean endturn=false;
             System.out.println("Your turn : ");
             for(int i=0;i<Mons.size();i++){
-                System.out.printf("\t(%d) %s hp<%d> atk<%d>\n",i+1,Mons.get(i).getName(),
-                        Mons.get(i).gethp(),Mons.get(i).getAtk());
+                mon=Mons.get(i);
+                System.out.printf("\t(%d) %s hp<%d> atk<%d>\n",i+1,mon.getName(),
+                        mon.gethp(),mon.getAtk());
+                
             }
             System.out.println("\t\tPlayer [ "+player.getName()+" ]"
                             + "\n\t     hp<"+hp+"/"+player.getHp()+">"
@@ -181,8 +183,53 @@ public class State extends Map implements StatesInfo{
                 attack=false;
                 
             }while(useitem){
-                useitem=false;
-                endturn=true;
+                System.out.println("===================Use item=================="
+                        + "\n\t(1)heal potion "+player.getPotion()+" X"
+                        + "\n\t(2)mini bomb "+player.getMiniBomb() +" X\n\n\tBack(b)");
+                boolean select_null=true;
+                while(select_null){
+                    System.out.print("choose :");input=tool.enter.nextLine();
+                    switch(input){
+                        case"1":
+                            if(player.getPotion()>0){
+                                usingPotion(-1);
+                                System.out.println("Healing +"+player.getHeal());
+                                endturn=true;
+                                player.setPotion(-1);
+                            }else
+                                System.out.println("- run out of heal potion -");
+                            select_null=false;
+                        break;
+                        case"2":
+                            if(player.getMiniBomb()>0){
+                                for(int i = 0;i<Mons.size();i++){
+                                    mon=Mons.get(i);
+                                    mon.takeDamages(-player.getExplotion());
+                                    System.out.println("\t"+mon.getName()
+                                            +" taken "+player.getExplotion()
+                                            +" damages from explotion");
+                                                                        
+                                    if(mon.gethp()<0){
+                            System.out.println("Monster ("+")"+mon.getName()
+                                    + " was eliminated by "+player.getName());
+                            gold+=mon.getGold();
+                            exp+=mon.getExp();
+                            Mons.remove(i);
+                        }
+                                }
+                                endturn=true;
+                            }else
+                                System.out.println("- run out of mini bomb -");
+                            select_null=false;
+                            
+                        break;
+                        case"b":
+                            useitem=false;
+                            select_null=false;
+                        break;
+                    }
+                }
+                
             }
             //monster's turn
             if(endturn&&Mons.size()>0){    

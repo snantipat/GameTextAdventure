@@ -13,6 +13,8 @@ public class Player extends Character{
     private int limit_minibomb;
     private int Hp;
     private int Atk;
+    private int heal;
+    private int explotion;
     Player(){
         super();
         this.name=null;
@@ -78,6 +80,9 @@ public class Player extends Character{
     public void setMiniBomb(int amount){
         this.minibomb+=amount;
     }
+    public int getMiniBomb(){
+        return this.minibomb;
+    }
     public void setLimitMiniBomb(int amount){
         this.minibomb+=amount;
     }
@@ -102,5 +107,17 @@ public class Player extends Character{
     }
     public int getAtk(){
         return this.Atk;
+    }
+    void setHeal(int plus){
+        this.heal+=plus;
+    }
+    void setExplotion(int plus){
+        this.explotion+=plus;
+    }
+    int getHeal() {
+        return this.heal;
+    }
+    int getExplotion(){
+        return this.explotion;
     }
 }
