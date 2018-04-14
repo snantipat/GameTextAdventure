@@ -11,9 +11,12 @@ public class State extends Map implements StatesInfo{
     String waves[];
     Player player;
     int hp;
+    int potion;
+    int miniBomb;
     char con_num[]={'0','1','2','3','4','5','6','7','8','9'};
     ArrayList<Monster> Mons= new ArrayList();
     State(int stateAt){
+        this.StateAt=stateAt;
         decodeState(States[stateAt]);
         if(waveFine){
             for(int i=0;i<waves.length;i++)
@@ -30,18 +33,11 @@ public class State extends Map implements StatesInfo{
         int i=0;
         return i;
     }
-    void result(boolean result_){
-        
-    }
     int getXp(){
         return Xp;
     }
     int getG(){
         return G;
-    }
-    void resetState(){
-        this.G=0;
-        this.Xp=0;
     }
     int setState(boolean[] states_p){
         int stateAt=0;
@@ -114,6 +110,8 @@ public class State extends Map implements StatesInfo{
         Tools_pack tool=new Tools_pack();
         String input;
         this.player=player;
+        int gold=0;
+        int exp=0;
         addMonsWaveAt(waveAt);
         Monster mon;
         System.out.println("----------------Wave "+(waveAt+1)+"-------------------");
@@ -168,6 +166,8 @@ public class State extends Map implements StatesInfo{
                         if(mon.gethp()<0){
                             System.out.println("Monster ("+")"+mon.getName()
                                     + " was eliminated by "+player.getName());
+                            gold+=mon.getGold();
+                            exp+=mon.getExp();
                             Mons.remove(monAt);
                         }
                         counting-=1;
@@ -225,8 +225,24 @@ public class State extends Map implements StatesInfo{
             }
             
         }
+        this.G=gold;
+        this.Xp=exp;
         this.hp=hp;
         return pass;
+    }
+    public void Result(boolean won){
+        if(won)
+            System.out.println("=============== STATE COMPLETE =================");
+        else
+            System.out.println("================= STATE FAIL ===================");
+        if(this.StateAt<9)
+            System.out.println("\n\t\tExp +"+this.Xp
+                +"\t\tGold +"+this.G
+                +"\t\tState "+(this.StateAt+2)+"Clear");
+        else
+            System.out.println("\n\t\tExp +"+this.Xp
+                +"\t\tGold +"+this.G
+                +"\t\tAll States Clear");
     }
     private void addMonsWaveAt(int i){
         String codeWave=waves[i];
@@ -303,5 +319,18 @@ public class State extends Map implements StatesInfo{
     }
     public boolean getBattle(){
         return this.battle;
+    }
+    private void usingPotion(int used){
+        this.potion+=used;
+    }
+    private void usingMiniBomb(int used){
+        this.miniBomb+=used;
+        
+    }
+    public int getUsedPotion(){
+        return this.potion;
+    }
+    public int getUsedMiniBomb(){
+        return this.miniBomb;
     }
 }

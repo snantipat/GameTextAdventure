@@ -4,6 +4,7 @@ public abstract class Monster extends Character implements MonstersInfo{
     private int Gold;
     private int Exp;
     private int Atk;
+    private int Hp;
     private String name;
     
     Monster(int i){
@@ -26,6 +27,9 @@ public abstract class Monster extends Character implements MonstersInfo{
     }
     public String getName(){
         return this.name;
+    }
+    public int getHP(){
+        return this.Hp;
     }
     public abstract int gethp();
     public abstract void takeDamages(int damage);

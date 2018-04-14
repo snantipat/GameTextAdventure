@@ -11,15 +11,15 @@ package hunter.s.adventure.game;
  */
 public class Attacker extends Monster{
     int hp;
-    
     public Attacker(int index){
         super(index);
-        this.hp=super.HP[index];
+        this.hp=super.getHP();
     }
     @Override
     public void takeDamages(int damage){
         this.hp+=damage;
     }
+    @Override
     public int gethp(){
         return this.hp;
     }

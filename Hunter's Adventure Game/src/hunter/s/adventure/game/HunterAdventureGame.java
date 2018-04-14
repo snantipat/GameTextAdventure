@@ -178,7 +178,6 @@ public class HunterAdventureGame {
                 while(alive&&waveAt<state.waves.length){
                     if(state.wave(waveAt,hp,player)){
                         hp=state.getHp();
-                        //update info of player
                         waveAt++;
                         completeState=true;
                         confirmState=false;
@@ -186,16 +185,19 @@ public class HunterAdventureGame {
                         alive=false;
                         confirmState=false;
                     }
+                    player.setPotion(state.getUsedPotion());
+                    player.setMiniBomb(state.getUsedMiniBomb());
                         
                 }
             }
             
             if(completeState&&state.getBattle()){
-                state.result(alive);
+                state.Result(alive);
                 player.setGold(state.getG());
                 player.setExp(state.getXp());
-                if(alive)
-                    player.setState(alive,(stateAt));
+                if(stateAt<10){
+                    player.setState(alive, stateAt);
+                }
             }
             //state.resetState();
             //@reset Coin and exp of player

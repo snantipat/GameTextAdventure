@@ -68,6 +68,29 @@ public class Player extends Character{
     public void setAtk(int atk){
         this.Atk+=atk;
     }
+    
+    public void setPotion(int amount){
+        this.potion+=amount;
+    }
+    public int getPotion(){
+        return this.potion;
+    }
+    public void setMiniBomb(int amount){
+        this.minibomb+=amount;
+    }
+    public void setLimitMiniBomb(int amount){
+        this.minibomb+=amount;
+    }
+    public int getLimitMiniBomb(){
+        return this.limit_minibomb;
+       
+    }
+    public int getLimitPotion(){
+        return this.limit_potion;
+    }
+    public void setLimitPotion(int amount){
+        this.limit_potion+=amount;
+    }
     public int getGold(){
         return this.Gold;
     }
