@@ -218,8 +218,10 @@ public class State extends Map implements StatesInfo{
                                 + " "+mon.getAtk()+" damages");
                     }
                 }
-                if(hp<0)
+                if(hp<0){
                     pass=false;
+                    inwave=false;
+                }
             }
             
         }
@@ -245,7 +247,7 @@ public class State extends Map implements StatesInfo{
                         while(amount>0){
                             
                             mon =new Defender(indexMon);
-                        this.Mons.add(mon);
+                            this.Mons.add(mon);
                         amount-=1;
                         }
                         
@@ -254,7 +256,7 @@ public class State extends Map implements StatesInfo{
                         
                         while(amount>0){
                             mon =new Attacker(indexMon);
-                        this.Mons.add(mon);
+                            this.Mons.add(mon);
                         amount-=1;
                         }
                         
