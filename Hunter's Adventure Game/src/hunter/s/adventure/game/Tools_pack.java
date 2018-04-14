@@ -22,7 +22,6 @@ public class Tools_pack implements Tools{
         }
     }
     public void mainMenu(int size){
-        int choose=2;
         System.out.print(">HUNTER’S ADVENTURE\n" +
                          "\tnew game(1)\n");
         if(size>0)
