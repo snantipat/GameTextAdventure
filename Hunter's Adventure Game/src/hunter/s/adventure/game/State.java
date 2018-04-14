@@ -400,7 +400,6 @@ public class State extends Map implements StatesInfo{
         this.player=p1;
         this.miniBomb=0;
         this.potion=0;
-        this.player=player;
         this.waveNotDone=true;
     }
 }
