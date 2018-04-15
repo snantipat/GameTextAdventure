@@ -42,31 +42,80 @@ public class Home extends Map{
     void Upgrade() {
         boolean upgrade = true ;
         while(upgrade){
-        //Gold
-        int gold=1000*p_1.getLevel();
-        //ATK Weapon
-        System.out.println("========================================Upgrade===========================================\n"
+        System.out.println("========================================Upgrade===========================================");
 //upgrade potion minibomb
-                       +"You have "+p_1.getGold()+" Gold"
+        System.out.println("You have "+p_1.getGold()+" Gold\n"
                        + "(1)backpack\n"
-                       + "(2)damage minibomb & healing power potion"
-                       + "(3)weapon");
+                       + "(2)damage minibomb & healing power potion\n"
+                       + "(3)weapon\n"
+                       + "(b)back");
         Scanner sr = new Scanner(System.in);
+        System.out.print("Choose: ");
         String Upgrade = sr.nextLine();
         switch(Upgrade){
-            case"1"://limitpotion
-                p_1.setLimitPotion(1);
-                p_1.setLimitMiniBomb(gold);
-                break;
-            case"2"://
-                p_1.setExplotion(20);
-                p_1.setHeal(50);
-                break;
-            case"3":System.out.println(p_1.getWeaponName()+" level "+p_1.getLevel()+" "+gold+" Gold"+" ATK"+p_1.getWeaponDamage()+"\n"
-                       + "(b)Back");
-
+            case "1":upgradelimit();break;
+            case "2":upgradePower();break;
+            case "3":upgradeweapon();break;
+            case "b":upgrade=false;break;
+            default :upgrade = true  ;break;
+                    }
+        }
+    }
+    void upgradelimit(){
+                System.out.println("========================================Limit===========================================");
+                boolean limi=true;
+                while(limi){
+                int gold=200;
+                Scanner ur = new Scanner(System.in);
+                System.out.println("(1)LimitPotion: "+p_1.getLimitPotion()+"\n"
+                                 + "(2)LimitMiniBomb: "+p_1.getLimitMiniBomb()+"\n"
+                                 + "(b)back");
+                System.out.print("Choose: ");
+                String Limi = ur.nextLine();
+                switch(Limi){
+                case"1":if(p_1.getGold()>=gold){p_1.setLimitPotion(1)  ;limi=true;
+                }else{
+                    System.out.println("Have not enough money");}break;
+                case"2":if(p_1.getGold()>=gold){p_1.setLimitMiniBomb(1);limi=true;break;
+                }else{
+                    System.out.println("Have not enough money");}break;
+                case"b":case"B":limi=false;break;
+                default :limi = true  ;break;
+                }
+                }
+    }
+    void upgradePower(){
+        System.out.println("========================================Heal&Explotion===========================================");
+                boolean power=true;
+                while(power){
+                int gold=100;
+                Scanner ur = new Scanner(System.in);
+                System.out.println("(1)MiniBomb: "+p_1.getExplotion()+" use 100 \n"
+                                 + "(2)Potion: "+p_1.getHeal()+" use 100 \n"
+                                 + "(b)back");
+                System.out.print("Choose: ");
+                String Limi = ur.nextLine();
+                switch(Limi){
+                case"1":if(p_1.getGold()>=gold){p_1.setExplotion(20);power = true;
+                }else{
+                    System.out.println("Have not enough money");}break;
+                case"2":if(p_1.getGold()>=gold){p_1.setHeal(50);power = true;break;
+                }else{
+                    System.out.println("Have not enough money");}break;
+                case"b":case"B":power=false;break;
+                default :power = true  ;break;
+                }
+                }
+     }
+     void upgradeweapon(){
+         System.out.println("========================================UpgradeWeapon===========================================");
+                boolean wp = true;
+                while(wp){
+                int gold=1000*p_1.getLevel();
+                System.out.println(p_1.getWeaponName()+" level "+p_1.getLevel()+" "+gold+" Gold"+" ATK"+p_1.getWeaponDamage());
+                Scanner sr = new Scanner(System.in);
                 System.out.println("do you want to upgrade Y/N");
-                Upgrade=sr.nextLine();
+                String Upgrade = sr.nextLine();
                 switch(Upgrade){
                     case "y" :case"Y":
                         if(p_1.getGold()>=gold){
@@ -75,16 +124,16 @@ public class Home extends Map{
                     }else{
                         System.out.println("Have not enough money");
                     }
-                    upgrade = true;
+                    wp = true;
                     break;
-                    case "n" :case"N":upgrade = false ;break;
-                    case "b" :case"B":upgrade = false ;break;
-                    default : upgrade = true  ;break;
+                    case "n" :case"N":wp=false ;break;
+                    default : wp = true  ;break;
             }
-        }
-        }
+                }
+     }
+        
+        
     
-    }
     //clear
     void ChangeWeapon(){
         boolean cw = true ;
