@@ -103,23 +103,13 @@ public class HunterAdventureGame {
                 homeTown=new Home(Jonathan,Yharnum,Gabriel,player);
                 input=UI.homeTown();
                 switch(input){
-                    case"1"://@weapon
-                        //homeTown.weaponShop(player);
-                        //player.setGold(homeTown.getGold());
-                        //player.setInventory(homeTown.getInventory);
+                    case"1":homeTown.Refill();
+                        break;
+                    case"2":homeTown.Upgrade();
+                        break;
+                    case"3":homeTown.ChangeWeapon();
                         player.setWeaponType(homeTown.p_1.getWeaponType());
                         player.setWeaponDamage(homeTown.p_1.getWeaponDamage());
-                        break;
-                    case"2"://@Potions and grenade
-                        //homeTown.utilityShop(player);
-                        //player.setGold(homeTown.getGold());
-                        //player.setInventory(homeTown.getInventory());
-                        break;
-                    case"3"://@upstat
-                        //homeTown.upStatus(player);
-                        //player.setExp(homeTown.getxp());
-                        //player.setAtk(homeTown.setAtk());
-                        //player.setHP(homeTown.setHp());
                         break;
                     case"4"://@select state
                         //clear

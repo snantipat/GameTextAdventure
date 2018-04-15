@@ -3,12 +3,8 @@ import java.util.Scanner;
 public class Home extends Map{
     NPC n_1,n_2,n_3;
     Player p_1;
-        //ATK Weapon
-        int d1=60,d2=30,d3=20 ;
-        //Upgrade Weapon
         int ld1=1,ld2=1,ld3=1 ;
-        //Gold
-        int g1=1000*ld1,g2=1000*ld2,g3=1000*ld3;
+        
     Home(NPC npc1,NPC npc2,NPC npc3,Player p1){
         this.n_1=npc1;
         this.n_2=npc2;
@@ -40,26 +36,31 @@ public class Home extends Map{
     void Upgrade() {
         boolean upgrade = true ;
         while(upgrade){
-        System.out.print("========================================Upgrade==========================================="
-                       + "(1)Heavy Sword      level: "+ld1+" "+g1+"Gold"
-                       + "(2)Short Hand Sword level: "+ld2+" "+g2+"Gold"
-                       + "(3)Huntsman Knife   level: "+ld3+" "+g3+"Gold"
+        //Gold
+        int g1=1000*ld1,g2=1000*ld2,g3=1000*ld3;
+        //ATK Weapon
+        int d1=60,d2=30,d3=20 ;
+        System.out.print("========================================Upgrade===========================================\n"
+                       + "you have "+p_1.getGold()+" Gold\n"
+                       + "(1)Heavy Sword      level "+ld1+" "+g1+" Gold"+"ATK"+p_1.getWeaponDamage()+"\n"
+                       + "(2)Short Hand Sword level "+ld2+" "+g2+" Gold"+"ATK"+p_1.getWeaponDamage()+"\n"
+                       + "(3)Huntsman Knife   level "+ld3+" "+g3+" Gold"+"ATK"+p_1.getWeaponDamage()+"\n"
                        + "(b)Back");
         Scanner sr = new Scanner(System.in);
         System.out.println("Choose: ");
         String Upgrade = sr.nextLine();
         switch(Upgrade){
-            case "1" :p_1.setWeaponDamage(d1+60) ;
+            case "1" :p_1.setWeaponDamage(d1) ;
                       p_1.setGold(-g1);
                       ld1++;
                       upgrade = true;
                       break;
-            case "2" :p_1.setWeaponDamage(d2+30) ;
+            case "2" :p_1.setWeaponDamage(d2) ;
                       p_1.setGold(-g2);
                       ld2++;
                       upgrade = true;
                       break;
-            case "3" :p_1.setWeaponDamage(d3+20) ;
+            case "3" :p_1.setWeaponDamage(d3) ;
                       p_1.setGold(-g3);
                       ld3++;
                       upgrade = true;
@@ -73,10 +74,12 @@ public class Home extends Map{
     void ChangeWeapon(){
         boolean cw = true ;
         while(cw){
-        System.out.print("========================================Change Weapons==========================================="
-                       + "(1)Heavy Sword      level:"+ld1
-                       + "(2)Short Hand Sword level:"+ld2
-                       + "(3)Huntsman Knife   level:"+ld3
+            int d1=60,d2=30,d3=20 ;
+        System.out.print("========================================Change Weapons===========================================\n"
+                       + "you have "+p_1.getGold()+" Gold\n"
+                       + "(1)Heavy Sword      level "+ld1+"\n"
+                       + "(2)Short Hand Sword level "+ld2+"\n"
+                       + "(3)Huntsman Knife   level "+ld3+"\n"
                        + "(b)Back");
         Scanner sr = new Scanner(System.in);
         System.out.println("Choose: ");
