@@ -97,9 +97,11 @@ public class Tools_pack implements Tools{
         String removeAt=null;
         System.out.println(">Remove Slot");
             for(int i=0;i<slots.size();i++){
-            System.out.println("\tSlot "+(i+1)
+            System.out.println("  Slot "+(i+1)
                     + "\n\tName "+slots.get(i).getName()
  //                   + "\n\tLast Auto save dd/mm/yyyy hh:mm "
+//using weapon damage
+//atk hp gold exp
                     + "\n\tState clear "+slots.get(i).getStateClear()
                     + "/"+10);
             }
