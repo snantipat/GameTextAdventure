@@ -1,21 +1,13 @@
 package hunter.s.adventure.game;
 import java.util.Scanner;
 public class Home extends Map{
-    NPC n_1,n_2,n_3;
     Player p_1;
         int ld1=1,ld2=1,ld3=1 ;
         
-    Home(NPC npc1,NPC npc2,NPC npc3,Player p1){
-        this.n_1=npc1;
-        this.n_2=npc2;
-        this.n_3=npc3;
-        this.p_1=p1;
+    Home(Player p_1){
+    this.p_1=p_1;
     }
-    void homeTown(){
-    }
-        
     
-
     void Refill() {
         boolean refill = true ;
         while(refill){
@@ -43,8 +35,6 @@ public class Home extends Map{
         System.out.print("========================================Upgrade===========================================\n"
                        + "you have "+p_1.getGold()+" Gold\n"
                        + "(1)Heavy Sword      level "+ld1+" "+g1+" Gold"+"ATK"+p_1.getWeaponDamage()+"\n"
-                       + "(2)Short Hand Sword level "+ld2+" "+g2+" Gold"+"ATK"+p_1.getWeaponDamage()+"\n"
-                       + "(3)Huntsman Knife   level "+ld3+" "+g3+" Gold"+"ATK"+p_1.getWeaponDamage()+"\n"
                        + "(b)Back");
         Scanner sr = new Scanner(System.in);
         System.out.println("Choose: ");

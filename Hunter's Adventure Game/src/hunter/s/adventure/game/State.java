@@ -116,7 +116,7 @@ public class State extends Map implements StatesInfo{
         Monster mon;
         System.out.println("[Wave "+(waveAt+1)+"]");
         while(inwave){
-            boolean endturn=false;
+            
             System.out.println("< Your's turn >");
             for(int i=0;i<Mons.size();i++){
                 mon=Mons.get(i);
@@ -131,7 +131,7 @@ public class State extends Map implements StatesInfo{
             boolean choosenull=true;
             boolean attack=false;
             boolean useitem=false;
-            
+            boolean endturn=false;
             while(choosenull){
                 System.out.print("choose :");input=tool.enter.nextLine();
                 switch(input){
@@ -186,7 +186,6 @@ public class State extends Map implements StatesInfo{
                 }
                 endturn=true;
                 attack=false;
-                
             }
             while(useitem){
                 System.out.println(">Use item"
@@ -202,13 +201,13 @@ public class State extends Map implements StatesInfo{
                                 usingPotion(-1);
                                 System.out.println("[Player]"+player.getName() 
                                         +" Healing +"+player.getHeal()+" hp");
-                                endturn=true;
                                 player.setPotion(-1);
                                 hp+=player.getHeal();
                                 if(hp>player.getHp())
                                     hp=player.getHp();
                             }else
                                 System.out.println("- run out of heal potion -");
+                            useitem=false;
                             select_null=false;
                         break;
                         case"2":
@@ -277,12 +276,13 @@ public class State extends Map implements StatesInfo{
                                 + " "+mon.getAtk()+" damages");
                     }
                 }
-                if(hp<0){
+            }
+            if(hp<0){
                     pass=false;
                     inwave=waveNotDone=false;
-                }
             }
             if(Mons.isEmpty()){
+                pass=true;
                 inwave=this.waveNotDone=false;    
             }
         }

@@ -1,4 +1,8 @@
 package hunter.s.adventure.game;
+interface weaponname{
+    String WEANAME[]={"Heavy Sword","Short Hand Sword","Huntsman Knife"};
+    
+}
 public class Player extends Character{
     private final String name;
     private boolean states[]={true,false,false,false,false,
@@ -16,11 +20,13 @@ public class Player extends Character{
     private int Atk;
     private int heal;
     private int explotion;
+    private String WeaponName;
     Player(){
         super();
         this.name=null;
     }
     Player(String n,int weapon){
+        this.Gold=1000;
         this.potion= 4;
         this.name= n;
         this.states[0]=true;
@@ -32,9 +38,9 @@ public class Player extends Character{
         this.explotion=10;
         this.limit_minibomb=this.minibomb=1;
         switch(weapon){
-            case 1:this.Weapondamage=60;break;
-            case 2:this.Weapondamage=30;break;
-            case 3:this.Weapondamage=10;break;
+            case 1:this.Weapondamage=60; this.WeaponName=weaponname.WEANAME[weapon-1];break;
+            case 2:this.Weapondamage=30; this.WeaponName=weaponname.WEANAME[weapon-1];break;
+            case 3:this.Weapondamage=10; this.WeaponName=weaponname.WEANAME[weapon-1];break;
         }
     }
     public String getName(){
@@ -47,7 +53,7 @@ public class Player extends Character{
         return this.WeaponType;
     }
     public void setWeaponDamage(int damage){
-    
+        this.Weapondamage=damage;
     }
     public int getWeaponDamage(){
         return this.Weapondamage;

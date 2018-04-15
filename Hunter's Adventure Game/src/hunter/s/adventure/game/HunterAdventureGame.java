@@ -6,10 +6,7 @@ public class HunterAdventureGame {
         ArrayList<Player> slots = new ArrayList();
         Player player = new Player();
         State state = new State();
-        NPC Jonathan = new NPC(1,"Jonathan");
-        NPC Yharnum  = new NPC(2,"Yharnum");
-        NPC Gabriel  = new NPC(3,"Gabriel");
-        Home homeTown;
+        Home homeTown=null;
         boolean playing = true;
         boolean SlotIsNull=true;
         boolean selectedSlot=false;
@@ -81,9 +78,9 @@ public class HunterAdventureGame {
                                 System.out.println("returning to Main Menu");
                             }else if(UI.StringToNum(input)){
                                 player=slots.get(UI.getNum()-1);
+                                homeTown=new Home(player);
                                 SlotIsNull=false;
                                 selectedSlot=true;
-                                System.out.println(player.getName());
                             }  
                         }else{
                             System.out.println("please press 1 for New game.");
@@ -100,9 +97,9 @@ public class HunterAdventureGame {
             int stateAt=0;
             
             while(selectedSlot&&stateIsNull){
-                homeTown=new Home(Jonathan,Yharnum,Gabriel,player);
                 input=UI.homeTown();
                 switch(input){
+
                     case"1":homeTown.Refill();
                         break;
                     case"2":homeTown.Upgrade();
@@ -148,12 +145,10 @@ public class HunterAdventureGame {
                 for(int waveAt=0;waveAt<state.getAmountWave()&&alive&&state.getBattle();waveAt++){
                     alive=state.wave(waveAt,hp,player);
                     hp=state.getHp();
-                    player.setMiniBomb(state.getUsedMiniBomb());
-                    player.setPotion(state.getUsedPotion());
                 }
                 state.Result(alive);
-                player.setExp(state.getXp());
-                player.setGold(state.getG());
+//                player.setExp(state.getXp());
+//                player.setGold(state.getG());
                 if(alive)
                     player.setState(alive, stateAt);
                 confirmState=false;
