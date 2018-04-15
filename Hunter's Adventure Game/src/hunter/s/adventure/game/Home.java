@@ -9,6 +9,9 @@ public class Home extends Map{
         this.p_1=p_1;
     }
         //Gold
+    void Training_place(){
+        System.out.println("Train Place");
+    }
     void Refill() {
         boolean refill = true ;
         while(refill){
@@ -24,8 +27,13 @@ public class Home extends Map{
         String re = ur.nextLine();
         switch(re){
             case "y":case"Y":
-                p_1.setGold(-gold);
-                p_1.Refill();break;
+                if(p_1.getGold()>=gold){
+                    p_1.setGold(-gold);
+                    p_1.Refill();
+                }else
+                    System.out.println("Not enough");
+                refill=false;
+                break;
             case "n":case"N":refill = false  ;break;
             default :refill = true   ;break;
         }    
@@ -37,29 +45,45 @@ public class Home extends Map{
         //Gold
         int gold=1000*p_1.getLevel();
         //ATK Weapon
-        System.out.print("========================================Upgrade===========================================\n"
+        System.out.println("========================================Upgrade===========================================\n"
 //upgrade potion minibomb
-                       + "you have "+p_1.getGold()+" Gold\n"
-                       + p_1.getWeaponName()+" level "+p_1.getLevel()+" "+gold+" Gold"+" ATK"+p_1.getWeaponDamage()+"\n"
-                       + "(b)Back\n");
+                       +"You have "+p_1.getGold()+" Gold"
+                       + "(1)backpack\n"
+                       + "(2)damage minibomb & healing power potion"
+                       + "(3)weapon");
         Scanner sr = new Scanner(System.in);
-        System.out.println("do you want to upgrade Y/N");
         String Upgrade = sr.nextLine();
         switch(Upgrade){
-            case "y" :case"Y":
-                if(p_1.getGold()>=gold){
-                      p_1.UpgradeWeapon() ;
-                      p_1.setGold(-gold);
-                }else{
-                    System.out.println("Have not enough money");
-                }
-                upgrade = true;
+            case"1"://limitpotion
+                p_1.setLimitPotion(1);
+                p_1.setLimitMiniBomb(gold);
                 break;
-            case "n" :case"N":upgrade = false ;break;
-            case "b" :case"B":upgrade = false ;break;
-            default : upgrade = true  ;break;
+            case"2"://
+                p_1.setExplotion(20);
+                p_1.setHeal(50);
+                break;
+            case"3":System.out.println(p_1.getWeaponName()+" level "+p_1.getLevel()+" "+gold+" Gold"+" ATK"+p_1.getWeaponDamage()+"\n"
+                       + "(b)Back");
+
+                System.out.println("do you want to upgrade Y/N");
+                Upgrade=sr.nextLine();
+                switch(Upgrade){
+                    case "y" :case"Y":
+                        if(p_1.getGold()>=gold){
+                        p_1.UpgradeWeapon() ;
+                         p_1.setGold(-gold);
+                    }else{
+                        System.out.println("Have not enough money");
+                    }
+                    upgrade = true;
+                    break;
+                    case "n" :case"N":upgrade = false ;break;
+                    case "b" :case"B":upgrade = false ;break;
+                    default : upgrade = true  ;break;
+            }
         }
         }
+    
     }
     //clear
     void ChangeWeapon(){

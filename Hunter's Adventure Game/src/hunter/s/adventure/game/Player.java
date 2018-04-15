@@ -38,7 +38,7 @@ public class Player extends Character implements weaponname{
         this.Atk=7;
         this.limit_potion=this.potion=3;
         this.heal=50;
-        this.explotion=10;
+        this.explotion=20;
         this.limit_minibomb=this.minibomb=1;
         switch(weapon){
             case 1:case 2:case 3: this.Weapondamage=WEADAM[weapon-1]; this.WeaponName=weaponname.WEANAME[weapon-1];break;
