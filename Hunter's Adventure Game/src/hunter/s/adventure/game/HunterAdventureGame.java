@@ -103,22 +103,10 @@ public class HunterAdventureGame {
                 input=UI.homeTown();
                 switch(input){
                     case"1"://@weapon
-                        //homeTown.weaponShop(player);
-                        //player.setGold(homeTown.getGold());
-                        //player.setInventory(homeTown.getInventory);
-                        player.setWeaponType(homeTown.p_1.getWeaponType());
-                        player.setWeaponDamage(homeTown.p_1.getWeaponDamage());
                         break;
                     case"2"://@Potions and grenade
-                        //homeTown.utilityShop(player);
-                        //player.setGold(homeTown.getGold());
-                        //player.setInventory(homeTown.getInventory());
                         break;
                     case"3"://@upstat
-                        //homeTown.upStatus(player);
-                        //player.setExp(homeTown.getxp());
-                        //player.setAtk(homeTown.setAtk());
-                        //player.setHP(homeTown.setHp());
                         break;
                     case"4"://@select state
                         //clear
@@ -157,12 +145,10 @@ public class HunterAdventureGame {
                 for(int waveAt=0;waveAt<state.getAmountWave()&&alive&&state.getBattle();waveAt++){
                     alive=state.wave(waveAt,hp,player);
                     hp=state.getHp();
-                    //player.setMiniBomb(state.getUsedMiniBomb());
-                    //player.setPotion(state.getUsedPotion());
                 }
                 state.Result(alive);
-                player.setExp(state.getXp());
-                player.setGold(state.getG());
+//                player.setExp(state.getXp());
+//                player.setGold(state.getG());
                 if(alive)
                     player.setState(alive, stateAt);
                 confirmState=false;
