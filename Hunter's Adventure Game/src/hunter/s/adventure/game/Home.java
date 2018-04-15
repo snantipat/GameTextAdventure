@@ -3,11 +3,15 @@ import java.util.Scanner;
 public class Home extends Map{
     Player p_1;
         int ld1=1,ld2=1,ld3=1 ;
+
         
     Home(Player p_1){
     this.p_1=p_1;
     }
-    
+
+        //Gold
+        int g1=1000*ld1,g2=1000*ld2,g3=1000*ld3;
+
     void Refill() {
         boolean refill = true ;
         while(refill){
