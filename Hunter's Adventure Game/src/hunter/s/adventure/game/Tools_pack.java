@@ -221,6 +221,6 @@ public class Tools_pack implements Tools{
         System.out.println(">Choose Weapons"
                 + "\n\t(1)Heavy Sword   \t60 damages <1 hit/turn>"
                 + "\n\t(2)Short Hand Sword\t30 damages <2 hit/turn>"
-                + "\n\t(3)Huntsman Knife\t10 damages <3 hit/turn>");
+                + "\n\t(3)Huntsman Knife\t20 damages <3 hit/turn>");
     }
 }

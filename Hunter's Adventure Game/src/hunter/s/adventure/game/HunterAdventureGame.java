@@ -6,7 +6,7 @@ public class HunterAdventureGame {
         ArrayList<Player> slots = new ArrayList();
         Player player = new Player();
         State state = new State();
-        Home homeTown=null;
+        Home homeTown=new Home();
         boolean playing = true;
         boolean SlotIsNull=true;
         boolean selectedSlot=false;
@@ -99,14 +99,11 @@ public class HunterAdventureGame {
             while(selectedSlot&&stateIsNull){
                 input=UI.homeTown();
                 switch(input){
-
                     case"1":homeTown.Refill();
                         break;
                     case"2":homeTown.Upgrade();
                         break;
                     case"3":homeTown.ChangeWeapon();
-                        player.setWeaponType(homeTown.p_1.getWeaponType());
-                        player.setWeaponDamage(homeTown.p_1.getWeaponDamage());
                         break;
                     case"4"://@select state
                         //clear

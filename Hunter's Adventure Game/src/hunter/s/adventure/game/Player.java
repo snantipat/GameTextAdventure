@@ -1,9 +1,9 @@
 package hunter.s.adventure.game;
 interface weaponname{
     String WEANAME[]={"Heavy Sword","Short Hand Sword","Huntsman Knife"};
-    
+    int WEADAM[]={60,30,20};
 }
-public class Player extends Character{
+public class Player extends Character implements weaponname{
     private final String name;
     private boolean states[]={true,false,false,false,false,
                               false,false,false,false,false};
@@ -14,6 +14,9 @@ public class Player extends Character{
     private int potion;
     private int minibomb;
     private int Weapondamage;
+    private int weaDamage[]={60,30,20};
+    private int LevelWeapons[]={0,0,0};
+    private int levelWeapon;
     private int limit_potion;
     private int limit_minibomb;
     private int Hp;
@@ -26,7 +29,7 @@ public class Player extends Character{
         this.name=null;
     }
     Player(String n,int weapon){
-        this.Gold=1000;
+        this.Gold=2000;
         this.potion= 4;
         this.name= n;
         this.states[0]=true;
@@ -38,22 +41,37 @@ public class Player extends Character{
         this.explotion=10;
         this.limit_minibomb=this.minibomb=1;
         switch(weapon){
-            case 1:this.Weapondamage=60; this.WeaponName=weaponname.WEANAME[weapon-1];break;
-            case 2:this.Weapondamage=30; this.WeaponName=weaponname.WEANAME[weapon-1];break;
-            case 3:this.Weapondamage=10; this.WeaponName=weaponname.WEANAME[weapon-1];break;
+            case 1:case 2:case 3: this.Weapondamage=WEADAM[weapon-1]; this.WeaponName=weaponname.WEANAME[weapon-1];break;
+
         }
     }
     public String getName(){
         return name;
     }
     public void setWeaponType(int type){
-        
+        this.WeaponType=type;
+        this.WeaponName=WEANAME[type-1];
+        this.Weapondamage=weaDamage[type-1];
+        this.levelWeapon=LevelWeapons[type-1];
+    }
+    public String getWeaponName(){
+        return this.WeaponName;
     }
     public int getWeaponType(){
         return this.WeaponType;
     }
-    public void setWeaponDamage(int damage){
-        this.Weapondamage=damage;
+    public void Refill(){
+        this.potion=limit_potion;
+        this.minibomb=limit_minibomb;
+    }
+    public int getLevel(){
+        return this.LevelWeapons[WeaponType-1];
+    }
+    public void UpgradeWeapon(){
+        this.weaDamage[WeaponType-1]+=WEADAM[WeaponType-1];
+        this.LevelWeapons[WeaponType-1]+=1;
+        this.levelWeapon=LevelWeapons[WeaponType-1];
+        this.Weapondamage=weaDamage[WeaponType-1];
     }
     public int getWeaponDamage(){
         return this.Weapondamage;
