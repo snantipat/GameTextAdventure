@@ -6,10 +6,7 @@ public class HunterAdventureGame {
         ArrayList<Player> slots = new ArrayList();
         Player player = new Player();
         State state = new State();
-        NPC Jonathan = new NPC(1,"Jonathan");
-        NPC Yharnum  = new NPC(2,"Yharnum");
-        NPC Gabriel  = new NPC(3,"Gabriel");
-        Home homeTown;
+        Home homeTown=null;
         boolean playing = true;
         boolean SlotIsNull=true;
         boolean selectedSlot=false;
@@ -81,6 +78,7 @@ public class HunterAdventureGame {
                                 System.out.println("returning to Main Menu");
                             }else if(UI.StringToNum(input)){
                                 player=slots.get(UI.getNum()-1);
+                                homeTown=new Home(player);
                                 SlotIsNull=false;
                                 selectedSlot=true;
                             }  
@@ -99,7 +97,6 @@ public class HunterAdventureGame {
             int stateAt=0;
             
             while(selectedSlot&&stateIsNull){
-                homeTown=new Home(Jonathan,Yharnum,Gabriel,player);
                 input=UI.homeTown();
                 switch(input){
                     case"1"://@weapon

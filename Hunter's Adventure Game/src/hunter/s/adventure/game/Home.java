@@ -1,7 +1,6 @@
 package hunter.s.adventure.game;
 import java.util.Scanner;
 public class Home extends Map{
-    NPC n_1,n_2,n_3;
     Player p_1;
         //ATK Weapon
         int d1=60,d2=30,d3=20 ;
@@ -9,17 +8,13 @@ public class Home extends Map{
         int ld1=1,ld2=1,ld3=1 ;
         //Gold
         int g1=1000*ld1,g2=1000*ld2,g3=1000*ld3;
-    Home(NPC npc1,NPC npc2,NPC npc3,Player p1){
-        this.n_1=npc1;
-        this.n_2=npc2;
-        this.n_3=npc3;
+    Home(Player p1){
+
         this.p_1=p1;
     }
-    void homeTown(){
-    }
-        
+    Home(){
     
-
+    }
     void Refill() {
         boolean refill = true ;
         while(refill){

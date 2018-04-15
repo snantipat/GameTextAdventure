@@ -127,10 +127,9 @@ public class Tools_pack implements Tools{
     }
     
     public String homeTown(){
-        NPC npc1 = null,npc2 = null,npc3 = null;
+
         Player p1 = null;
         String input=null;
-        Home h = new Home(npc1,npc2,npc3,p1);
             //1 2 3 4 b
         boolean chooseIsNull=true;
             System.out.println(">Home Town"
