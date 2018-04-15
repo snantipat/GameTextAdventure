@@ -78,14 +78,14 @@ public class Tools_pack implements Tools{
                 while(slotIsNull){
                     System.out.print("choose slot:");
                     input=enter.nextLine();
-                    if(input.equalsIgnoreCase("b")||input.equalsIgnoreCase("r"))
+                    if(input.equalsIgnoreCase("b")||input.equalsIgnoreCase("r")){
                         slotIsNull=false;
-                    else if(StringToNum(input)&&input.length()<6){
+                    }else if(StringToNum(input)&&input.length()<6){
                         for(int i = 0;i<slots.size()&&(this.num-1)<slots.size()&&this.num>0;i++){
                             if((this.num-1)==i)
                                 slotIsNull=false;
                         }
-                        if(this.num>=slots.size()||this.num<=0)
+                        if(this.num>slots.size()||this.num<0)
                             System.out.println("Slot at "+this.num+" doesn't exist.");
                     }
                     else

@@ -83,7 +83,6 @@ public class HunterAdventureGame {
                                 player=slots.get(UI.getNum()-1);
                                 SlotIsNull=false;
                                 selectedSlot=true;
-                                System.out.println(player.getName());
                             }  
                         }else{
                             System.out.println("please press 1 for New game.");
@@ -158,8 +157,8 @@ public class HunterAdventureGame {
                 for(int waveAt=0;waveAt<state.getAmountWave()&&alive&&state.getBattle();waveAt++){
                     alive=state.wave(waveAt,hp,player);
                     hp=state.getHp();
-                    player.setMiniBomb(state.getUsedMiniBomb());
-                    player.setPotion(state.getUsedPotion());
+                    //player.setMiniBomb(state.getUsedMiniBomb());
+                    //player.setPotion(state.getUsedPotion());
                 }
                 state.Result(alive);
                 player.setExp(state.getXp());
