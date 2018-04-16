@@ -1,5 +1,5 @@
 package hunter.s.adventure.game;
-import java.util.Scanner;
+
 public class Home extends Map{
     Player p_1;
     Home(){
@@ -8,22 +8,51 @@ public class Home extends Map{
     Home(Player p_1){
         this.p_1=p_1;
     }
+    Tools_pack tp = new Tools_pack();
     void Training_place(){
-        System.out.println("Train Place");
+        boolean training=true;
+        while(training){
+        System.out.println("=====================================Train Place=========================================");
+        System.out.println("You have "+p_1.getExp()+" EXP"
+                + "\nyour current Hp:"+p_1.getHp()+" Atk:"+p_1.getAtk()
+                + "\n(1)+10 hp point cost "+100*p_1.getLevelHp()
+                + "\n(2)+5 atk potnt cost "+100*p_1.getLevelAtk()
+                + "\nBack(b)");
+               String input=tp.enter.nextLine();
+               switch(input){
+                   case"1":
+                       if(p_1.getExp()>=100*p_1.getLevelHp()){
+                            p_1.setHp(10);
+                            p_1.setExp(-100*p_1.getLevelHp());
+                       }else
+                           System.out.println("Not enoungh Exp.");
+                       
+                       break;
+                   case"2":
+                       if(p_1.getExp()>=100*p_1.getLevelAtk()){
+                            p_1.setAtk(5);
+                            p_1.setExp(-100*p_1.getLevelAtk());
+                       }else
+                           System.out.println("Not enoungh Exp.");
+                       break;
+                   case"b":case"B":training=false;
+                       break;
+               }
+            
+        }
     }
     void Refill() {
         boolean refill = true ;
         while(refill){
         System.out.println("========================================Refill===========================================");
-        System.out.println("you have\n\tpotion : "+p_1.getPotion()
+        System.out.println("You have\n\tpotion : "+p_1.getPotion()
                 +"/"+p_1.getLimitPotion()
                 +"\n\tmini bomb : "+p_1.getMiniBomb()+"/"+p_1.getLimitMiniBomb());
-        Scanner ur = new Scanner(System.in);
         int gold=(100*(p_1.getLimitPotion()-p_1.getPotion()))+(100*(p_1.getLimitMiniBomb()-p_1.getMiniBomb()));
         System.out.println("refill(use "+gold+" G)\nAre you sure about that?\n"
                          + "(y)yes             (n)no");
         System.out.print("Choose: ");
-        String re = ur.nextLine();
+        String re = tp.enter.nextLine();
         switch(re){
             case "y":case"Y":
                 if(p_1.getGold()>=gold){
@@ -47,9 +76,9 @@ public class Home extends Map{
                        + "(2)damage minibomb & healing power potion\n"
                        + "(3)weapon\n"
                        + "(b)back");
-        Scanner sr = new Scanner(System.in);
+        
         System.out.print("Choose: ");
-        String Upgrade = sr.nextLine();
+        String Upgrade = tp.enter.nextLine();
         switch(Upgrade){
             case "1":upgradelimit();break;
             case "2":upgradePower();break;
@@ -64,12 +93,12 @@ public class Home extends Map{
                 boolean limi=true;
                 while(limi){
                 int gold=200;
-                Scanner ur = new Scanner(System.in);
+                
                 System.out.println("(1)LimitPotion:   "+p_1.getLimitPotion()+"\n"
                                  + "(2)LimitMiniBomb: "+p_1.getLimitMiniBomb()+"\n"
                                  + "(b)back");
                 System.out.print("Choose: ");
-                String Limi = ur.nextLine();
+                String Limi = tp.enter.nextLine();
                 switch(Limi){
                 case"1":if(p_1.getGold()>=gold){p_1.setLimitPotion(1)  ;limi=true;
                 }else{
@@ -87,12 +116,12 @@ public class Home extends Map{
                 boolean power=true;
                 while(power){
                 int gold=100;
-                Scanner ur = new Scanner(System.in);
+                
                 System.out.println("(1)MiniBomb: "+p_1.getExplotion()+" use 100 gold\n"
                                  + "(2)Potion:   "+p_1.getHeal()+"      use 100 gold\n"
                                  + "(b)back");
                 System.out.print("Choose: ");
-                String Limi = ur.nextLine();
+                String Limi = tp.enter.nextLine();
                 switch(Limi){
                 case"1":if(p_1.getGold()>=gold){p_1.setExplotion(20);power = true;
                 }else{
@@ -111,9 +140,9 @@ public class Home extends Map{
                 while(wp){
                 int gold=1000*p_1.getLevel();
                 System.out.println(p_1.getWeaponName()+" level "+p_1.getLevel()+" use "+gold+" Gold"+" ATK"+p_1.getWeaponDamage());
-                Scanner sr = new Scanner(System.in);
+                
                 System.out.println("do you want to upgrade Y/N");
-                String Upgrade = sr.nextLine();
+                String Upgrade = tp.enter.nextLine();
                 switch(Upgrade){
                     case "y" :case"Y":
                         if(p_1.getGold()>=gold){
@@ -138,11 +167,9 @@ public class Home extends Map{
                        + "(2)Short Hand Sword level "+p_1.getLevel()+"\n"
                        + "(3)Huntsman Knife   level "+p_1.getLevel()+"\n"
                        + "(b)Back");
-        Scanner sr = new Scanner(System.in);
-        System.out.println("Choose: ");
-        String changeweapons = sr.nextLine();
         
-        Tools_pack tp = new Tools_pack();
+        System.out.println("Choose: ");
+        String changeweapons = tp.enter.nextLine();
         if(changeweapons.equals("b"))cw=false;
         else if(tp.StringToNum(changeweapons)){
         switch(tp.getNum()){

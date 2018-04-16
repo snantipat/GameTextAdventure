@@ -94,28 +94,26 @@ public class HunterAdventureGame {
             boolean stateSelected=false;
             boolean stateIsNull=true;
             int stateAt=0;
-            
             while(selectedSlot&&stateIsNull){
                 input=UI.homeTown();
                 homeTown=new Home(player);
                 switch(input){
+                    case"0":homeTown.Training_place();
+                        break;
                     case"1":homeTown.Refill();
                         break;
                     case"2":homeTown.Upgrade();
                         break;
                     case"3":homeTown.ChangeWeapon();
                         break;
-                    case"4"://@select state
-                        //clear
-                        input=UI.chooseState(player.getStates());
+                    case"4":input=UI.chooseState(player.getStates());
                         if(UI.StringToNum(input)){
                             stateAt=UI.getNum();
                             stateSelected=true;
                             stateIsNull=false;
                         }
                         break;
-                    case"b"://@main menu
-                        //clear
+                    case"b":
                         SlotIsNull=true;
                         selectedSlot=false;
                         break;

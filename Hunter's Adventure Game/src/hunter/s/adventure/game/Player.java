@@ -16,7 +16,8 @@ public class Player extends Character implements weaponname{
     private int Weapondamage;
     private int weaDamage[]={60,30,20};
     private int LevelWeapons[]={1,1,1};
-    private int levelWeapon;
+    private int level_hp=1;
+    private int level_atk=1;
     private int limit_potion;
     private int limit_minibomb;
     private int Hp;
@@ -45,6 +46,18 @@ public class Player extends Character implements weaponname{
 
         }
     }
+    public void setLevelAtk(int amount){
+    this.level_atk+=amount;
+    }
+    public void setLevelHp(int amount){
+    this.level_hp+=amount;
+    }
+    public int getLevelAtk(){
+    return this.level_atk;
+    }
+    public int getLevelHp(){
+    return this.level_hp;
+    }
     public String getName(){
         return name;
     }
@@ -52,7 +65,6 @@ public class Player extends Character implements weaponname{
         this.WeaponType=type;
         this.WeaponName=WEANAME[type-1];
         this.Weapondamage=weaDamage[type-1];
-        this.levelWeapon=LevelWeapons[type-1];
     }
     public String getWeaponName(){
         return this.WeaponName;
@@ -70,7 +82,6 @@ public class Player extends Character implements weaponname{
     public void UpgradeWeapon(){
         this.weaDamage[WeaponType-1]+=WEADAM[WeaponType-1];
         this.LevelWeapons[WeaponType-1]+=1;
-        this.levelWeapon=LevelWeapons[WeaponType-1];
         this.Weapondamage=weaDamage[WeaponType-1];
     }
     public int getWeaponDamage(){
