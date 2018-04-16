@@ -99,7 +99,6 @@ public class Tools_pack implements Tools{
             for(int i=0;i<slots.size();i++){
             System.out.println("  Slot "+(i+1)
                     + "\n\tName "+slots.get(i).getName()
- //                   + "\n\tLast Auto save dd/mm/yyyy hh:mm "
 //using weapon damage
 //atk hp gold exp
                     + "\n\tState clear "+slots.get(i).getStateClear()
@@ -133,8 +132,9 @@ public class Tools_pack implements Tools{
             //1 2 3 4 b
         boolean chooseIsNull=true;
             System.out.println(">Home Town"
-                    + "\n\t(1)Refill"
-                    + "\n\t(2)Upgrade"
+                    + "\n\t(0)Up Status"
+                    + "\n\t(1)Refill Items"
+                    + "\n\t(2)Upgrade Items"
                     + "\n\t(3)Change Weapon"
                     + "\nSelect State(4)\t\t\tMain Menu(b)");
         while(chooseIsNull){
