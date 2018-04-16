@@ -285,7 +285,9 @@ public class State extends Map implements StatesInfo{
                 pass=true;
                 inwave=this.waveNotDone=false;    
             }
+            
         }
+        //get gold exp to player
         this.hp=hp;
         return pass;
     }
