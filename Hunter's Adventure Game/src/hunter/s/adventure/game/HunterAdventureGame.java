@@ -144,10 +144,6 @@ public class HunterAdventureGame {
                     hp=state.getHp();
                 }
                 state.Result(alive);
-//                player.setExp(state.getXp());
-//                player.setGold(state.getG());
-                if(alive)
-                    player.setState(alive, stateAt);
                 confirmState=false;
             }
         }

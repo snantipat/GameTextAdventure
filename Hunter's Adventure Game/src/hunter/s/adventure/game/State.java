@@ -176,9 +176,9 @@ public class State extends Map implements StatesInfo{
                             System.out.println("weapon effected! you can attack "
                                     + counting);
                             if(counting>1)
-                                System.out.println(" times.");
+                                System.out.print(" times.");
                             else
-                                System.out.println(" time.");
+                                System.out.print(" time.");
                         }   
                                 
                     }else
@@ -243,7 +243,7 @@ public class State extends Map implements StatesInfo{
                 }
             }
             //monster's turn
-            if(endturn&&Mons.size()>0){    
+            if(endturn&&Mons.size()>0&&hp>0){    
                 System.out.println("< Monsters's Turn >");
                 
                 for(int i=0;i<Mons.size()&&endturn;i++){
@@ -292,15 +292,22 @@ public class State extends Map implements StatesInfo{
         return pass;
     }
     public void Result(boolean won){
-        if(won)
-            System.out.println(">STATE COMPLETE");
-        else
+        if(won){
+            System.out.println(">STATE COMPLETE"
+                    + "\n\t+BONUS GOLD 1000"
+                    + "\n\t+BONUS EXP 500");
+            this.G+=1000;
+            this.Xp+=500;
+            
+        }else
             System.out.println(">STATE FAIL");
         if(this.StateAt<9){
             System.out.println("\tExp +"+this.Xp
                 +"\n\tGold +"+this.G);
-            if(won)
+            if(won){
                 System.out.println(">\tState "+(this.StateAt+2)+"Clear");
+                player.setState(won,StateAt+1);
+            }
         }
         else{
             System.out.println("\tExp +"+this.Xp
@@ -308,6 +315,8 @@ public class State extends Map implements StatesInfo{
             if(won)        
                 System.out.println("\tAll States Clear");
         }
+        player.setExp(this.Xp);
+        player.setGold(this.G);
     }
     private void addMonsWaveAt(int i){
         String codeWave=waves[i];
