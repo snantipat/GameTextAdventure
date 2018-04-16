@@ -89,9 +89,11 @@ public class Home extends Map{
         }
     }
     void upgradelimit(){
+        boolean limi=true;
+        while(limi){
                 System.out.println("========================================Limit===========================================");
-                boolean limi=true;
-                while(limi){
+                
+                
                 int gold=200;
                 
                 System.out.println("(1)LimitPotion:   "+p_1.getLimitPotion()+"\n"
@@ -112,9 +114,11 @@ public class Home extends Map{
                 }
     }
     void upgradePower(){
+        boolean power=true;
+        while(power){
         System.out.println("========================================Heal&Explotion===========================================");
-                boolean power=true;
-                while(power){
+                
+                
                 int gold=100;
                 
                 System.out.println("(1)MiniBomb: "+p_1.getExplotion()+" use 100 gold\n"
@@ -123,11 +127,16 @@ public class Home extends Map{
                 System.out.print("Choose: ");
                 String Limi = tp.enter.nextLine();
                 switch(Limi){
-                case"1":if(p_1.getGold()>=gold){p_1.setExplotion(20);power = true;
-                }else{
-                    System.out.println("Have not enough money");}break;
-                case"2":if(p_1.getGold()>=gold){p_1.setHeal(50);power = true;break;
-                }else{
+                case"1":
+                    if(p_1.getGold()>=gold){
+                        
+                        p_1.setExplotion(20);
+                    }else{
+                        System.out.println("Have not enough money");}
+                    break;
+                case"2":
+                    if(p_1.getGold()>=gold){p_1.setHeal(50);
+                    }else{
                     System.out.println("Have not enough money");}break;
                 case"b":case"B":power=false;break;
                 default :power = true  ;break;
@@ -135,9 +144,11 @@ public class Home extends Map{
                 }
      }
      void upgradeweapon(){
+         boolean wp = true;
+         while(wp){
          System.out.println("========================================UpgradeWeapon===========================================");
-                boolean wp = true;
-                while(wp){
+                
+                
                 int gold=1000*p_1.getLevel();
                 System.out.println(p_1.getWeaponName()+" level "+p_1.getLevel()+" use "+gold+" Gold"+" ATK"+p_1.getWeaponDamage());
                 
@@ -146,12 +157,12 @@ public class Home extends Map{
                 switch(Upgrade){
                     case "y" :case"Y":
                         if(p_1.getGold()>=gold){
-                        p_1.UpgradeWeapon() ;
-                         p_1.setGold(-gold);
-                    }else{
-                        System.out.println("Have not enough money");
-                    }
-                    wp = true;
+                            p_1.UpgradeWeapon() ;
+                            p_1.setGold(-gold);
+                        }else{
+                            System.out.println("Have not enough money");
+                        }
+                        wp = true;
                     break;
                     case "n" :case"N":wp=false ;break;
                     default : wp = true  ;break;

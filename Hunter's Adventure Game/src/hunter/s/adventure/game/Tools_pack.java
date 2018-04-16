@@ -65,13 +65,7 @@ public class Tools_pack implements Tools{
     }
     public String selectSlot(ArrayList<Player> slots){
         System.out.println(">Load Game");
-        for(int i=0;i<slots.size();i++){
-            System.out.println("\tSlot "+(i+1)
-                    +"\n\tName "+slots.get(i).getName()
- //                           + "\n\tLast Auto save dd/mm/yyyy hh:mm "
-                    + "\n\tState clear "+slots.get(i).getStateClear()
-                    + "/"+10);
-        }
+        showSlots(slots);
         System.out.println("Back(b)\t\tDelete(r)");
                 boolean slotIsNull=true;
                 String input=null;
@@ -93,19 +87,25 @@ public class Tools_pack implements Tools{
                 }
                 
         return input;
-    }public String removeSlot(ArrayList<Player> slots){
-        String removeAt=null;
-        System.out.println(">Remove Slot");
-            for(int i=0;i<slots.size();i++){
+    }
+    public void showSlots(ArrayList<Player> slots){
+        for(int i=0;i<slots.size();i++){
             System.out.println(" Slot "+(i+1)
-                    + "\tName "+slots.get(i).getName()
-                    + "\n\t[HP] "+slots.get(i).getHp()+" [ATK] "+slots.get(i).getAtk()
+                    + "\t[Name] "+slots.get(i).getName()
+                    + " [HP] "+slots.get(i).getHp()+" [ATK] "+slots.get(i).getAtk()
                     + "\n\t[GOLD] "+slots.get(i).getGold()+" [EXP] "+slots.get(i).getExp()
+                    + "\n\t[WEAPON] "+slots.get(i).getWeaponName()+" Lv."+slots.get(i).getLevel()
                     + "\n\t[POTION] "+slots.get(i).getPotion()+"/"+slots.get(i).getLimitPotion()
                     + " [MINI BOMB] "+slots.get(i).getMiniBomb()+"/"+slots.get(i).getLimitMiniBomb()
-                    + "\n\tState clear "+slots.get(i).getStateClear()
+                    + "\n\tState Clear "+slots.get(i).getStateClear()
                     + "/"+10);
             }
+    }
+    public String removeSlot(ArrayList<Player> slots){
+        String removeAt=null;
+        System.out.println(">Remove Slot");
+            //details
+            showSlots(slots);
             System.out.println("\nBack(b)");
             boolean slotIsNull=true;
                 while(slotIsNull){
