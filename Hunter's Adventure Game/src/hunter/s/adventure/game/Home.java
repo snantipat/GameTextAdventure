@@ -8,7 +8,6 @@ public class Home extends Map{
     Home(Player p_1){
         this.p_1=p_1;
     }
-        //Gold
     void Training_place(){
         System.out.println("Train Place");
     }
@@ -43,7 +42,6 @@ public class Home extends Map{
         boolean upgrade = true ;
         while(upgrade){
         System.out.println("========================================Upgrade===========================================");
-//upgrade potion minibomb
         System.out.println("You have "+p_1.getGold()+" Gold\n"
                        + "(1)backpack\n"
                        + "(2)damage minibomb & healing power potion\n"
@@ -67,7 +65,7 @@ public class Home extends Map{
                 while(limi){
                 int gold=200;
                 Scanner ur = new Scanner(System.in);
-                System.out.println("(1)LimitPotion: "+p_1.getLimitPotion()+"\n"
+                System.out.println("(1)LimitPotion:   "+p_1.getLimitPotion()+"\n"
                                  + "(2)LimitMiniBomb: "+p_1.getLimitMiniBomb()+"\n"
                                  + "(b)back");
                 System.out.print("Choose: ");
@@ -90,8 +88,8 @@ public class Home extends Map{
                 while(power){
                 int gold=100;
                 Scanner ur = new Scanner(System.in);
-                System.out.println("(1)MiniBomb: "+p_1.getExplotion()+" use 100 \n"
-                                 + "(2)Potion: "+p_1.getHeal()+" use 100 \n"
+                System.out.println("(1)MiniBomb: "+p_1.getExplotion()+" use 100 gold\n"
+                                 + "(2)Potion:   "+p_1.getHeal()+"      use 100 gold\n"
                                  + "(b)back");
                 System.out.print("Choose: ");
                 String Limi = ur.nextLine();
@@ -112,7 +110,7 @@ public class Home extends Map{
                 boolean wp = true;
                 while(wp){
                 int gold=1000*p_1.getLevel();
-                System.out.println(p_1.getWeaponName()+" level "+p_1.getLevel()+" "+gold+" Gold"+" ATK"+p_1.getWeaponDamage());
+                System.out.println(p_1.getWeaponName()+" level "+p_1.getLevel()+" use "+gold+" Gold"+" ATK"+p_1.getWeaponDamage());
                 Scanner sr = new Scanner(System.in);
                 System.out.println("do you want to upgrade Y/N");
                 String Upgrade = sr.nextLine();
@@ -131,10 +129,6 @@ public class Home extends Map{
             }
                 }
      }
-        
-        
-    
-    //clear
     void ChangeWeapon(){
         boolean cw = true ;
         while(cw){
