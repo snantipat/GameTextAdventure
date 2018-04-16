@@ -15,7 +15,7 @@ public class Player extends Character implements weaponname{
     private int minibomb;
     private int Weapondamage;
     private int weaDamage[]={60,30,20};
-    private int LevelWeapons[]={0,0,0};
+    private int LevelWeapons[]={1,1,1};
     private int levelWeapon;
     private int limit_potion;
     private int limit_minibomb;
@@ -123,17 +123,17 @@ public class Player extends Character implements weaponname{
         return this.minibomb;
     }
     public void setLimitMiniBomb(int amount){
-        this.minibomb+=amount;
+        this.limit_minibomb+=amount;
     }
     public int getLimitMiniBomb(){
         return this.limit_minibomb;
        
     }
-    public int getLimitPotion(){
-        return this.limit_potion;
-    }
     public void setLimitPotion(int amount){
         this.limit_potion+=amount;
+    }
+    public int getLimitPotion(){
+        return this.limit_potion;
     }
     public int getGold(){
         return this.Gold;

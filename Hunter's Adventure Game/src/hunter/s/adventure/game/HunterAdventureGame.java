@@ -78,7 +78,6 @@ public class HunterAdventureGame {
                                 System.out.println("returning to Main Menu");
                             }else if(UI.StringToNum(input)){
                                 player=slots.get(UI.getNum()-1);
-                                homeTown=new Home(player);
                                 SlotIsNull=false;
                                 selectedSlot=true;
                             }  
@@ -98,6 +97,7 @@ public class HunterAdventureGame {
             
             while(selectedSlot&&stateIsNull){
                 input=UI.homeTown();
+                homeTown=new Home(player);
                 switch(input){
                     case"1":homeTown.Refill();
                         break;
