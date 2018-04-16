@@ -14,9 +14,9 @@ public class Home extends Map{
         while(training){
         System.out.println("=====================================Train Place=========================================");
         System.out.println("You have "+p_1.getExp()+" EXP"
-                + "\nyour current Hp:"+p_1.getHp()+" Atk:"+p_1.getAtk()
-                + "\n(1)+10 hp point cost "+100*p_1.getLevelHp()
-                + "\n(2)+5 atk potnt cost "+100*p_1.getLevelAtk()
+                + "\nyour current HP:"+p_1.getHp()+" ATK:"+p_1.getAtk()
+                + "\n(1)+10 HP point cost "+100*p_1.getLevelHp()+" EXP"
+                + "\n(2)+5 ATK potnt cost "+100*p_1.getLevelAtk()+" EXP"
                 + "\nBack(b)");
                String input=tp.enter.nextLine();
                switch(input){
