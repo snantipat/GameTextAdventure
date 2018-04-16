@@ -97,10 +97,12 @@ public class Tools_pack implements Tools{
         String removeAt=null;
         System.out.println(">Remove Slot");
             for(int i=0;i<slots.size();i++){
-            System.out.println("  Slot "+(i+1)
-                    + "\n\tName "+slots.get(i).getName()
-//using weapon damage
-//atk hp gold exp
+            System.out.println(" Slot "+(i+1)
+                    + "\tName "+slots.get(i).getName()
+                    + "\n\t[HP] "+slots.get(i).getHp()+" [ATK] "+slots.get(i).getAtk()
+                    + "\n\t[GOLD] "+slots.get(i).getGold()+" [EXP] "+slots.get(i).getExp()
+                    + "\n\t[POTION] "+slots.get(i).getPotion()+"/"+slots.get(i).getLimitPotion()
+                    + " [MINI BOMB] "+slots.get(i).getMiniBomb()+"/"+slots.get(i).getLimitMiniBomb()
                     + "\n\tState clear "+slots.get(i).getStateClear()
                     + "/"+10);
             }
@@ -140,7 +142,7 @@ public class Tools_pack implements Tools{
         while(chooseIsNull){
             System.out.print("choose : ");input=enter.nextLine();
             switch(input){
-                case"1":case"2":case"3":case"4":case"b":chooseIsNull=false;
+                case"0":case"1":case"2":case"3":case"4":case"b":chooseIsNull=false;
             }
         }
         return input;
