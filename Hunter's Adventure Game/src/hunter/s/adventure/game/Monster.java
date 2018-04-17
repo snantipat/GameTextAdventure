@@ -17,6 +17,9 @@ public abstract class Monster extends Character implements MonstersInfo{
     Monster(){
         
     }
+    public void setHp(int damage){
+        this.Hp+=damage;
+    }
     public int getGold(){
         return this.Gold;
     }
@@ -32,6 +35,5 @@ public abstract class Monster extends Character implements MonstersInfo{
     public int getHP(){
         return this.Hp;
     }
-    public abstract int gethp();
     public abstract void takeDamages(int damage);
 }

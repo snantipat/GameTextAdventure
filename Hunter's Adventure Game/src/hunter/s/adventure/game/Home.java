@@ -13,25 +13,25 @@ public class Home extends Map{
         boolean training=true;
         while(training){
         System.out.println("=====================================Train Place=========================================");
-        System.out.println("You have "+p_1.getExp()+" EXP"
-                + "\nYour current HP:"+p_1.getHp()+" ATK:"+p_1.getAtk()
+        System.out.println("You have "+p_1.getEXP()+" EXP"
+                + "\nYour current HP:"+p_1.getHP()+" ATK:"+p_1.getATK()
                 + "\n(1)+10 HP point cost "+100*p_1.getLevelHp()+" EXP"
                 + "\n(2)+5 ATK potnt cost "+100*p_1.getLevelAtk()+" EXP"
                 + "\nBack(b)");
                String input=tp.enter.nextLine();
                switch(input){
                    case"1":
-                       if(p_1.getExp()>=100*p_1.getLevelHp()){
-                            p_1.setHp(10);
-                            p_1.setExp(-100*p_1.getLevelHp());
+                       if(p_1.getEXP()>=100*p_1.getLevelHp()){
+                            p_1.setHP(10);
+                            p_1.setEXP(-100*p_1.getLevelHp());
                        }else
                            System.out.println("Not enoungh Exp.");
                        
                        break;
                    case"2":
-                       if(p_1.getExp()>=100*p_1.getLevelAtk()){
-                            p_1.setAtk(5);
-                            p_1.setExp(-100*p_1.getLevelAtk());
+                       if(p_1.getEXP()>=100*p_1.getLevelAtk()){
+                            p_1.setATK(5);
+                            p_1.setEXP(-100*p_1.getLevelAtk());
                        }else
                            System.out.println("Not enoungh Exp.");
                        break;
@@ -45,7 +45,7 @@ public class Home extends Map{
         boolean refill = true ;
         while(refill){
         System.out.println("========================================Refill==========================================="
-                + "\nYou have "+p_1.getGold()+" Gold");
+                + "\nYou have "+p_1.getGOLD()+" Gold");
         System.out.println("Your current\tpotion : "+p_1.getPotion()
                 +"/"+p_1.getLimitPotion()
                 +"\tmini bomb : "+p_1.getMiniBomb()+"/"+p_1.getLimitMiniBomb());
@@ -56,8 +56,8 @@ public class Home extends Map{
         String re = tp.enter.nextLine();
         switch(re){
             case "y":case"Y":
-                if(p_1.getGold()>=gold){
-                    p_1.setGold(-gold);
+                if(p_1.getGOLD()>=gold){
+                    p_1.setGOLD(-gold);
                     p_1.Refill();
                 }else
                     System.out.println("Not enough");
@@ -72,7 +72,7 @@ public class Home extends Map{
         boolean upgrade = true ;
         while(upgrade){
         System.out.println("========================================Upgrade===========================================");
-        System.out.println("You have "+p_1.getGold()+" Gold"
+        System.out.println("You have "+p_1.getGOLD()+" Gold"
                        + "\nUpgrade List"
                        + "\n\t(1)Backpack\n"
                        + "\t(2)Damage Mini Bomb & Healing Power(potion)\n"
@@ -95,7 +95,7 @@ public class Home extends Map{
         while(limi){
             int gold=1000;
                 System.out.println("========================================Back Pack===========================================");                
-                System.out.println("You have "+p_1.getGold()+" Gold"
+                System.out.println("You have "+p_1.getGOLD()+" Gold"
                                  + "\nYour current backpack size"
                                  + "\tBackpack's Potion "+p_1.getLimitPotion()
                                  + "\tBackpack's Mini Bomb "+p_1.getLimitMiniBomb()
@@ -107,16 +107,16 @@ public class Home extends Map{
                 switch(Limi){
                 case"1":
 
-                    if(p_1.getGold()>=gold){
+                    if(p_1.getGOLD()>=gold){
                         p_1.setLimitPotion(1);
-                        p_1.setGold(-gold);
+                        p_1.setGOLD(-gold);
                     }else
                         System.out.println("Not enough money");
                     break;
                 case"2":
-                    if(p_1.getGold()>=gold){
+                    if(p_1.getGOLD()>=gold){
                         p_1.setLimitMiniBomb(1);
-                        p_1.setGold(-gold);
+                        p_1.setGOLD(-gold);
                     }else{
                         System.out.println("Not enough money");
                     }break;
@@ -134,7 +134,7 @@ public class Home extends Map{
                 
                 int gold=1000;
                 
-                System.out.println("Your current "+p_1.getGold()+" Gold"
+                System.out.println("Your current "+p_1.getGOLD()+" Gold"
                         + "\n Damage's mini bomb:"+p_1.getExplotion()
                         + "\n Power's healing potion:"+p_1.getHeal()
                         + "\n\t(1)Upgarde Mini Bomb"
@@ -144,16 +144,16 @@ public class Home extends Map{
                 String Limi = tp.enter.nextLine();
                 switch(Limi){
                 case"1":
-                    if(p_1.getGold()>=gold){
+                    if(p_1.getGOLD()>=gold){
                         p_1.setExplotion(20);
-                        p_1.setGold(-gold);
+                        p_1.setGOLD(-gold);
                     }else{
                         System.out.println("Not enough money");}
                     break;
                 case"2":
-                    if(p_1.getGold()>=gold){
+                    if(p_1.getGOLD()>=gold){
                         p_1.setHeal(50);
-                        p_1.setGold(-gold);
+                        p_1.setGOLD(-gold);
                     }else{
                         System.out.println("Not enough money");}break;
                 case"b":case"B":power=false;break;
@@ -168,16 +168,16 @@ public class Home extends Map{
                 
                 
                 int gold=1000*p_1.getLevel();
-                System.out.println("You have "+p_1.getGold()+" Gold\n"
+                System.out.println("You have "+p_1.getGOLD()+" Gold\n"
                         + "Your current weapon :"+p_1.getWeaponName()+" Lv."+p_1.getLevel()+" ATK"+p_1.getWeaponDamage()
                         + "\n Upgarde Weapon +"+WeaponInfo.WEADAM[p_1.getWeaponType()-1]+" Damages  (cost "+p_1.getLevel()*1000+" Gold)");
                 System.out.print("Do you want to upgrade Y/N >");
                 String Upgrade = tp.enter.nextLine();
                 switch(Upgrade){
                     case "y" :case"Y":
-                        if(p_1.getGold()>=gold){
+                        if(p_1.getGOLD()>=gold){
                             p_1.UpgradeWeapon() ;
-                            p_1.setGold(-gold);
+                            p_1.setGOLD(-gold);
                         }else{
                             System.out.println("Have not enough money");
                         }

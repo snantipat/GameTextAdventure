@@ -1,6 +1,6 @@
 package hunter.s.adventure.game;
 import java.util.ArrayList;
-public class State extends Map implements StatesInfo{
+public final class State extends Map implements StatesInfo{
     int G;
     int Xp;
     int StateAt;
@@ -8,7 +8,7 @@ public class State extends Map implements StatesInfo{
     int amountMon;
     boolean waveFine;
     boolean battle=true;
-    String waves[];
+    String wave_s[];
     Player player;
     int hp;
     int potion;
@@ -19,11 +19,10 @@ public class State extends Map implements StatesInfo{
     State(int stateAt){
         this.StateAt=stateAt;
         decodeState(States[stateAt]);
-        
         if(waveFine){
-            for(int i=0;i<waves.length;i++)
-                System.out.println(waves[i]);
-            this.amountWave=this.waves.length;
+            for(int i=0;i<wave_s.length;i++)
+                System.out.println(wave_s[i]);
+            this.amountWave=this.wave_s.length;
             System.out.println(">State "+(stateAt+1));
         }else
             System.out.printf(">Load Waves fail!",stateAt);
@@ -53,7 +52,7 @@ public class State extends Map implements StatesInfo{
         String key="";
         String wave="";
         int index=0;
-        int length=0;
+        int length;
         for(int i=raw.length()-1;i>=0&&notFail;i--){
             switch(raw.charAt(i)){
                 case'0':case'1':case'2':case'3':case'4':
@@ -101,7 +100,7 @@ public class State extends Map implements StatesInfo{
             }
         }
         if(waves!=null&&notFail){
-            this.waves=waves;
+            this.wave_s=waves;
         }else
             notFail=false;
         this.waveFine=notFail;
@@ -121,12 +120,12 @@ public class State extends Map implements StatesInfo{
             for(int i=0;i<Mons.size();i++){
                 mon=Mons.get(i);
                 System.out.printf("\t(%d) %s hp<%d> atk<%d>\n",i+1,mon.getName(),
-                        mon.gethp(),mon.getAtk());
+                        mon.getHP(),mon.getAtk());
                 
             }
-            System.out.println("\t\tPlayer [ "+player.getName()+" ]"
-                            + "\n\t     hp<"+hp+"/"+player.getHp()+">"
-                            + "  atk <"+player.getAtk()+">");
+            System.out.println("\t\tPlayer [ "+player.getNAME()+" ]"
+                            + "\n\t     hp<"+hp+"/"+player.getHP()+">"
+                            + "  atk <"+player.getATK()+">");
             System.out.println("Attack(a)\tUse Item(i)\tSurrender(b)");
             boolean choosenull=true;
             boolean attack=false;
@@ -153,19 +152,19 @@ public class State extends Map implements StatesInfo{
                     for(int i=0;i<Mons.size();i++){
                         mon=Mons.get(i);
                         System.out.printf("\t(%d) %s hp<%d> atk<%d>\n",i+1,mon.getName(),
-                                mon.gethp(),mon.getAtk());
+                                mon.getHP(),mon.getAtk());
                     }
                     System.out.print("attack:");input=tool.enter.nextLine();
                     if(tool.StringToNum(input)&&tool.getNum()>0&&tool.getNum()<=Mons.size()){
                         int monAt=tool.getNum()-1;
                         mon=Mons.get(monAt);
-                        mon.takeDamages(-(player.getAtk()+player.getWeaponDamage()));
-                        System.out.println("\t[Player]"+player.getName()
+                        mon.takeDamages(-(player.getATK()+player.getWeaponDamage()));
+                        System.out.println("\t[Player]"+player.getNAME()
                                 + " attacked to [Monster]"+mon.getName()
-                                + " "+(player.getAtk()+player.getWeaponDamage())+" damages");
-                        if(mon.gethp()<0){
+                                + " "+(player.getATK()+player.getWeaponDamage())+" damages");
+                        if(mon.getHP()<0){
                             System.out.println("\t[Monster]"+mon.getName()
-                                    + " was eliminated by [Player]"+player.getName());
+                                    + " was eliminated by [Player]"+player.getNAME());
                             this.G+=mon.getGold();
                             this.Xp+=mon.getExp();
                             Mons.remove(monAt);
@@ -198,12 +197,12 @@ public class State extends Map implements StatesInfo{
                         case"1":
                             if(player.getPotion()>0){
                                 usingPotion(-1);
-                                System.out.println("[Player]"+player.getName() 
+                                System.out.println("[Player]"+player.getNAME() 
                                         +" Healing +"+player.getHeal()+" hp");
                                 player.setPotion(-1);
                                 hp+=player.getHeal();
-                                if(hp>player.getHp())
-                                    hp=player.getHp();
+                                if(hp>player.getHP())
+                                    hp=player.getHP();
                             }else
                                 System.out.println("- run out of heal potion -");
                             useitem=false;
@@ -218,9 +217,9 @@ public class State extends Map implements StatesInfo{
                                             +" taken "+player.getExplotion()
                                             +" damages from explotion");
                                                                        
-                                    if(mon.gethp()<0){
+                                    if(mon.getHP()<0){
                                         System.out.println("\t[Monster]"+mon.getName()
-                                            + " was eliminated by [Player]"+player.getName()+"]");
+                                            + " was eliminated by [Player]"+player.getNAME()+"]");
                                         this.G+=mon.getGold();
                                         this.Xp+=mon.getExp();
                                         Mons.remove(i);
@@ -271,7 +270,7 @@ public class State extends Map implements StatesInfo{
                         int damage=-mon.getAtk();
                         hp+=damage;
                         System.out.println("\t[Monster]"+mon.getName()
-                                + " attacked to [Player]"+player.getName()
+                                + " attacked to [Player]"+player.getNAME()
                                 + " "+mon.getAtk()+" damages");
                     }
                 }
@@ -314,11 +313,11 @@ public class State extends Map implements StatesInfo{
             if(won)        
                 System.out.println("\tAll States Clear");
         }
-        player.setExp(this.Xp);
-        player.setGold(this.G);
+        player.setEXP(this.Xp);
+        player.setGOLD(this.G);
     }
     private void addMonsWaveAt(int i){
-        String codeWave=waves[i];
+        String codeWave=wave_s[i];
         boolean codeFine=true;
         String key="";
         int amount=0;

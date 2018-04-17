@@ -4,11 +4,8 @@ interface WeaponInfo{
     int WEADAM[]={60,30,20};
 }
 public class Player extends Character implements WeaponInfo{
-    private final String name;
     private boolean states[]={true,false,false,false,false,
                               false,false,false,false,false};
-    private int Gold;
-    private int Exp;
     private int StateClear;
     private int WeaponType;
     private int potion;
@@ -20,23 +17,17 @@ public class Player extends Character implements WeaponInfo{
     private int level_atk=1;
     private int limit_potion;
     private int limit_minibomb;
-    private int Hp;
-    private int Atk;
     private int heal;
     private int explotion;
     private String WeaponName;
     Player(){
         super();
-        this.name=null;
     }
     Player(String n,int weapon){
-        this.Gold=2000;
+        super(n,100,10,0,2000);
         this.potion= 4;
-        this.name= n;
         this.states[0]=true;
         this.WeaponType=weapon;
-        this.Hp=100;
-        this.Atk=7;
         this.limit_potion=this.potion=3;
         this.heal=50;
         this.explotion=20;
@@ -50,7 +41,9 @@ public class Player extends Character implements WeaponInfo{
         this.LevelWeapons[2]=1;
         this.limit_minibomb=this.minibomb=1;
         switch(weapon){
-            case 1:case 2:case 3: this.Weapondamage=WEADAM[weapon-1]; this.WeaponName=WEANAME[weapon-1];break;
+            case 1:case 2:case 3: 
+                this.Weapondamage=WEADAM[weapon-1]; 
+                this.WeaponName=WEANAME[weapon-1];break;
 
         }
     }
@@ -65,9 +58,6 @@ public class Player extends Character implements WeaponInfo{
     }
     public int getLevelHp(){
     return this.level_hp;
-    }
-    public String getName(){
-        return name;
     }
     public int getWeaponDamType(int type){
         return this.weaDamage[type];
@@ -122,19 +112,6 @@ public class Player extends Character implements WeaponInfo{
         setStateClear(this.states);
         return this.StateClear;
     }
-    public void setGold(int g){
-        this.Gold+=g;
-    }
-    public void setExp(int xp){
-        this.Exp+=xp;
-    }
-    public void setHp(int hp){
-        this.Hp+=hp;
-    }
-    public void setAtk(int atk){
-        this.Atk+=atk;
-    }
-    
     public void setPotion(int amount){
         this.potion+=amount;
     }
@@ -159,18 +136,6 @@ public class Player extends Character implements WeaponInfo{
     }
     public int getLimitPotion(){
         return this.limit_potion;
-    }
-    public int getGold(){
-        return this.Gold;
-    }
-    public int getExp(){
-        return this.Exp;
-    }
-    public int getHp(){
-        return this.Hp;
-    }
-    public int getAtk(){
-        return this.Atk;
     }
     void setHeal(int plus){
         this.heal+=plus;

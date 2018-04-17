@@ -16,7 +16,7 @@ public class Tools_pack implements Tools{
         for(int i = slots.size()-1;i>=0;i--){
             Player player;
                     player=slots.get(i);
-            System.out.println("\tRemoving slot [player]"+player.getName());
+            System.out.println("\tRemoving slot [player]"+player.getNAME());
             slots.remove(i);
             
         }
@@ -58,7 +58,7 @@ public class Tools_pack implements Tools{
     public boolean checkName(String name,ArrayList<Player> slots){
         boolean repetitive=false;
         for(int i=0;i<slots.size();i++){
-            if(slots.get(i).getName().equals(name))
+            if(slots.get(i).getNAME().equals(name))
                 repetitive=true;
         }
         return repetitive;
@@ -91,9 +91,9 @@ public class Tools_pack implements Tools{
     public void showSlots(ArrayList<Player> slots){
         for(int i=0;i<slots.size();i++){
             System.out.println(" Slot "+(i+1)
-                    + "\t[Name] "+slots.get(i).getName()
-                    + " [HP] "+slots.get(i).getHp()+" [ATK] "+slots.get(i).getAtk()
-                    + "\n\t[GOLD] "+slots.get(i).getGold()+" [EXP] "+slots.get(i).getExp()
+                    + "\t[Name] "+slots.get(i).getNAME()
+                    + " [HP] "+slots.get(i).getHP()+" [ATK] "+slots.get(i).getATK()
+                    + "\n\t[GOLD] "+slots.get(i).getGOLD()+" [EXP] "+slots.get(i).getEXP()
                     + "\n\t[WEAPON] "+slots.get(i).getWeaponName()+" Lv."+slots.get(i).getLevel()
                     + "\n\t[POTION] "+slots.get(i).getPotion()+"/"+slots.get(i).getLimitPotion()
                     + " [MINI BOMB] "+slots.get(i).getMiniBomb()+"/"+slots.get(i).getLimitMiniBomb()
