@@ -107,6 +107,7 @@ public final class State extends Map implements StatesInfo{
         resetWave();
         addMonsWaveAt(waveAt);
         Monster mon;
+        Player P1=super.player;
         System.out.println("[Wave "+(waveAt+1)+"]");
         while(inwave&&hp>0){
             
@@ -117,9 +118,9 @@ public final class State extends Map implements StatesInfo{
                         mon.getHP(),mon.getATK());
                 
             }
-            System.out.println("\t\tPlayer [ "+super.player.getNAME()+" ]"
-                            + "\n\t     hp<"+hp+"/"+super.player.getHP()+">"
-                            + "  atk <"+super.player.getATK()+">");
+            System.out.println("\t\tPlayer [ "+P1.getNAME()+" ]"
+                            + "\n\t     hp<"+hp+"/"+P1.getHP()+">"
+                            + "  atk <"+P1.getATK()+">");
             System.out.println("Attack(a)\tUse Item(i)\tSurrender(b)");
             boolean choosenull=true;
             boolean attack=false;
@@ -138,10 +139,10 @@ public final class State extends Map implements StatesInfo{
                         break;
                 }
             }
-            int counting=super.player.getWeaponType();
+            
             //your turn
             while(attack){
-                while(counting>0&&Mons.size()>0){
+                while(Mons.size()>0&&attack){
                     System.out.println(">Attack");
                     for(int i=0;i<Mons.size();i++){
                         mon=Mons.get(i);
@@ -150,76 +151,71 @@ public final class State extends Map implements StatesInfo{
                     }
                     System.out.print("attack:");input=tool.enter.nextLine();
                     if(tool.StringToNum(input)&&tool.getNum()>0&&tool.getNum()<=Mons.size()){
+                        int counting=P1.getWeaponType();
                         int monAt=tool.getNum()-1;
                         mon=Mons.get(monAt);
-                        mon.takeDamages(-(super.player.getATK()+super.player.getWeaponDamage()));
-                        System.out.println("\t[Player]"+super.player.getNAME()
-                                + " attacked to [Monster]"+mon.getNAME()
-                                + " "+(super.player.getATK()+super.player.getWeaponDamage())+" damages");
+                        do{
+                            mon.takeDamages(-(P1.getATK()+P1.getWeaponDamage()));
+                            System.out.println("\t[Player]"+P1.getNAME()
+                                    + " attacked to [Monster]"+mon.getNAME()
+                                    + " "+(P1.getATK()+P1.getWeaponDamage())+" damages");
+                            counting-=1;
+                        }while(counting>=0);
                         if(mon.getHP()<0){
                             System.out.println("\t[Monster]"+mon.getNAME()
-                                    + " was eliminated by [Player]"+super.player.getNAME());
+                                    + " was eliminated by [Player]"+P1.getNAME());
                             this.G+=mon.getGOLD();
                             this.Xp+=mon.getEXP();
                             Mons.remove(monAt);
                         }
-                        counting-=1;
-                        if(counting>0){
-                            System.out.print("weapon effected! you can attack "
-                                    + counting);
-                            if(counting>1)
-                                System.out.print(" times.");
-                            else
-                                System.out.print(" time.");
-                        }   
-                                
+                        endturn=true;
+                        attack=false;
                     }else
                         System.out.println("Monster at ("+input+") dose not exist.");
                 }
-                endturn=true;
-                attack=false;
+                
             }
             while(useitem){
                 System.out.println(">Use item"
-                        + "\n\t(1)heal potion "+super.player.getPotion()+"X"
-                        + "\n\t(2)mini bomb "+super.player.getMiniBomb() +"X"
+                        + "\n\t(1)heal potion "+P1.getPotion()+"X"
+                        + "\n\t(2)mini bomb "+P1.getMiniBomb() +"X"
                         + "\n\nBack(b)");
                 boolean select_null=true;
                 while(select_null){
                     System.out.print("choose :");input=tool.enter.nextLine();
                     switch(input){
                         case"1":
-                            if(super.player.getPotion()>0){
+                            if(P1.getPotion()>0){
                                 usingPotion(-1);
-                                System.out.println("[Player]"+super.player.getNAME() 
-                                        +" Healing +"+super.player.getHeal()+" hp");
-                                super.player.setPotion(-1);
-                                hp+=super.player.getHeal();
-                                if(hp>super.player.getHP())
-                                    hp=super.player.getHP();
+                                System.out.println("[Player]"+P1.getNAME() 
+                                        +" Healing +"+P1.getHeal()+" hp");
+                                P1.setPotion(-1);
+                                hp+=P1.getHeal();
+                                if(hp>P1.getHP())
+                                    hp=P1.getHP();
                             }else
                                 System.out.println("- run out of heal potion -");
                             useitem=false;
                             select_null=false;
                         break;
                         case"2":
-                            if(super.player.getMiniBomb()>0){
+                            if(P1.getMiniBomb()>0){
                                 for(int i = 0;i<Mons.size();i++){
                                     mon=Mons.get(i);
-                                    mon.takeDamages(-super.player.getExplotion());
+                                    mon.takeDamages(-P1.getExplotion());
                                     System.out.println("\t[Monster]"+mon.getNAME()
-                                            +" taken "+super.player.getExplotion()
+                                            +" taken "+P1.getExplotion()
                                             +" damages from explotion");
                                                                        
                                     if(mon.getHP()<0){
                                         System.out.println("\t[Monster]"+mon.getNAME()
-                                            + " was eliminated by [Player]"+super.player.getNAME()+"]");
+                                            + " was eliminated by [Player]"+P1.getNAME()+"]");
                                         this.G+=mon.getGOLD();
                                         this.Xp+=mon.getEXP();
                                         Mons.remove(i);
                                     }
                                 }
-                                super.player.setMiniBomb(-1);
+                                P1.setMiniBomb(-1);
                                 usingMiniBomb(-1);
                                 endturn=true;
                                 useitem=false;
@@ -264,7 +260,7 @@ public final class State extends Map implements StatesInfo{
                         int damage=-mon.getATK();
                         hp+=damage;
                         System.out.println("\t[Monster]"+mon.getNAME()
-                                + " attacked to [Player]"+super.player.getNAME()
+                                + " attacked to [Player]"+P1.getNAME()
                                 + " "+mon.getATK()+" damages");
                     }
                 }
@@ -282,6 +278,7 @@ public final class State extends Map implements StatesInfo{
         return pass;
     }
     public void Result(boolean won){
+        Player P1=super.player;
         if(won){
             System.out.println(">STATE COMPLETE"
                     + "\n\t+BONUS GOLD 1000"
@@ -296,7 +293,7 @@ public final class State extends Map implements StatesInfo{
                 +"\n\tGold +"+this.G);
             if(won){
                 System.out.println(">\tState "+(this.StateAt+2)+"Clear");
-                super.player.setState(won,StateAt+1);
+                P1.setState(won,StateAt+1);
             }
         }
         else{
@@ -305,8 +302,8 @@ public final class State extends Map implements StatesInfo{
             if(won)        
                 System.out.println("\tAll States Clear");
         }
-        super.player.setEXP(this.Xp);
-        super.player.setGOLD(this.G);
+        P1.setEXP(this.Xp);
+        P1.setGOLD(this.G);
     }
     private void addMonsWaveAt(int i){
         String codeWave=wave_s[i];

@@ -112,7 +112,7 @@ public class inteface_game implements Tools{
                         +  "\n\tpress enter to start game");
     }
     public void exit(ArrayList<Player> slots){
-        System.out.println(">[System]clearing memorys");
+        System.out.println("[System]clearing memorys");
         for(int i = slots.size()-1;i>=0;i--){
             Player player;
                     player=slots.get(i);
