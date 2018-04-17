@@ -1,37 +1,17 @@
 package hunter.s.adventure.game;
 
 public abstract class Monster extends Character implements MonstersInfo{
-    private int Gold;
-    private int Exp;
-    private int Atk;
-    private int Hp;
-    private String name;
-    
-    Monster(int i){
-        this.name=NAME[i];
-        this.Atk=ATK[i];
-        this.Exp=XP[i];
-        this.Gold=GOLD[i];
-        this.Hp=HP[i];
+    private boolean attacker;
+    public Monster(int i,boolean confirm){
+        this(NAME[i],HP[i],ATK[i],XP[i],GOLD[i]);
+        this.attacker=confirm;
     }
-    Monster(){
-        
+    public Monster(String name,int hp,int atk,int exp,int gold){
+        super(name,hp,atk,exp,gold);
     }
-    public int getGold(){
-        return this.Gold;
+    public boolean getAttacker(){
+        return this.attacker;
     }
-    public int getExp(){
-        return this.Exp;
-    }
-    public int getAtk(){
-        return this.Atk;
-    }
-    public String getName(){
-        return this.name;
-    }
-    public int getHP(){
-        return this.Hp;
-    }
-    public abstract int gethp();
     public abstract void takeDamages(int damage);
+    
 }
