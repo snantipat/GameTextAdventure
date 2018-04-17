@@ -145,7 +145,6 @@ public class State extends Map implements StatesInfo{
                         break;
                 }
             }
-            
             int counting=player.getWeaponType();
             //your turn
             while(attack){
