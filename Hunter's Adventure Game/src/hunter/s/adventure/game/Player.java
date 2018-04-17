@@ -20,8 +20,8 @@ public class Player extends Character implements WeaponInfo{
     private int heal;
     private int explotion;
     private String WeaponName;
-    Player(String n,int weapon){
-        super(n,100,10,0,2000);
+    Player(String n,int weapon,int hp,int atk){
+        super(n,hp,atk,0,2000);
         this.potion= 4;
         this.states[0]=true;
         this.WeaponType=weapon;

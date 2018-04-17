@@ -6,11 +6,105 @@ interface Tools{
 }
 public class inteface_game implements Tools{
     private int num;
-    public void createNewGame(){
-        
+    private int hp;
+    private int atk;
+    public ArrayList<Player> slots = new ArrayList();
+    public boolean loadGame(){
+        String input;
+        boolean chooseSlot=false;
+        if(slots.size()>0){
+            input=selectSlot(slots);
+            if(input.equals("r")){
+                input=removeSlot(slots);
+                if(StringToNum(input)){
+                    int removeAt=this.num-1;
+                    boolean confirmDeleteSlot=false;
+                    System.out.print("[System]enter name for confirm :");
+                    input=enter.nextLine();
+                    if(input.equals(slots.get(removeAt).getNAME())){
+                        confirmDeleteSlot=true;
+                    }else
+                        System.out.println("[System]delete Fail!");
+                    if(confirmDeleteSlot){
+                        System.out.println("[System]deleting slot at "+(removeAt+1)
+                                +" name:"+slots.get(removeAt).getNAME());
+                        slots.remove(removeAt);
+                        System.out.println("[System]slot deleted.");
+                    }
+                }
+                System.out.println("[System]returning to Main Menu");
+            }else if(StringToNum(input)){
+                chooseSlot=true;
+            }  
+        }else
+            System.out.println("[System]please press 1 for New game.");
+        return chooseSlot;
     }
-    public void loadGame(){
-        
+    public String  createNewGame(ArrayList<Player> slots){
+        boolean check;
+        String input;
+        System.out.println(">Create New Slot");
+                        do{
+                            input=resistNaming();
+                            check=checkName(input,slots);
+                            if(check)
+                                System.out.println("[System]name \""+input+"\" already exist");
+                            else{
+                                System.out.println("Saving Name "+input);
+                                //setstatus
+                                boolean choosing=true;
+                                int stat=10;
+                                this.hp=0;
+                                this.atk=0;
+                                do{
+                                    System.out.println("You have "+stat+" stats."
+                                            + "\nYour current [HP "+(hp*10)+"] [ATK "+(atk*5)+"]"
+                                            + "\n\t(1)Up + 10 Health cost 1 stat."
+                                            + "\n\t(2)Up + 5 Attack cost 1 stat.");
+                                    System.out.print("choose:");
+                                    String up=enter.nextLine();
+                                    switch(up){
+                                        case"1":
+                                            if(this.hp<5){
+                                                this.hp+=1;stat-=1;
+                                            }else
+                                                System.out.println("[System]can not up hp anymore.");
+                                        break;
+                                        case"2":
+                                            if(this.atk<5){
+                                                this.atk+=1;stat-=1;
+                                            }else
+                                                System.out.println("[System]can not up atk anymore.");
+                                        break;
+                                    }
+                                }while(stat>0);
+                                
+                                this.hp*=10;
+                                this.atk*=5;
+                                System.out.println("[System]Current [HP "+this.hp
+                                        +"] [ATK "+this.atk+"]");
+                            }
+                        }while(check);
+        return input;               
+    }
+    public int chooseWeaponType(){
+        boolean TypeWeaponUnable=true;
+        int weaponType=0;
+        chooseWeapon();
+        do{
+            System.out.print("choose:");
+            String input=enter.nextLine();
+            switch(input){
+                case"1":case"2":case"3":
+                    if(StringToNum(input)){
+                        weaponType=this.num;
+                        TypeWeaponUnable=false;
+                    }else
+                        System.out.println("[System]input again.");
+            }
+                            
+        }while(TypeWeaponUnable);
+        return weaponType;
     }
     public Scanner enter = new Scanner(System.in);//for String only
     public void startGame(){
@@ -18,17 +112,17 @@ public class inteface_game implements Tools{
                         +  "\n\tpress enter to start game");
     }
     public void exit(ArrayList<Player> slots){
-        System.out.println(">Clearing memorys");
+        System.out.println(">[System]clearing memorys");
         for(int i = slots.size()-1;i>=0;i--){
             Player player;
                     player=slots.get(i);
-            System.out.println("\tRemoving slot [player]"+player.getNAME());
+            System.out.println("[System]removing slot [player]"+player.getNAME());
             slots.remove(i);
             
         }
     }
     public void mainMenu(int size){
-        System.out.print(">HUNTER’S ADVENTURE\n" +
+        System.out.print(">MAIN MENU\n" +
                          "\tnew game(1)\n");
         if(size>0)
             System.out.println("\tcontinue(2)");
@@ -57,7 +151,7 @@ public class inteface_game implements Tools{
                 }
             }
             if(NotPass)
-               System.out.println("Naming can not be this \""+name+"\" word.");
+               System.out.println("[System]naming can not be this \""+name+"\" word.");
         }while(NotPass);
         return name;
     }
@@ -86,10 +180,10 @@ public class inteface_game implements Tools{
                                 slotIsNull=false;
                         }
                         if(this.num>slots.size()||this.num<0)
-                            System.out.println("Slot at "+this.num+" doesn't exist.");
+                            System.out.println("[System]slot at "+this.num+" doesn't exist.");
                     }
                     else
-                        System.out.println("Slot at "+input+" doesn't exist.");
+                        System.out.println("[System]slot at "+input+" doesn't exist.");
                 }
                 
         return input;
@@ -125,9 +219,9 @@ public class inteface_game implements Tools{
                                 slotIsNull=false;
                         }
                         if(this.num>slots.size()||this.num<=0)
-                            System.out.println("Slot at "+this.num+" dosen't exist.");
+                            System.out.println("[System]slot at "+this.num+" dosen't exist.");
                     }else
-                        System.out.println("Slot at "+removeAt+" dosen't exist.");
+                        System.out.println("[System]slot at "+removeAt+" dosen't exist.");
                 }
             
         return removeAt;
@@ -166,12 +260,12 @@ public class inteface_game implements Tools{
                 if(states_p[this.num-1])
                     chooseIsNull=false;
                 else
-                    System.out.println("You have to Complete state "+(this.num-1)+" first.");
+                    System.out.println("[System]you have to Complete state "+(this.num-1)+" first.");
                 break;
                 case"b":chooseIsNull=false;
                     break;
                 default:
-                    System.out.println("state "+input+" not Found!");
+                    System.out.println("[System]state "+input+" not found!");
             }   
             
         }
@@ -203,7 +297,12 @@ public class inteface_game implements Tools{
     public int getNum(){
        return this.num;
     }
-
+    public int getAtk(){
+        return this.atk;
+    }
+    public int getHp(){
+        return this.hp;
+    }
     void chooseWeapon(){
         System.out.println(">Choose Weapons"
                 + "\n\t(1)Heavy Sword   \t60 damages <1 hit/turn>"
