@@ -172,27 +172,26 @@ public class Home extends Map{
     void ChangeWeapon(){
         boolean cw = true ;
         while(cw){
-            int d1=60,d2=30,d3=20 ;
         System.out.print("========================================Change Weapons===========================================\n"
-                       + "(1)Heavy Sword      level "+p_1.getLevel()+"\n"
-                       + "(2)Short Hand Sword level "+p_1.getLevel()+"\n"
-                       + "(3)Huntsman Knife   level "+p_1.getLevel()+"\n"
+                       + "(1)Heavy Sword      Lv."+p_1.getLevelType(0)+"\n"
+                       + "(2)Short Hand Sword Lv."+p_1.getLevelType(1)+"\n"
+                       + "(3)Huntsman Knife   Lv."+p_1.getLevelType(2)+"\n"
                        + "(b)Back");
         
         System.out.println("Choose: ");
         String changeweapons = tp.enter.nextLine();
-        if(changeweapons.equals("b"))cw=false;
-        else if(tp.StringToNum(changeweapons)){
-        switch(tp.getNum()){
-            case 1 :  p_1.setWeaponType(1);
+        if(changeweapons.equals("b"))
+            cw=false;
+        else
+            switch(changeweapons){
+                case "1" :  p_1.setWeaponType(1);
                       System.out.println("you have Heavy Sword");break;
-            case 2 :  p_1.setWeaponType(2);
+                case "2" :  p_1.setWeaponType(2);
                       System.out.println("you have Short Hand Sword");break;
-            case 3 :  p_1.setWeaponType(3);
+                case "3" :  p_1.setWeaponType(3);
                       System.out.println("you have Huntsman Knife");break;
-            default : cw = true ;break;
-        }
-        }
+            }
+        
         }
 }    
 }

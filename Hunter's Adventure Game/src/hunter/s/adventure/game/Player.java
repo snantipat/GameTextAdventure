@@ -14,8 +14,8 @@ public class Player extends Character implements weaponname{
     private int potion;
     private int minibomb;
     private int Weapondamage;
-    private int weaDamage[]={60,30,20};
-    private int LevelWeapons[]={1,1,1};
+    private int weaDamage[];
+    private int LevelWeapons[];
     private int level_hp=1;
     private int level_atk=1;
     private int limit_potion;
@@ -40,6 +40,14 @@ public class Player extends Character implements weaponname{
         this.limit_potion=this.potion=3;
         this.heal=50;
         this.explotion=20;
+        this.weaDamage=new int [3];
+        this.weaDamage[0]=60;
+        this.weaDamage[1]=30;
+        this.weaDamage[2]=20;
+        this.LevelWeapons=new int[3];
+        this.LevelWeapons[0]=1;
+        this.LevelWeapons[1]=1;
+        this.LevelWeapons[2]=1;
         this.limit_minibomb=this.minibomb=1;
         switch(weapon){
             case 1:case 2:case 3: this.Weapondamage=WEADAM[weapon-1]; this.WeaponName=weaponname.WEANAME[weapon-1];break;
@@ -65,6 +73,9 @@ public class Player extends Character implements weaponname{
         this.WeaponType=type;
         this.WeaponName=WEANAME[type-1];
         this.Weapondamage=weaDamage[type-1];
+    }
+    public int getLevelType(int index){
+        return this.LevelWeapons[index];
     }
     public String getWeaponName(){
         return this.WeaponName;

@@ -173,7 +173,7 @@ public class State extends Map implements StatesInfo{
                         }
                         counting-=1;
                         if(counting>0){
-                            System.out.println("weapon effected! you can attack "
+                            System.out.print("weapon effected! you can attack "
                                     + counting);
                             if(counting>1)
                                 System.out.print(" times.");
