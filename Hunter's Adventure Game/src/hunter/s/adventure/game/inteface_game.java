@@ -1,14 +1,14 @@
 package hunter.s.adventure.game;
 import java.util.ArrayList;
 import java.util.Scanner;
-interface Tools{
-    char NUM[]={'0','1','2','3','4','5','6','7','8','9'};
-}
-public class inteface_game implements Tools{
+
+public class inteface_game{
     private int num;
     private int hp;
     private int atk;
+    
     public ArrayList<Player> slots = new ArrayList();
+    tools_pack tool=new tools_pack();
     public boolean loadGame(){
         String input;
         boolean chooseSlot=false;
@@ -16,11 +16,11 @@ public class inteface_game implements Tools{
             input=selectSlot(slots);
             if(input.equals("r")){
                 input=removeSlot(slots);
-                if(StringToNum(input)){
+                if(tool.StringToNum(input)){
                     int removeAt=this.num-1;
                     boolean confirmDeleteSlot=false;
                     System.out.print("[System]enter name for confirm :");
-                    input=enter.nextLine();
+                    input=tool.enter.nextLine();
                     if(input.equals(slots.get(removeAt).getNAME())){
                         confirmDeleteSlot=true;
                     }else
@@ -33,7 +33,7 @@ public class inteface_game implements Tools{
                     }
                 }
                 System.out.println("[System]returning to Main Menu");
-            }else if(StringToNum(input)){
+            }else if(tool.StringToNum(input)){
                 chooseSlot=true;
             }  
         }else
@@ -62,7 +62,7 @@ public class inteface_game implements Tools{
                                             + "\n\t(1)Up + 10 Health cost 1 stat."
                                             + "\n\t(2)Up + 5 Attack cost 1 stat.");
                                     System.out.print("choose:");
-                                    String up=enter.nextLine();
+                                    String up=tool.enter.nextLine();
                                     switch(up){
                                         case"1":
                                             if(this.hp<5){
@@ -93,22 +93,27 @@ public class inteface_game implements Tools{
         chooseWeapon();
         do{
             System.out.print("choose:");
-            String input=enter.nextLine();
+            String input=tool.enter.nextLine();
             switch(input){
                 case"1":case"2":case"3":
-                    if(StringToNum(input)){
+                    if(tool.StringToNum(input)){
                         weaponType=this.num;
                         TypeWeaponUnable=false;
-                    }else
+                    }else{
                         System.out.println("[System]input again.");
+                        System.out.print("enter to continoue >");
+                        tool.enter_to_continoue=tool.enter.nextLine();
+                    }
             }              
         }while(TypeWeaponUnable);
         return weaponType;
     }
-    public Scanner enter = new Scanner(System.in);//for String only
+    
     public void startGame(){
         System.out.println(">Game Hunter's Adventure"
                         +  "\n\tpress enter to start game");
+        System.out.print("enter to continoue >");
+        tool.enter_to_continoue=tool.enter.nextLine();
     }
     public void exit(ArrayList<Player> slots){
         System.out.println("[System]clearing memorys");
@@ -134,7 +139,7 @@ public class inteface_game implements Tools{
         boolean NotPass=true;
         do{
             
-            System.out.print("Name :");name=enter.nextLine();
+            System.out.print("Name :");name=tool.enter.nextLine();
             for(int i = 0;i<name.length()&&name.length()>2&&NotPass;i++){
                 if(name.equals(""))
                    NotPass=true;
@@ -149,8 +154,11 @@ public class inteface_game implements Tools{
                     }
                 }
             }
-            if(NotPass)
+            if(NotPass){
                System.out.println("[System]naming can not be this \""+name+"\" word.");
+               System.out.print("enter to continoue >");
+               tool.enter_to_continoue=tool.enter.nextLine();
+            }
         }while(NotPass);
         return name;
     }
@@ -170,19 +178,25 @@ public class inteface_game implements Tools{
                 String input=null;
                 while(slotIsNull){
                     System.out.print("choose slot:");
-                    input=enter.nextLine();
+                    input=tool.enter.nextLine();
                     if(input.equalsIgnoreCase("b")||input.equalsIgnoreCase("r")){
                         slotIsNull=false;
-                    }else if(StringToNum(input)&&input.length()<6){
+                    }else if(tool.StringToNum(input)&&input.length()<6){
                         for(int i = 0;i<slots.size()&&(this.num-1)<slots.size()&&this.num>0;i++){
                             if((this.num-1)==i)
                                 slotIsNull=false;
                         }
-                        if(this.num>slots.size()||this.num<0)
+                        if(this.num>slots.size()||this.num<0){
                             System.out.println("[System]slot at "+this.num+" doesn't exist.");
+                            System.out.print("enter to continoue >");
+                            tool.enter_to_continoue=tool.enter.nextLine();
+                        }
                     }
-                    else
+                    else{
                         System.out.println("[System]slot at "+input+" doesn't exist.");
+                        System.out.print("enter to continoue >");
+                        tool.enter_to_continoue=tool.enter.nextLine();
+                    }
                 }
                 
         return input;
@@ -209,18 +223,24 @@ public class inteface_game implements Tools{
             boolean slotIsNull=true;
                 while(slotIsNull){
                     System.out.print("choose slot:");
-                    removeAt=enter.nextLine();
+                    removeAt=tool.enter.nextLine();
                     if(removeAt.equalsIgnoreCase("b"))
                         slotIsNull=false;
-                    else if(StringToNum(removeAt)){
+                    else if(tool.StringToNum(removeAt)){
                         for(int i = 0;i<slots.size()&&(this.num-1)<slots.size()&&(this.num-1)>=0;i++){
                             if((this.num-1)==i)
                                 slotIsNull=false;
                         }
-                        if(this.num>slots.size()||this.num<=0)
+                        if(this.num>slots.size()||this.num<=0){
                             System.out.println("[System]slot at "+this.num+" dosen't exist.");
-                    }else
+                            System.out.print("enter to continoue >");
+                            tool.enter_to_continoue=tool.enter.nextLine();
+                        }
+                    }else{
                         System.out.println("[System]slot at "+removeAt+" dosen't exist.");
+                        System.out.print("enter to continoue >");
+                        tool.enter_to_continoue=tool.enter.nextLine();
+                    }
                 }
             
         return removeAt;
@@ -231,7 +251,7 @@ public class inteface_game implements Tools{
         System.out.printf(">STATE %d"
                 + "\n\tStart(1)\tHome(b)",stateAt);
         while(inputIsNull){
-            System.out.print("\nChoose:");input=enter.nextLine();
+            System.out.print("\nChoose:");input=tool.enter.nextLine();
             switch(input){
                 case"1":case"b":inputIsNull=false;
             }
@@ -251,51 +271,31 @@ public class inteface_game implements Tools{
         boolean chooseIsNull=true;
         while(chooseIsNull){
             System.out.print("select : ");
-            input=enter.nextLine();
+            input=tool.enter.nextLine();
             switch(input){
                 case"1":case"2":case"3":case"4":case"5":case"6":
                 case"7":case"8":case"9":case"10":
-                StringToNum(input);
+                tool.StringToNum(input);
                 if(states_p[this.num-1])
                     chooseIsNull=false;
-                else
+                else{
                     System.out.println("[System]you have to Complete state "+(this.num-1)+" first.");
+                    System.out.print("enter to continoue >");
+                    tool.enter_to_continoue=tool.enter.nextLine();
+                }
                 break;
                 case"b":chooseIsNull=false;
                     break;
                 default:
                     System.out.println("[System]state "+input+" not found!");
+                    System.out.print("enter to continoue >");
+                    tool.enter_to_continoue=tool.enter.nextLine();
             }   
             
         }
         return input;
     }
-    public boolean StringToNum(String raw){
-        boolean check=true;
-        boolean isNumber=true;
-        int n=0;
-        int degit=1;
-        for(int i_raw=raw.length()-1;i_raw>=0&&isNumber;i_raw--){
-            isNumber=false;
-            boolean numNotFound=true;
-            for(int i_num = 0;i_num<NUM.length&&numNotFound;i_num++){
-                if(raw.charAt(i_raw)==NUM[i_num]){
-                    isNumber=true;numNotFound=false;
-                    n+=degit*i_num;degit*=10;
-                }
-            }
-            if(numNotFound)
-                check=false;
-        }
-        if(check)
-            this.num=n;
-        else
-            this.num=0;
-        return check;
-    }
-    public int getNum(){
-       return this.num;
-    }
+    
     public int getAtk(){
         return this.atk;
     }

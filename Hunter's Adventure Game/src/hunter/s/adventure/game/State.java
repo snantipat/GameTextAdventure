@@ -1,20 +1,19 @@
 package hunter.s.adventure.game;
 import java.util.ArrayList;
 public final class State extends Map implements StatesInfo{
-    int G;
-    int Xp;
-    int StateAt;
-    int amountWave;
-    int amountMon;
-    boolean waveFine;
-    boolean battle=true;
-    String wave_s[];
-    int hp;
-    int potion;
-    int miniBomb;
-    boolean waveNotDone;
-    char con_num[]={'0','1','2','3','4','5','6','7','8','9'};
+    private int G;
+    private int Xp;
+    private final int StateAt;
+    private int amountWave;
+    private boolean waveFine;
+    private boolean battle=true;
+    private String wave_s[];
+    private int hp;
+    private int potion;
+    private int miniBomb;
     ArrayList<Monster> Mons= new ArrayList();
+    
+    
     public State(int stateAt,Player p1){
         super(p1);
         this.StateAt=stateAt;
@@ -40,14 +39,14 @@ public final class State extends Map implements StatesInfo{
                     wave+=raw.charAt(i);
                 break;
                 case'w':
-                    length=StringToNum(key,0);
+                    length=tool.StringToNum(key,0);
                     waves=new String[length];
                     index=length-1;
                     key="";
                     wave="";
                 break;
                 case'm':
-                    int index_m=StringToNum(key,0);
+                    int index_m=tool.StringToNum(key,0);
                     if(index_m<0||index_m>MonstersInfo.NAME.length)
                         notFail=false;
                     key="";
@@ -87,7 +86,7 @@ public final class State extends Map implements StatesInfo{
     public boolean wave(int waveAt,int hp){
         boolean pass=true;
         boolean inwave = true;
-        inteface_game tool=new inteface_game();
+        
         String input;
         resetWave();
         addMonsWaveAt(waveAt);
@@ -153,10 +152,15 @@ public final class State extends Map implements StatesInfo{
                             this.Xp+=mon.getEXP();
                             Mons.remove(monAt);
                         }
+                        System.out.print("enter to continoue >");
+                        tool.enter_to_continoue=tool.enter.nextLine();
                         endturn=true;
                         attack=false;
-                    }else
+                    }else{
                         System.out.println("Monster at ("+input+") dose not exist.");
+                        System.out.print("enter to continoue >");
+                        tool.enter_to_continoue=tool.enter.nextLine();
+                    }
                 }
                 
             }
@@ -182,6 +186,8 @@ public final class State extends Map implements StatesInfo{
                                 System.out.println("- run out of heal potion -");
                             useitem=false;
                             select_null=false;
+                            System.out.print("enter to continoue >");
+                            tool.enter_to_continoue=tool.enter.nextLine();
                         break;
                         case"2":
                             if(P1.getMiniBomb()>0){
@@ -199,6 +205,7 @@ public final class State extends Map implements StatesInfo{
                                         this.Xp+=mon.getEXP();
                                         Mons.remove(i);
                                     }
+                                    
                                 }
                                 P1.setMiniBomb(-1);
                                 usingMiniBomb(-1);
@@ -206,6 +213,8 @@ public final class State extends Map implements StatesInfo{
                                 useitem=false;
                             }else
                                 System.out.println("- run out of mini bomb -");
+                            System.out.print("enter to continoue >");
+                            tool.enter_to_continoue=tool.enter.nextLine();
                             select_null=false;
                         break;
                         case"b":
@@ -241,6 +250,7 @@ public final class State extends Map implements StatesInfo{
                                             +" heal +"+(hp/4)
                                             +" hp to it self");
                         }
+                        
                     }else{
                         int damage=-mon.getATK();
                         hp+=damage;
@@ -249,14 +259,16 @@ public final class State extends Map implements StatesInfo{
                                 + " "+mon.getATK()+" damages");
                     }
                 }
+                System.out.print("enter to continoue >");
+                tool.enter_to_continoue=tool.enter.nextLine();
             }
             if(hp<0){
                     pass=false;
-                    inwave=waveNotDone=false;
+                    inwave=false;
             }
             if(Mons.isEmpty()){
                 pass=true;
-                inwave=this.waveNotDone=false;    
+                inwave=false;    
             }
         }
         this.hp=hp;
@@ -287,6 +299,8 @@ public final class State extends Map implements StatesInfo{
             if(won)        
                 System.out.println("\tAll States Clear");
         }
+        System.out.print("enter to continoue >");
+        tool.enter_to_continoue=tool.enter.nextLine();
         P1.setEXP(this.Xp);
         P1.setGOLD(this.G);
     }
@@ -303,7 +317,7 @@ public final class State extends Map implements StatesInfo{
                     key+=codeWave.charAt(runChar);
                 break;
                 case'm':
-                    int indexMon=StringToNum(key,2);
+                    int indexMon=tool.StringToNum(key,2);
                     if(indexMon==15){
                         
                         while(amount>0){
@@ -327,35 +341,12 @@ public final class State extends Map implements StatesInfo{
                     key="";
                 break;
                 case'_':
-                    amount=StringToNum(key,2);
+                    amount=tool.StringToNum(key,2);
                     key="";
                 break;
                 default:codeFine=false;
             }
         }
-    }
-    public int StringToNum(String num,int type){
-        int number=0;
-        int digit=1;
-        String key_temp="";
-        if(type==2){
-            for(int i=num.length()-1;i>=0;i--){
-                key_temp+=num.charAt(i);
-            }
-            num=key_temp;
-        }
-        
-            for(int i=num.length()-1;i>=0;i--){
-                boolean numIsNull=true;
-                for(int j=0;j<con_num.length&&numIsNull;j++){
-                    if(num.charAt(i)==con_num[j]){
-                        number+=j*digit;digit*=10;numIsNull=false;
-                    }
-                }
-            
-            }
-        
-        return number;
     }
     public int getAmountWave(){
         return this.amountWave;
@@ -388,6 +379,5 @@ public final class State extends Map implements StatesInfo{
     public void resetWave(){
         this.miniBomb=0;
         this.potion=0;
-        this.waveNotDone=true;
     }
 }

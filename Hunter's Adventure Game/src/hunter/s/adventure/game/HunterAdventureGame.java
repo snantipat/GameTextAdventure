@@ -2,22 +2,22 @@ package hunter.s.adventure.game;
 public class HunterAdventureGame {
     public static void main(String args[]){      
         inteface_game UI = new inteface_game();
+        tools_pack tool = new tools_pack();
         Player player = null;
         State state = null;
         Home homeTown=null;
         boolean playing = true;
         boolean SlotIsNull=true;
         boolean selectedSlot=false;
-        String input,temp;
-
+        String input;
+        
         UI.startGame();
-        input=UI.enter.nextLine();
-        temp=input;    
         while(playing){
+            
             while(SlotIsNull&&playing){
                 selectedSlot=false;
                 UI.mainMenu(UI.slots.size());
-                input=UI.enter.nextLine();
+                input=tool.enter.nextLine();
                 switch(input){
                     case"1":
                         String name=UI.createNewGame(UI.slots);
@@ -26,7 +26,7 @@ public class HunterAdventureGame {
                         UI.slots.add(player);
                     case"2":
                         if(UI.slots.size()>0&&UI.loadGame()){
-                            player=UI.slots.get(UI.getNum()-1);
+                            player=UI.slots.get(tool.getNum()-1);
                             homeTown=new Home(player);
                             SlotIsNull=false;
                             selectedSlot=true;
@@ -52,8 +52,8 @@ public class HunterAdventureGame {
                     case"3":homeTown.ChangeWeapon();
                         break;
                     case"4":input=UI.chooseState(player.getStates());
-                        if(UI.StringToNum(input)){
-                            stateAt=UI.getNum();
+                        if(tool.StringToNum(input)){
+                            stateAt=tool.getNum();
                             stateSelected=true;
                             stateIsNull=false;
                         }
@@ -64,6 +64,7 @@ public class HunterAdventureGame {
                         break;
                 }
             }
+            
             boolean confirmState=false;
             while(stateSelected){
                 input = UI.sureState(stateAt);
@@ -76,8 +77,10 @@ public class HunterAdventureGame {
                     case"b":
                         stateSelected=false;
                         System.out.println("[System]returning to Home");
+                        tool.enterToContinoue();
                 }
             }
+            
             boolean alive=true;
             while(confirmState&&state!=null&&player!=null){
                 int hp=player.getHP();
