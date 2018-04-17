@@ -15,7 +15,7 @@ public class Attacker extends Monster{
     }
     @Override
     public void takeDamages(int damage){
-        super.setHp(damage);
+        super.setHP(damage);
     }
 
 }

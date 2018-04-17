@@ -4,8 +4,14 @@ import java.util.Scanner;
 interface Tools{
     char NUM[]={'0','1','2','3','4','5','6','7','8','9'};
 }
-public class Tools_pack implements Tools{
+public class inteface_game implements Tools{
     private int num;
+    public void createNewGame(){
+        
+    }
+    public void loadGame(){
+        
+    }
     public Scanner enter = new Scanner(System.in);//for String only
     public void startGame(){
         System.out.println(">Game Hunter's Adventure"
@@ -125,27 +131,6 @@ public class Tools_pack implements Tools{
                 }
             
         return removeAt;
-    }
-    
-    public String homeTown(){
-
-        Player p1 = null;
-        String input=null;
-            //1 2 3 4 b
-        boolean chooseIsNull=true;
-            System.out.println(">Home Town"
-                    + "\n\t(0)Up Status"
-                    + "\n\t(1)Refill Items"
-                    + "\n\t(2)Upgrade Items"
-                    + "\n\t(3)Change Weapon"
-                    + "\nSelect State(4)\t\t\tMain Menu(b)");
-        while(chooseIsNull){
-            System.out.print("choose : ");input=enter.nextLine();
-            switch(input){
-                case"0":case"1":case"2":case"3":case"4":case"b":chooseIsNull=false;
-            }
-        }
-        return input;
     }
     public String sureState(int stateAt){
         String input = null;

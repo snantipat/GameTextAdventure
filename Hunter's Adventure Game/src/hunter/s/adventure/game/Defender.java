@@ -15,7 +15,8 @@ public class Defender extends Monster{
         super(index);
         this.hp=super.getHP();
     }
+    @Override
     public void takeDamages(int damage){
-        super.setHp(damage);
+        super.setHP(damage);
     }
 }

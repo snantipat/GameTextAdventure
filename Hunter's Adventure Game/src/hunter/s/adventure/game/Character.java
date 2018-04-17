@@ -4,10 +4,7 @@ public abstract class Character {
     private int Atk;
     private int Gold;
     private int Exp;
-    private String Name;
-    Character(){
-        
-    }
+    private final String Name;
     Character(String name,int hp,int atk,int exp,int gold){
         this.Name=name;
         this.Hp=hp;

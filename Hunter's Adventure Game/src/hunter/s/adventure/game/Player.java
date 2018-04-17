@@ -20,9 +20,6 @@ public class Player extends Character implements WeaponInfo{
     private int heal;
     private int explotion;
     private String WeaponName;
-    Player(){
-        super();
-    }
     Player(String n,int weapon){
         super(n,100,10,0,2000);
         this.potion= 4;
@@ -36,8 +33,8 @@ public class Player extends Character implements WeaponInfo{
         this.weaDamage[1]=30;
         this.weaDamage[2]=20;
         this.LevelWeapons=new int[3];
-        this.LevelWeapons[0]=1;
-        this.LevelWeapons[1]=1;
+        this.LevelWeapons[0]=
+        this.LevelWeapons[1]=
         this.LevelWeapons[2]=1;
         this.limit_minibomb=this.minibomb=1;
         switch(weapon){
@@ -129,7 +126,6 @@ public class Player extends Character implements WeaponInfo{
     }
     public int getLimitMiniBomb(){
         return this.limit_minibomb;
-       
     }
     public void setLimitPotion(int amount){
         this.limit_potion+=amount;

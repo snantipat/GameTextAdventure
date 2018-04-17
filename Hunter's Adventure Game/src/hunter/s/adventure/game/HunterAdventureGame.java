@@ -2,7 +2,7 @@ package hunter.s.adventure.game;
 import java.util.ArrayList;
 public class HunterAdventureGame {
     public static void main(String args[]){
-        Tools_pack UI = new Tools_pack();                
+        inteface_game UI = new inteface_game();                
         ArrayList<Player> slots = new ArrayList();
         Player player = null;
         State state = null;
@@ -23,15 +23,15 @@ public class HunterAdventureGame {
                 input=UI.enter.nextLine();
                 switch(input){
                     case"1":
-                        System.out.println(">Create New Slot");
                         boolean check;
+                        //Create new Game :name , stat ,weapon
                         String name=null;
-                        System.out.println("\tcreate your name");
+                        System.out.print(">Create New Slot\nEnter Name:");
                         do{
                             input=UI.resistNaming();
                             check=UI.checkName(input,slots);
                             if(check){
-                                System.out.println("Name \""+input+"\" already exist");
+                                System.out.println("[System]name \""+input+"\" already exist");
                             }else{
                                 name=input;
                             }
@@ -61,20 +61,20 @@ public class HunterAdventureGame {
                                 if(UI.StringToNum(input)){
                                     int removeAt=UI.getNum()-1;
                                     boolean confirmDeleteSlot=false;
-                                    System.out.print("enter name for confirm :");
+                                    System.out.print("[System]enter name for confirm :");
                                     input=UI.enter.nextLine();
                                     if(input.equals(slots.get(removeAt).getNAME())){
                                         confirmDeleteSlot=true;
                                     }else
-                                        System.out.println(">Delete Fail!");
+                                        System.out.println("[System]delete Fail!");
                                     if(confirmDeleteSlot){
-                                        System.out.println(">Deleting slot at "+(removeAt+1)
+                                        System.out.println("[System]deleting slot at "+(removeAt+1)
                                                 +" name:"+slots.get(removeAt).getNAME());
                                         slots.remove(removeAt);
-                                        System.out.println("slot deleted.");
+                                        System.out.println("[System]slot deleted.");
                                     }
                                 }
-                                System.out.println("returning to Main Menu");
+                                System.out.println("[System]returning to Main Menu");
                             }else if(UI.StringToNum(input)){
                                 player=slots.get(UI.getNum()-1);
                                 homeTown=new Home(player);
@@ -82,7 +82,7 @@ public class HunterAdventureGame {
                                 selectedSlot=true;
                             }  
                         }else{
-                            System.out.println("please press 1 for New game.");
+                            System.out.println("[System]please press 1 for New game.");
                     break;
                     }
                     break;
@@ -95,7 +95,7 @@ public class HunterAdventureGame {
             boolean stateIsNull=true;
             int stateAt=0;
             while(selectedSlot&&stateIsNull&&homeTown!=null&&player!=null){
-                input=UI.homeTown();
+                input=homeTown.Lobby();
                 switch(input){
                     case"0":homeTown.Training_place();
                         break;
@@ -124,7 +124,7 @@ public class HunterAdventureGame {
                 switch(input){
                     case"1":
                         System.out.println(stateAt);
-                        state = new State(stateAt-1);
+                        state = new State(stateAt-1,player);
                         confirmState=true;
                         stateSelected=false;
                         break;
@@ -137,7 +137,7 @@ public class HunterAdventureGame {
             while(confirmState&&state!=null&&player!=null){
                 int hp=player.getHP();
                 for(int waveAt=0;waveAt<state.getAmountWave()&&alive&&state.getBattle();waveAt++){
-                    alive=state.wave(waveAt,hp,player);
+                    alive=state.wave(waveAt,hp);
                     hp=state.getHp();
                 }
                 state.Result(alive);
@@ -146,5 +146,4 @@ public class HunterAdventureGame {
         }
         UI.exit(slots);
     }
-    
 }
