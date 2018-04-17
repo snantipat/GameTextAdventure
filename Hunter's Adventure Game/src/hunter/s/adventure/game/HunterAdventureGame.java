@@ -26,7 +26,7 @@ public class HunterAdventureGame {
                         UI.slots.add(player);
                     case"2":
                         if(UI.slots.size()>0&&UI.loadGame()){
-                            player=UI.slots.get(tool.getNum()-1);
+                            player=UI.slots.get(UI.getSlot());
                             homeTown=new Home(player);
                             SlotIsNull=false;
                             selectedSlot=true;

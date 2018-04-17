@@ -1,12 +1,9 @@
 package hunter.s.adventure.game;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 public class inteface_game{
-    private int num;
     private int hp;
     private int atk;
-    
+    private int slotAt;
     public ArrayList<Player> slots = new ArrayList();
     tools_pack tool=new tools_pack();
     public boolean loadGame(){
@@ -17,7 +14,7 @@ public class inteface_game{
             if(input.equals("r")){
                 input=removeSlot(slots);
                 if(tool.StringToNum(input)){
-                    int removeAt=this.num-1;
+                    int removeAt=tool.getNum()-1;
                     boolean confirmDeleteSlot=false;
                     System.out.print("[System]enter name for confirm :");
                     input=tool.enter.nextLine();
@@ -35,6 +32,7 @@ public class inteface_game{
                 System.out.println("[System]returning to Main Menu");
             }else if(tool.StringToNum(input)){
                 chooseSlot=true;
+                this.slotAt=tool.getNum();
             }  
         }else
             System.out.println("[System]please press 1 for New game.");
@@ -97,7 +95,7 @@ public class inteface_game{
             switch(input){
                 case"1":case"2":case"3":
                     if(tool.StringToNum(input)){
-                        weaponType=this.num;
+                        weaponType=tool.getNum();
                         TypeWeaponUnable=false;
                     }else{
                         System.out.println("[System]input again.");
@@ -182,12 +180,12 @@ public class inteface_game{
                     if(input.equalsIgnoreCase("b")||input.equalsIgnoreCase("r")){
                         slotIsNull=false;
                     }else if(tool.StringToNum(input)&&input.length()<6){
-                        for(int i = 0;i<slots.size()&&(this.num-1)<slots.size()&&this.num>0;i++){
-                            if((this.num-1)==i)
+                        for(int i = 0;i<slots.size()&&(tool.getNum()-1)<slots.size()&&tool.getNum()>0;i++){
+                            if((tool.getNum()-1)==i)
                                 slotIsNull=false;
                         }
-                        if(this.num>slots.size()||this.num<0){
-                            System.out.println("[System]slot at "+this.num+" doesn't exist.");
+                        if(tool.getNum()>slots.size()||tool.getNum()<0){
+                            System.out.println("[System]slot at "+tool.getNum()+" doesn't exist.");
                             System.out.print("enter to continoue >");
                             tool.enter_to_continoue=tool.enter.nextLine();
                         }
@@ -227,12 +225,12 @@ public class inteface_game{
                     if(removeAt.equalsIgnoreCase("b"))
                         slotIsNull=false;
                     else if(tool.StringToNum(removeAt)){
-                        for(int i = 0;i<slots.size()&&(this.num-1)<slots.size()&&(this.num-1)>=0;i++){
-                            if((this.num-1)==i)
+                        for(int i = 0;i<slots.size()&&(tool.getNum()-1)<slots.size()&&(tool.getNum()-1)>=0;i++){
+                            if((tool.getNum()-1)==i)
                                 slotIsNull=false;
                         }
-                        if(this.num>slots.size()||this.num<=0){
-                            System.out.println("[System]slot at "+this.num+" dosen't exist.");
+                        if(tool.getNum()>slots.size()||tool.getNum()<=0){
+                            System.out.println("[System]slot at "+tool.getNum()+" dosen't exist.");
                             System.out.print("enter to continoue >");
                             tool.enter_to_continoue=tool.enter.nextLine();
                         }
@@ -276,10 +274,10 @@ public class inteface_game{
                 case"1":case"2":case"3":case"4":case"5":case"6":
                 case"7":case"8":case"9":case"10":
                 tool.StringToNum(input);
-                if(states_p[this.num-1])
+                if(states_p[tool.getNum()-1])
                     chooseIsNull=false;
                 else{
-                    System.out.println("[System]you have to Complete state "+(this.num-1)+" first.");
+                    System.out.println("[System]you have to Complete state "+(tool.getNum()-1)+" first.");
                     System.out.print("enter to continoue >");
                     tool.enter_to_continoue=tool.enter.nextLine();
                 }
@@ -295,12 +293,14 @@ public class inteface_game{
         }
         return input;
     }
-    
     public int getAtk(){
         return this.atk;
     }
     public int getHp(){
         return this.hp;
+    }
+    public int getSlot(){
+        return this.slotAt-1;
     }
     void chooseWeapon(){
         System.out.println(">Choose Weapons"

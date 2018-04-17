@@ -31,6 +31,7 @@ public class Home extends Map{
                 + "\n(1)+10 HP point cost "+100*super.player.getLevelHp()+" EXP"
                 + "\n(2)+5 ATK potnt cost "+100*super.player.getLevelAtk()+" EXP"
                 + "\nBack(b)");
+               System.out.print("choose:");
                String input=tool.enter.nextLine();
                switch(input){
                    case"1":

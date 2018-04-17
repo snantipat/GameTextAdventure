@@ -348,6 +348,7 @@ public final class State extends Map implements StatesInfo{
             }
         }
     }
+    
     public int getAmountWave(){
         return this.amountWave;
     }
