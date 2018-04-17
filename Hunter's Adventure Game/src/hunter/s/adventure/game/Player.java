@@ -4,8 +4,7 @@ interface WeaponInfo{
     int WEADAM[]={60,30,20};
 }
 public class Player extends Character implements WeaponInfo{
-    private boolean states[]={true,false,false,false,false,
-                              false,false,false,false,false};
+    private boolean states[]=new boolean[10];
     private int StateClear;
     private int WeaponType;
     private int potion;
@@ -40,21 +39,21 @@ public class Player extends Character implements WeaponInfo{
         switch(weapon){
             case 1:case 2:case 3: 
                 this.Weapondamage=WEADAM[weapon-1]; 
-                this.WeaponName=WEANAME[weapon-1];break;
-
+                this.WeaponName=WEANAME[weapon-1];
+            break;
         }
     }
     public void setLevelAtk(int amount){
-    this.level_atk+=amount;
+        this.level_atk+=amount;
     }
     public void setLevelHp(int amount){
-    this.level_hp+=amount;
+        this.level_hp+=amount;
     }
     public int getLevelAtk(){
-    return this.level_atk;
+        return this.level_atk;
     }
     public int getLevelHp(){
-    return this.level_hp;
+        return this.level_hp;
     }
     public int getWeaponDamType(int type){
         return this.weaDamage[type];
@@ -88,7 +87,7 @@ public class Player extends Character implements WeaponInfo{
     public int getWeaponDamage(){
         return this.Weapondamage;
     }
-    void setState(boolean state,int i){
+    public void setState(boolean state,int i){
         this.states[i]=state;   
     }
     public boolean getState(int i){
@@ -133,16 +132,16 @@ public class Player extends Character implements WeaponInfo{
     public int getLimitPotion(){
         return this.limit_potion;
     }
-    void setHeal(int plus){
+    public void setHeal(int plus){
         this.heal+=plus;
     }
-    void setExplotion(int plus){
+    public void setExplotion(int plus){
         this.explotion+=plus;
     }
-    int getHeal() {
+    public int getHeal() {
         return this.heal;
     }
-    int getExplotion(){
+    public int getExplotion(){
         return this.explotion;
     }
 }

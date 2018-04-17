@@ -9,9 +9,8 @@ public class HunterAdventureGame {
         boolean SlotIsNull=true;
         boolean selectedSlot=false;
         String input,temp;
-        
+
         UI.startGame();
-        
         input=UI.enter.nextLine();
         temp=input;    
         while(playing){

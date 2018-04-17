@@ -15,7 +15,7 @@ public final class State extends Map implements StatesInfo{
     boolean waveNotDone;
     char con_num[]={'0','1','2','3','4','5','6','7','8','9'};
     ArrayList<Monster> Mons= new ArrayList();
-    State(int stateAt,Player p1){
+    public State(int stateAt,Player p1){
         super(p1);
         this.StateAt=stateAt;
         decodeState(States[stateAt]);
@@ -25,21 +25,6 @@ public final class State extends Map implements StatesInfo{
         }else
             System.out.printf(">Load Waves fail!",stateAt+1);
     }
-    int chooseState(){
-        int i=0;
-        return i;
-    }
-    int getXp(){
-        return Xp;
-    }
-    int getG(){
-        return G;
-    }
-    int setState(boolean[] states_p){
-        int stateAt=0;
-        return stateAt;
-    }
-    
     public void decodeState(String raw){
         String waves[]=null;
         boolean notFail=true;
@@ -236,7 +221,7 @@ public final class State extends Map implements StatesInfo{
                 
                 for(int i=0;i<Mons.size()&&endturn;i++){
                     mon=Mons.get(i);
-                    if(mon.getATK()==0){
+                    if(mon.getAttacker()){
                         if(Mons.size()>1){
                             for(int indexHeal=0;indexHeal<Mons.size();indexHeal++){
                                 mon=Mons.get(indexHeal);
@@ -393,6 +378,12 @@ public final class State extends Map implements StatesInfo{
     }
     public int getUsedMiniBomb(){
         return this.miniBomb;
+    }
+    public int getXp(){
+        return Xp;
+    }
+    public int getG(){
+        return G;
     }
     public void resetWave(){
         this.miniBomb=0;

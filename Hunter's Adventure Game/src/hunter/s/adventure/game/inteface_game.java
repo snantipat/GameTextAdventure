@@ -101,8 +101,7 @@ public class inteface_game implements Tools{
                         TypeWeaponUnable=false;
                     }else
                         System.out.println("[System]input again.");
-            }
-                            
+            }              
         }while(TypeWeaponUnable);
         return weaponType;
     }

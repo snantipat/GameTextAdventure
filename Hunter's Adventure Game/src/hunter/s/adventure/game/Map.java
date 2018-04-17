@@ -1,8 +1,7 @@
 package hunter.s.adventure.game;
 public abstract class Map {
-    Player player;
-    Map(Player p_1){
+    public Player player;
+    public Map(Player p_1){
         this.player=p_1;
-    }
-    
+    }   
 }
