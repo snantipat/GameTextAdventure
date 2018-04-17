@@ -1,7 +1,7 @@
 package hunter.s.adventure.game;
 public class Attacker extends Monster{
     public Attacker(int index){
-        super(index,true);
+        super(index,false);
         
     }
     @Override

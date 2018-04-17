@@ -51,7 +51,7 @@ public class inteface_game{
                                 System.out.println("Saving Name "+input);
                                 //setstatus
                                 boolean choosing=true;
-                                int stat=10;
+                                int stat=15;
                                 this.hp=0;
                                 this.atk=0;
                                 do{
@@ -63,16 +63,19 @@ public class inteface_game{
                                     String up=tool.enter.nextLine();
                                     switch(up){
                                         case"1":
-                                            if(this.hp<5){
-                                                this.hp+=1;stat-=1;
-                                            }else
-                                                System.out.println("[System]can not up hp anymore.");
+                                            if(stat<=5&&atk<=5){
+                                                System.out.println("[System]can not up hp stat any more");
+                                            }else{
+                                                stat-=1;hp+=1;
+                                            }
                                         break;
                                         case"2":
-                                            if(this.atk<5){
-                                                this.atk+=1;stat-=1;
-                                            }else
-                                                System.out.println("[System]can not up atk anymore.");
+                                            if(stat<=5&&hp<=3){
+                                                System.out.println("[System]can not up atk stat any more");
+                                            }else{
+                                                stat-=1;
+                                                atk+=1;
+                                            }
                                         break;
                                     }
                                 }while(stat>0);
@@ -108,9 +111,8 @@ public class inteface_game{
     }
     
     public void startGame(){
-        System.out.println(">Game Hunter's Adventure"
-                        +  "\n\tpress enter to start game");
-        System.out.print("enter to continoue >");
+        System.out.print(">Game Hunter's Adventure"
+                        +  "\n\n\n\n\tpress enter to start game");
         tool.enter_to_continoue=tool.enter.nextLine();
     }
     public void exit(ArrayList<Player> slots){

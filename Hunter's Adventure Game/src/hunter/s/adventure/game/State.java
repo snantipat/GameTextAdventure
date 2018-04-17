@@ -125,26 +125,25 @@ public final class State extends Map implements StatesInfo{
             }
             
             //your turn
+            int counting=1;
             while(attack){
-                while(Mons.size()>0&&attack){
+                while(Mons.size()>0&&attack&&counting<=P1.getWeaponType()){
                     System.out.println(">Attack");
                     for(int i=0;i<Mons.size();i++){
                         mon=Mons.get(i);
                         System.out.printf("\t(%d) %s hp<%d> atk<%d>\n",i+1,mon.getNAME(),
                                 mon.getHP(),mon.getATK());
                     }
-                    System.out.print("attack:");input=tool.enter.nextLine();
+                    System.out.print("attack counting at("+counting+"):");input=tool.enter.nextLine();
                     if(tool.StringToNum(input)&&tool.getNum()>0&&tool.getNum()<=Mons.size()){
-                        int counting=P1.getWeaponType();
+                        
                         int monAt=tool.getNum()-1;
                         mon=Mons.get(monAt);
-                        do{
                             mon.takeDamages(-(P1.getATK()+P1.getWeaponDamage()));
                             System.out.println("\t[Player]"+P1.getNAME()
                                     + " attacked to [Monster]"+mon.getNAME()
                                     + " "+(P1.getATK()+P1.getWeaponDamage())+" damages");
-                            counting-=1;
-                        }while(counting>=0);
+                            counting+=1;
                         if(mon.getHP()<0){
                             System.out.println("\t[Monster]"+mon.getNAME()
                                     + " was eliminated by [Player]"+P1.getNAME());
@@ -230,7 +229,7 @@ public final class State extends Map implements StatesInfo{
                 
                 for(int i=0;i<Mons.size()&&endturn;i++){
                     mon=Mons.get(i);
-                    if(mon.getAttacker()){
+                    if(mon.getCanHealing()){
                         if(Mons.size()>1){
                             for(int indexHeal=0;indexHeal<Mons.size();indexHeal++){
                                 mon=Mons.get(indexHeal);
@@ -277,11 +276,12 @@ public final class State extends Map implements StatesInfo{
     public void Result(boolean won){
         Player P1=super.player;
         if(won){
+            this.G+=100*(StateAt+1);
+            this.Xp+=50*(StateAt+1);
             System.out.println(">STATE COMPLETE"
-                    + "\n\t+BONUS GOLD 1000"
-                    + "\n\t+BONUS EXP 500");
-            this.G+=1000;
-            this.Xp+=500;
+                    + "\n\t+ BONUS GOLD "+this.G
+                    + "\n\t+ BONUS EXP "+this.Xp);
+            
             
         }else
             System.out.println(">STATE FAIL");
@@ -289,7 +289,8 @@ public final class State extends Map implements StatesInfo{
             System.out.println("\tExp +"+this.Xp
                 +"\n\tGold +"+this.G);
             if(won){
-                System.out.println(">\tState "+(this.StateAt+2)+"Clear");
+                System.out.println("\tState "+(this.StateAt+1)+" Clear."
+                        + "\n\tState "+(this.StateAt+2)+" Unlock.");
                 P1.setState(won,StateAt+1);
             }
         }
