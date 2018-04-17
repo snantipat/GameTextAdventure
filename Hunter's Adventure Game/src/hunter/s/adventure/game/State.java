@@ -115,7 +115,7 @@ public class State extends Map implements StatesInfo{
         addMonsWaveAt(waveAt);
         Monster mon;
         System.out.println("[Wave "+(waveAt+1)+"]");
-        while(inwave){
+        while(inwave&&hp>0){
             
             System.out.println("< Your's turn >");
             for(int i=0;i<Mons.size();i++){

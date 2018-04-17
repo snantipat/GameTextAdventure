@@ -1,9 +1,9 @@
 package hunter.s.adventure.game;
-interface weaponname{
+interface WeaponInfo{
     String WEANAME[]={"Heavy Sword","Short Hand Sword","Huntsman Knife"};
     int WEADAM[]={60,30,20};
 }
-public class Player extends Character implements weaponname{
+public class Player extends Character implements WeaponInfo{
     private final String name;
     private boolean states[]={true,false,false,false,false,
                               false,false,false,false,false};
@@ -50,7 +50,7 @@ public class Player extends Character implements weaponname{
         this.LevelWeapons[2]=1;
         this.limit_minibomb=this.minibomb=1;
         switch(weapon){
-            case 1:case 2:case 3: this.Weapondamage=WEADAM[weapon-1]; this.WeaponName=weaponname.WEANAME[weapon-1];break;
+            case 1:case 2:case 3: this.Weapondamage=WEADAM[weapon-1]; this.WeaponName=WEANAME[weapon-1];break;
 
         }
     }
@@ -68,6 +68,9 @@ public class Player extends Character implements weaponname{
     }
     public String getName(){
         return name;
+    }
+    public int getWeaponDamType(int type){
+        return this.weaDamage[type];
     }
     public void setWeaponType(int type){
         this.WeaponType=type;
