@@ -13,16 +13,20 @@ public final class State extends Map implements StatesInfo{
     private int miniBomb;
     ArrayList<Monster> Mons= new ArrayList();
     
-    
     public State(int stateAt,Player p1){
         super(p1);
         this.StateAt=stateAt;
         decodeState(States[stateAt]);
+        showPlace();
+        
+    }
+    @Override
+    public void showPlace(){
         if(waveFine){
             this.amountWave=this.wave_s.length;
-            System.out.println(">State "+(stateAt+1));
+            System.out.println(">State "+(StateAt+1));
         }else
-            System.out.printf(">Load Waves fail!",stateAt+1);
+            System.out.printf(">Load Waves fail!",StateAt+1);
     }
     public void decodeState(String raw){
         String waves[]=null;

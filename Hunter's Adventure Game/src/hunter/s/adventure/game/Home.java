@@ -4,16 +4,20 @@ public class Home extends Map{
     Home(Player player){
         super(player);
     }
-    public String Lobby(){
-        Player p1 = null;
-        String input=null;
-        boolean chooseIsNull=true;
-            System.out.println(">Home Town"
+    @Override
+    public void showPlace(){
+         System.out.println(">Home Town"
                     + "\n\t(0)Up Status"
                     + "\n\t(1)Refill Items"
                     + "\n\t(2)Upgrade Items"
                     + "\n\t(3)Change Weapon"
                     + "\nSelect State(4)\t\t\tMain Menu(b)");
+    }
+    public String Lobby(){
+        Player p1 = null;
+        String input=null;
+        boolean chooseIsNull=true;
+           showPlace();
         while(chooseIsNull){
             System.out.print("choose : ");input=tool.enter.nextLine();
             switch(input){

@@ -5,4 +5,5 @@ public abstract class Map {
     public Map(Player p_1){
         this.player=p_1;
     }   
+    public abstract void showPlace();
 }
