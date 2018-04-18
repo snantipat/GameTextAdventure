@@ -51,31 +51,43 @@ public class inteface_game{
                                 System.out.println("Saving Name "+input);
                                 //setstatus
                                 boolean choosing=true;
-                                int stat=15;
-                                this.hp=0;
-                                this.atk=0;
+                                int stat=5;
+                                this.hp=5;
+                                this.atk=5;
                                 do{
                                     System.out.println("You have "+stat+" stats."
                                             + "\nYour current [HP "+(hp*10)+"] [ATK "+(atk*5)+"]"
                                             + "\n\t(1)Up + 10 Health cost 1 stat."
                                             + "\n\t(2)Up + 5 Attack cost 1 stat.");
                                     System.out.print("choose:");
+                                    String many;
                                     String up=tool.enter.nextLine();
                                     switch(up){
                                         case"1":
-                                            if(stat<=5&&atk<=5){
-                                                System.out.println("[System]can not up hp stat any more");
-                                            }else{
-                                                stat-=1;hp+=1;
-                                            }
+                                            
+                                            System.out.print("[System]How many stats?:");
+                                            many=tool.enter.nextLine();
+                                            if(tool.StringToNum(many)){
+                                                if(tool.getNum()<=stat){
+                                                    this.hp+=tool.getNum();
+                                                    stat-=tool.getNum();
+                                                }else
+                                                    System.out.println("[System]try again.");
+                                            }else
+                                                System.out.println("[System]try again.");
+                                            
                                         break;
                                         case"2":
-                                            if(stat<=5&&hp<=3){
-                                                System.out.println("[System]can not up atk stat any more");
-                                            }else{
-                                                stat-=1;
-                                                atk+=1;
-                                            }
+                                            System.out.print("[System]How many stats?:");
+                                            many=tool.enter.nextLine();
+                                            if(tool.StringToNum(many)){
+                                                if(tool.getNum()<=stat){
+                                                    this.atk+=tool.getNum();
+                                                    stat-=tool.getNum();
+                                                }else
+                                                    System.out.println("[System]try again.");
+                                            }else
+                                                System.out.println("[System]try again.");
                                         break;
                                     }
                                 }while(stat>0);

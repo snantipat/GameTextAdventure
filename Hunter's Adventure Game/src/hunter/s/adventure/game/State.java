@@ -109,7 +109,7 @@ public final class State extends Map implements StatesInfo{
             System.out.println("\t\tPlayer [ "+P1.getNAME()+" ]"
                             + "\n\t     hp<"+hp+"/"+P1.getHP()+">"
                             + "  atk <"+P1.getATK()+">");
-            System.out.println("Attack(a)\tUse Item(i)\tSurrender(b)");
+            System.out.println("Attack(a)\tUse Item(i)\tEscape(b)");
             boolean choosenull=true;
             boolean attack=false;
             boolean useitem=false;
