@@ -40,7 +40,7 @@ public class Home extends Map{
                             super.player.setEXP(-100*super.player.getLevelHp());
                        }else{
                            System.out.println("Not enoungh Exp.");
-                           tool.enterToContinoue();
+                           tool.enterToContinue();
                        }
                        break;
                    case"2":
@@ -49,7 +49,7 @@ public class Home extends Map{
                             super.player.setEXP(-100*super.player.getLevelAtk());
                        }else{
                            System.out.println("Not enoungh Exp.");
-                           tool.enterToContinoue();
+                           tool.enterToContinue();
                        }
                        break;
                    case"b":case"B":training=false;
@@ -78,7 +78,7 @@ public class Home extends Map{
                     super.player.Refill();
                 }else{
                     System.out.println("gold not enough");
-                    tool.enterToContinoue();
+                    tool.enterToContinue();
                 }
                 refill=false;
                 break;
@@ -131,7 +131,7 @@ public class Home extends Map{
                         super.player.setGOLD(-gold);
                     }else{
                         System.out.println("Not enough money");
-                        tool.enterToContinoue();
+                        tool.enterToContinue();
                     }
                     break;
                 case"2":
@@ -140,7 +140,7 @@ public class Home extends Map{
                         super.player.setGOLD(-gold);
                     }else{
                         System.out.println("Not enough money");
-                        tool.enterToContinoue();
+                        tool.enterToContinue();
                     }
                     break;
                 case"b":case"B":
@@ -172,7 +172,7 @@ public class Home extends Map{
                         super.player.setGOLD(-gold);
                     }else{
                         System.out.println("Not enough money");
-                        tool.enterToContinoue();
+                        tool.enterToContinue();
                     }
                     break;
                 case"2":
@@ -181,7 +181,7 @@ public class Home extends Map{
                         super.player.setGOLD(-gold);
                     }else{
                         System.out.println("Not enough money");
-                        tool.enterToContinoue();
+                        tool.enterToContinue();
                     }break;
                 case"b":case"B":power=false;break;
                 default :power = true  ;break;
@@ -207,7 +207,7 @@ public class Home extends Map{
                             super.player.setGOLD(-gold);
                         }else{
                             System.out.println("Have not enough money");
-                            tool.enterToContinoue();
+                            tool.enterToContinue();
                         }
                         wp = true;
                     break;
@@ -233,15 +233,15 @@ public class Home extends Map{
             switch(changeweapons){
                 case "1" :  super.player.setWeaponType(1);
                       System.out.println("Now using Heavy Sword");
-                      tool.enterToContinoue();
+                      tool.enterToContinue();
                       break;
                 case "2" :  super.player.setWeaponType(2);
                       System.out.println("Now using Short Hand Sword");
-                      tool.enterToContinoue();
+                      tool.enterToContinue();
                       break;
                 case "3" :  super.player.setWeaponType(3);
                       System.out.println("Now using Huntsman Knife");
-                      tool.enterToContinoue();
+                      tool.enterToContinue();
                       break;
             }
         

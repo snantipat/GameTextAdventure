@@ -127,7 +127,7 @@ public final class State extends Map implements StatesInfo{
             //your turn
             int counting=1;
             while(attack){
-                while(Mons.size()>0&&attack&&counting<=P1.getWeaponType()){
+                while(Mons.size()>0&&counting<=P1.getWeaponType()){
                     System.out.println(">Attack");
                     for(int i=0;i<Mons.size();i++){
                         mon=Mons.get(i);
@@ -151,14 +151,14 @@ public final class State extends Map implements StatesInfo{
                             this.Xp+=mon.getEXP();
                             Mons.remove(monAt);
                         }
-                        System.out.print("enter to continoue >");
-                        tool.enter_to_continoue=tool.enter.nextLine();
+                       tool.enterToContinue();
+                        
                         endturn=true;
                         attack=false;
                     }else{
                         System.out.println("Monster at ("+input+") dose not exist.");
-                        System.out.print("enter to continoue >");
-                        tool.enter_to_continoue=tool.enter.nextLine();
+                       tool.enterToContinue();
+                        
                     }
                 }
                 
@@ -185,8 +185,8 @@ public final class State extends Map implements StatesInfo{
                                 System.out.println("- run out of heal potion -");
                             useitem=false;
                             select_null=false;
-                            System.out.print("enter to continoue >");
-                            tool.enter_to_continoue=tool.enter.nextLine();
+                           tool.enterToContinue();
+                            
                         break;
                         case"2":
                             if(P1.getMiniBomb()>0){
@@ -212,8 +212,8 @@ public final class State extends Map implements StatesInfo{
                                 useitem=false;
                             }else
                                 System.out.println("- run out of mini bomb -");
-                            System.out.print("enter to continoue >");
-                            tool.enter_to_continoue=tool.enter.nextLine();
+                           tool.enterToContinue();
+                            
                             select_null=false;
                         break;
                         case"b":
@@ -258,10 +258,11 @@ public final class State extends Map implements StatesInfo{
                                 + " "+mon.getATK()+" damages");
                     }
                 }
-                System.out.print("enter to continoue >");
-                tool.enter_to_continoue=tool.enter.nextLine();
+               
+                
             }
             if(hp<0){
+                System.out.println("----------YOU DIE---------");
                     pass=false;
                     inwave=false;
             }
@@ -300,8 +301,8 @@ public final class State extends Map implements StatesInfo{
             if(won)        
                 System.out.println("\tAll States Clear");
         }
-        System.out.print("enter to continoue >");
-        tool.enter_to_continoue=tool.enter.nextLine();
+       tool.enterToContinue();
+        
         P1.setEXP(this.Xp);
         P1.setGOLD(this.G);
     }
@@ -336,7 +337,6 @@ public final class State extends Map implements StatesInfo{
                             this.Mons.add(mon);
                         amount-=1;
                         }
-                        
                     }
                     
                     key="";
@@ -364,7 +364,6 @@ public final class State extends Map implements StatesInfo{
     }
     private void usingMiniBomb(int used){
         this.miniBomb+=used;
-        
     }
     public int getUsedPotion(){
         return this.potion;

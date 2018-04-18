@@ -77,7 +77,7 @@ public class HunterAdventureGame {
                     case"b":
                         stateSelected=false;
                         System.out.println("[System]returning to Home");
-                        tool.enterToContinoue();
+                        tool.enterToContinue();
                 }
             }
             

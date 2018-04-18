@@ -53,7 +53,7 @@ public class tools_pack implements Tools{
         
         return number;
     }
-    public void enterToContinoue(){
+    public void enterToContinue(){
         System.out.print("enter to continoue >");
         enter_to_continoue=enter.nextLine();
     }
