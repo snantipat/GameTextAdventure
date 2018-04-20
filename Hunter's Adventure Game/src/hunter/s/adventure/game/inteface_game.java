@@ -114,8 +114,8 @@ public class inteface_game{
                         TypeWeaponUnable=false;
                     }else{
                         System.out.println("[System]input again.");
-                        System.out.print("enter to continoue >");
-                        tool.enter_to_continoue=tool.enter.nextLine();
+                        
+                        tool.enterToContinue();
                     }
             }              
         }while(TypeWeaponUnable);
@@ -125,7 +125,7 @@ public class inteface_game{
     public void startGame(){
         System.out.print(">Game Hunter's Adventure"
                         +  "\n\n\n\n\tpress enter to start game");
-        tool.enter_to_continoue=tool.enter.nextLine();
+        tool.enterToContinue();
     }
     public void exit(ArrayList<Player> slots){
         System.out.println("[System]clearing memorys");
@@ -168,8 +168,8 @@ public class inteface_game{
             }
             if(NotPass){
                System.out.println("[System]naming can not be this \""+name+"\" word.");
-               System.out.print("enter to continoue >");
-               tool.enter_to_continoue=tool.enter.nextLine();
+               
+               tool.enterToContinue();
             }
         }while(NotPass);
         return name;
@@ -200,14 +200,14 @@ public class inteface_game{
                         }
                         if(tool.getNum()>slots.size()||tool.getNum()<0){
                             System.out.println("[System]slot at "+tool.getNum()+" doesn't exist.");
-                            System.out.print("enter to continoue >");
-                            tool.enter_to_continoue=tool.enter.nextLine();
+                            
+                            tool.enterToContinue();
                         }
                     }
                     else{
                         System.out.println("[System]slot at "+input+" doesn't exist.");
-                        System.out.print("enter to continoue >");
-                        tool.enter_to_continoue=tool.enter.nextLine();
+                        
+                        tool.enterToContinue();
                     }
                 }
                 
@@ -245,13 +245,13 @@ public class inteface_game{
                         }
                         if(tool.getNum()>slots.size()||tool.getNum()<=0){
                             System.out.println("[System]slot at "+tool.getNum()+" dosen't exist.");
-                            System.out.print("enter to continoue >");
-                            tool.enter_to_continoue=tool.enter.nextLine();
+                            
+                            tool.enterToContinue();
                         }
                     }else{
                         System.out.println("[System]slot at "+removeAt+" dosen't exist.");
-                        System.out.print("enter to continoue >");
-                        tool.enter_to_continoue=tool.enter.nextLine();
+                        
+                        tool.enterToContinue();
                     }
                 }
             
@@ -292,16 +292,16 @@ public class inteface_game{
                     chooseIsNull=false;
                 else{
                     System.out.println("[System]you have to Complete state "+(tool.getNum()-1)+" first.");
-                    System.out.print("enter to continoue >");
-                    tool.enter_to_continoue=tool.enter.nextLine();
+                    
+                    
                 }
                 break;
                 case"b":chooseIsNull=false;
                     break;
                 default:
                     System.out.println("[System]state "+input+" not found!");
-                    System.out.print("enter to continoue >");
-                    tool.enter_to_continoue=tool.enter.nextLine();
+                    
+                    tool.enterToContinue();
             }   
             
         }

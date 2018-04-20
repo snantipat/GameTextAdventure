@@ -5,7 +5,7 @@ interface Tools{
 }
 public class tools_pack implements Tools{
     private int num;
-    public String enter_to_continoue;
+    public String enter_to_continue;
     public Scanner enter = new Scanner(System.in);
     public boolean StringToNum(String raw){
         boolean check=true;
@@ -54,8 +54,8 @@ public class tools_pack implements Tools{
         return number;
     }
     public void enterToContinue(){
-        System.out.print("enter to continoue >");
-        enter_to_continoue=enter.nextLine();
+        System.out.print("enter to continue >");
+        enter_to_continue=enter.nextLine();
     }
     public int getNum(){
        return this.num;

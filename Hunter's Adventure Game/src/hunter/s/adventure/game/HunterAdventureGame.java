@@ -80,7 +80,6 @@ public class HunterAdventureGame {
                         tool.enterToContinue();
                 }
             }
-            
             boolean alive=true;
             while(confirmState&&state!=null&&player!=null){
                 int hp=player.getHP();
