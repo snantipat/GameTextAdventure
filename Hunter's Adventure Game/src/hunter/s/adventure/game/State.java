@@ -88,7 +88,7 @@ public final class State extends Map implements StatesInfo{
         this.waveFine=notFail;
     }
     public boolean wave(int waveAt,int hp){
-        boolean pass=true;
+        boolean pass=false;
         boolean inwave = true;
         
         String input;
@@ -107,8 +107,10 @@ public final class State extends Map implements StatesInfo{
                 
             }
             System.out.println("\t\tPlayer [ "+P1.getNAME()+" ]"
-                            + "\n\t     hp<"+hp+"/"+P1.getHP()+">"
-                            + "  atk <"+P1.getATK()+">");
+                    + "\n hp<"+hp+"/"+P1.getHP()+">"
+                    + "  atk <"+P1.getATK()+"> + <"
+                    + P1.getWeaponDamage()+">"
+                    + " weapon damages");
             System.out.println("Attack(a)\tUse Item(i)\tEscape(b)");
             boolean choosenull=true;
             boolean attack=false;
@@ -153,7 +155,7 @@ public final class State extends Map implements StatesInfo{
                                     + " "+(P1.getATK()+P1.getWeaponDamage())
                                     +" damages");
                             counting+=1;
-                        if(mon.getHP()<0){
+                        if(mon.getHP()<=0){
                             System.out.println("\t[Monster]"+mon.getNAME()
                                     + " was eliminated by [Player]"
                                     +P1.getNAME());
@@ -279,9 +281,8 @@ public final class State extends Map implements StatesInfo{
                
                 
             }
-            if(hp<0){
+            if(hp<=0){
                 System.out.println("----------Defeat---------");
-                    pass=false;
                     inwave=false;
             }
             if(Mons.isEmpty()){

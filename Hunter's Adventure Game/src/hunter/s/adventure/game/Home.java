@@ -74,9 +74,9 @@ public class Home extends Map{
         System.out.println("========================================Refill"
                 + "==========================================="
                 + "\nYou have "+player.getGOLD()+" Gold");
-        System.out.println("Your current\toolotion : "+player.getPotion()
+        System.out.println("Your current\tPotion : "+player.getPotion()
                 +"/"+player.getLimitPotion()
-                +"\tmini bomb : "+player.getMiniBomb()
+                +"\tMini bomb : "+player.getMiniBomb()
                 +"/"+player.getLimitMiniBomb());
         int gold=(100*(player.getLimitPotion()-player.getPotion()))
                 +(100*(player.getLimitMiniBomb()
