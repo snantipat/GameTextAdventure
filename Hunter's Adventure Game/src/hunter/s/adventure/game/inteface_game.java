@@ -126,9 +126,9 @@ public class inteface_game{
     }
     
     public void startGame(){
-        System.out.print(">Game Hunter's Adventure"
-                        +  "\n\n\n\n\tpress enter to start game");
-        tool.enterToContinue();
+        System.out.println(">Game Hunter's Adventure"
+                        +  "\n\n\n[press enter to start game]");
+        tool.enter_to_continue=tool.enter.nextLine();
     }
     public void exit(ArrayList<Player> slots){
         System.out.println("[System]clearing memorys");
@@ -140,6 +140,7 @@ public class inteface_game{
             slots.remove(i);
             
         }
+        System.out.println("[--------------END PROCESS--------------]");
     }
     public void mainMenu(int size){
         System.out.print(">MAIN MENU\n" +
