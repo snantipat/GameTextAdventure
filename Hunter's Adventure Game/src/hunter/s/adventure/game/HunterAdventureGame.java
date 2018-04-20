@@ -22,7 +22,8 @@ public class HunterAdventureGame {
                     case"1":
                         String name=UI.createNewGame(UI.slots);
                         int weaponType=UI.chooseWeaponType();
-                        player=new Player(name,weaponType,UI.getHp(),UI.getAtk());
+                        player=new Player(name,weaponType,
+                                UI.getHp(),UI.getAtk());
                         UI.slots.add(player);
                     case"2":
                         if(UI.slots.size()>0&&UI.loadGame()){
@@ -83,7 +84,8 @@ public class HunterAdventureGame {
             boolean alive=true;
             while(confirmState&&state!=null&&player!=null){
                 int hp=player.getHP();
-                for(int waveAt=0;waveAt<state.getAmountWave()&&alive&&state.getBattle();waveAt++){
+                for(int waveAt=0;waveAt<state.getAmountWave()
+                        &&alive&&state.getBattle();waveAt++){
                     alive=state.wave(waveAt,hp);
                     hp=state.getHp();
                 }

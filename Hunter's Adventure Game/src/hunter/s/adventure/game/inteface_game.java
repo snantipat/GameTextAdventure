@@ -23,7 +23,8 @@ public class inteface_game{
                     }else
                         System.out.println("[System]delete Fail!");
                     if(confirmDeleteSlot){
-                        System.out.println("[System]deleting slot at "+(removeAt+1)
+                        System.out.println("[System]deleting slot at "
+                                +(removeAt+1)
                                 +" name:"+slots.get(removeAt).getNAME());
                         slots.remove(removeAt);
                         System.out.println("[System]slot deleted.");
@@ -42,62 +43,64 @@ public class inteface_game{
         boolean check;
         String input;
         System.out.println(">Create New Slot");
-                        do{
-                            input=resistNaming();
-                            check=checkName(input,slots);
-                            if(check)
-                                System.out.println("[System]name \""+input+"\" already exist");
-                            else{
-                                System.out.println("Saving Name "+input);
-                                //setstatus
-                                boolean choosing=true;
-                                int stat=5;
-                                this.hp=5;
-                                this.atk=5;
-                                do{
-                                    System.out.println("You have "+stat+" stats."
-                                            + "\nYour current [HP "+(hp*10)+"] [ATK "+(atk*5)+"]"
-                                            + "\n\t(1)Up + 10 Health cost 1 stat."
-                                            + "\n\t(2)Up + 5 Attack cost 1 stat.");
-                                    System.out.print("choose:");
-                                    String many;
-                                    String up=tool.enter.nextLine();
-                                    switch(up){
-                                        case"1":
-                                            
-                                            System.out.print("[System]How many stats?:");
-                                            many=tool.enter.nextLine();
-                                            if(tool.StringToNum(many)){
-                                                if(tool.getNum()<=stat){
-                                                    this.hp+=tool.getNum();
-                                                    stat-=tool.getNum();
-                                                }else
-                                                    System.out.println("[System]try again.");
-                                            }else
-                                                System.out.println("[System]try again.");
-                                            
-                                        break;
-                                        case"2":
-                                            System.out.print("[System]How many stats?:");
-                                            many=tool.enter.nextLine();
-                                            if(tool.StringToNum(many)){
-                                                if(tool.getNum()<=stat){
-                                                    this.atk+=tool.getNum();
-                                                    stat-=tool.getNum();
-                                                }else
-                                                    System.out.println("[System]try again.");
-                                            }else
-                                                System.out.println("[System]try again.");
-                                        break;
-                                    }
-                                }while(stat>0);
-                                
-                                this.hp*=10;
-                                this.atk*=5;
-                                System.out.println("[System]Current [HP "+this.hp
-                                        +"] [ATK "+this.atk+"]");
-                            }
-                        }while(check);
+        do{
+            input=resistNaming();
+            check=checkName(input,slots);
+            if(check)
+                System.out.println("[System]name \""
+                        +input+"\" already exist");
+            else{
+                System.out.println("Saving Name "+input);
+                //setstatus
+                boolean choosing=true;
+                int stat=5;
+                this.hp=5;
+                this.atk=5;
+                do{
+                  System.out.println("You have "
+                        +stat+" stats."
+                        + "\nYour current [HP "
+                        +(hp*10)+"] [ATK "+(atk*5)+"]"
+                        + "\n\t(1)Up + 10 Health cost 1 stat."
+                        + "\n\t(2)Up + 5 Attack cost 1 stat.");
+                    System.out.print("choose:");
+                    String many;
+                    String up=tool.enter.nextLine();
+                    switch(up){
+                        case"1":
+                          System.out.print("[System]How many stats?:");
+                          many=tool.enter.nextLine();
+                          if(tool.StringToNum(many)){
+                            if(tool.getNum()<=stat){
+                                this.hp+=tool.getNum();
+                                stat-=tool.getNum();
+                            }else
+                                System.out.println("[System]try again.");
+                          }else
+                            System.out.println("[System]try again.");
+
+                        break;
+                        case"2":
+                            System.out.print("[System]How many stats?:");
+                            many=tool.enter.nextLine();
+                            if(tool.StringToNum(many)){
+                                if(tool.getNum()<=stat){
+                                    this.atk+=tool.getNum();
+                                    stat-=tool.getNum();
+                                }else
+                                    System.out.println("[System]try again.");
+                            }else
+                                System.out.println("[System]try again.");
+                        break;
+                    }
+                }while(stat>0);
+
+                this.hp*=10;
+                this.atk*=5;
+                System.out.println("[System]Current [HP "+this.hp
+                        +"] [ATK "+this.atk+"]");
+            }
+        }while(check);
         return input;               
     }
     public int chooseWeaponType(){
@@ -132,7 +135,8 @@ public class inteface_game{
         for(int i = slots.size()-1;i>=0;i--){
             Player player;
                     player=slots.get(i);
-            System.out.println("[System]removing slot [player]"+player.getNAME());
+            System.out.println("[System]removing slot [player]"
+                    +player.getNAME());
             slots.remove(i);
             
         }
@@ -150,7 +154,6 @@ public class inteface_game{
         String name=null;
         boolean NotPass=true;
         do{
-            
             System.out.print("Name :");name=tool.enter.nextLine();
             for(int i = 0;i<name.length()&&name.length()>2&&NotPass;i++){
                 if(name.equals(""))
@@ -162,13 +165,14 @@ public class inteface_game{
                             NotPass=true;
                         break;
                         default:NotPass=false;
-                        
+
                     }
                 }
             }
             if(NotPass){
-               System.out.println("[System]naming can not be this \""+name+"\" word.");
-               
+               System.out.println("[System]naming can not be this \""
+                       +name+"\" word.");
+
                tool.enterToContinue();
             }
         }while(NotPass);
@@ -186,30 +190,34 @@ public class inteface_game{
         System.out.println(">Load Game");
         showSlots(slots);
         System.out.println("Back(b)\t\tDelete(r)");
-                boolean slotIsNull=true;
-                String input=null;
-                while(slotIsNull){
-                    System.out.print("choose slot:");
-                    input=tool.enter.nextLine();
-                    if(input.equalsIgnoreCase("b")||input.equalsIgnoreCase("r")){
+        boolean slotIsNull=true;
+        String input=null;
+        while(slotIsNull){
+            System.out.print("choose slot:");
+            input=tool.enter.nextLine();
+            if(input.equalsIgnoreCase("b")||input.equalsIgnoreCase("r")){
+                slotIsNull=false;
+            }else if(tool.StringToNum(input)&&input.length()<6){
+                for(int i = 0;i<slots.size()
+                        &&(tool.getNum()-1)<slots.size()
+                        &&tool.getNum()>0;i++){
+                    if((tool.getNum()-1)==i)
                         slotIsNull=false;
-                    }else if(tool.StringToNum(input)&&input.length()<6){
-                        for(int i = 0;i<slots.size()&&(tool.getNum()-1)<slots.size()&&tool.getNum()>0;i++){
-                            if((tool.getNum()-1)==i)
-                                slotIsNull=false;
-                        }
-                        if(tool.getNum()>slots.size()||tool.getNum()<0){
-                            System.out.println("[System]slot at "+tool.getNum()+" doesn't exist.");
-                            
-                            tool.enterToContinue();
-                        }
-                    }
-                    else{
-                        System.out.println("[System]slot at "+input+" doesn't exist.");
-                        
-                        tool.enterToContinue();
-                    }
                 }
+                if(tool.getNum()>slots.size()||tool.getNum()<0){
+                    System.out.println("[System]slot at "+tool.getNum()
+                            +" doesn't exist.");
+
+                    tool.enterToContinue();
+                }
+            }
+            else{
+                System.out.println("[System]slot at "+input
+                        +" doesn't exist.");
+
+                tool.enterToContinue();
+            }
+        }
                 
         return input;
     }
@@ -217,11 +225,16 @@ public class inteface_game{
         for(int i=0;i<slots.size();i++){
             System.out.println(" Slot "+(i+1)
                     + "\t[Name] "+slots.get(i).getNAME()
-                    + " [HP] "+slots.get(i).getHP()+" [ATK] "+slots.get(i).getATK()
-                    + "\n\t[GOLD] "+slots.get(i).getGOLD()+" [EXP] "+slots.get(i).getEXP()
-                    + "\n\t[WEAPON] "+slots.get(i).getWeaponName()+" Lv."+slots.get(i).getLevel()
-                    + "\n\t[POTION] "+slots.get(i).getPotion()+"/"+slots.get(i).getLimitPotion()
-                    + " [MINI BOMB] "+slots.get(i).getMiniBomb()+"/"+slots.get(i).getLimitMiniBomb()
+                    + " [HP] "+slots.get(i).getHP()
+                    +" [ATK] "+slots.get(i).getATK()
+                    + "\n\t[GOLD] "+slots.get(i).getGOLD()
+                    +" [EXP] "+slots.get(i).getEXP()
+                    + "\n\t[WEAPON] "+slots.get(i).getWeaponName()
+                    +" Lv."+slots.get(i).getLevel()
+                    + "\n\t[POTION] "+slots.get(i).getPotion()+"/"
+                    +slots.get(i).getLimitPotion()
+                    + " [MINI BOMB] "+slots.get(i).getMiniBomb()+"/"
+                    +slots.get(i).getLimitMiniBomb()
                     + "\n\tState Clear "+slots.get(i).getStateClear()
                     + "/"+10);
             }
@@ -239,17 +252,21 @@ public class inteface_game{
                     if(removeAt.equalsIgnoreCase("b"))
                         slotIsNull=false;
                     else if(tool.StringToNum(removeAt)){
-                        for(int i = 0;i<slots.size()&&(tool.getNum()-1)<slots.size()&&(tool.getNum()-1)>=0;i++){
+                        for(int i = 0;i<slots.size()
+                                &&(tool.getNum()-1)<slots.size()
+                                &&(tool.getNum()-1)>=0;i++){
                             if((tool.getNum()-1)==i)
                                 slotIsNull=false;
                         }
                         if(tool.getNum()>slots.size()||tool.getNum()<=0){
-                            System.out.println("[System]slot at "+tool.getNum()+" dosen't exist.");
+                            System.out.println("[System]slot at "
+                                    +tool.getNum()+" dosen't exist.");
                             
                             tool.enterToContinue();
                         }
                     }else{
-                        System.out.println("[System]slot at "+removeAt+" dosen't exist.");
+                        System.out.println("[System]slot at "
+                                +removeAt+" dosen't exist.");
                         
                         tool.enterToContinue();
                     }
@@ -291,7 +308,8 @@ public class inteface_game{
                 if(states_p[tool.getNum()-1])
                     chooseIsNull=false;
                 else{
-                    System.out.println("[System]you have to Complete state "+(tool.getNum()-1)+" first.");
+                    System.out.println("[System]you have to Complete state "
+                            +(tool.getNum()-1)+" first.");
                     
                     
                 }
